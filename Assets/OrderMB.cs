@@ -86,6 +86,7 @@ public class OrderMB : MonoBehaviour
     {
         Debug.Log("Order failed");
         Destroy(this.gameObject);
+        PopupText.Instance.GameOver();
     }
 
     public bool DoOrdersMatch(Order input)

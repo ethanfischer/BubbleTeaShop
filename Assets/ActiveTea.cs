@@ -105,6 +105,7 @@ public class ActiveTea : MonoBehaviour
     {
         _boba = (int)BobaEnum.Boba;
         AddIngredientTextToUI("Boba");
+        transform.Find("Boba").gameObject.SetActive(true);
         Debug.Log("Boba added");
     }
 
@@ -179,5 +180,6 @@ public class ActiveTea : MonoBehaviour
         _ice = 0;
         _sugar = 0;
         _extraTopping = 0;
+        transform.Find("Boba").gameObject.SetActive(false);
     }
 }

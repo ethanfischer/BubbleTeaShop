@@ -14,6 +14,8 @@ public class Order : MonoBehaviour
     int _toppings;
     int _sugar;
     int _ice;
+    
+    float _timeRemaining = 0;
 
     string[] _sizeOptions = new string[]
     {
@@ -53,15 +55,21 @@ public class Order : MonoBehaviour
         _sugar = Random.Range(0, _sugarOptions.Length);
         _ice = Random.Range(0, _iceOptions.Length);
 
+        SetUIText();
+
+        _timeRemaining = 30f;
+    }
+    
+    void SetUIText()
+    {
         SizeText.text = $"Size: {_sizeOptions[_size]}";
         ToppingsText.text = $"Toppings: {_toppingOptions[_toppings]}";
         SugarText.text = $"Sugar: {_sugarOptions[_sugar]}";
         IceText.text = $"Ice: {_iceOptions[_ice]}";
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        _timeRemaining -= Time.deltaTime;
     }
 }

@@ -1,16 +1,22 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class OrderSystem : MonoBehaviour
 {
     [SerializeField]
     Order _orderPrefab;
-    
-    void Start()
+
+    float _timer = 0f;
+    const float AddNewOrderTime = 5f;
+
+    void Update()
     {
-        for(int i = 0; i < 3; i++)
+        _timer += Time.deltaTime;
+
+        if (_timer > AddNewOrderTime)
         {
-            var order = Instantiate(_orderPrefab, this.transform);
+            _timer = 0f;
+            Instantiate(_orderPrefab, this.transform);
         }
     }
 }

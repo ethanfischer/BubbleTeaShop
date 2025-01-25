@@ -1,10 +1,16 @@
+using System.Collections.Generic;
+using System.Linq;
+using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class OrderSystem : MonoBehaviour
 {
+    [FormerlySerializedAs("_orderPrefab")]
     [SerializeField]
-    Order _orderPrefab;
+    OrderMB _orderMbPrefab;
 
+    List<OrderMB> _orders = new List<OrderMB>();
     const float ADD_NEW_ORDER_TIME = 45f;
     float _timer = ADD_NEW_ORDER_TIME;
 
@@ -13,8 +19,20 @@ public class OrderSystem : MonoBehaviour
         if (_timer > ADD_NEW_ORDER_TIME)
         {
             _timer = 0f;
-            Instantiate(_orderPrefab, this.transform);
+            _orders.Add(Instantiate(_orderMbPrefab, this.transform));
         }
         _timer += Time.deltaTime;
+    }
+    
+    public bool TryGetMatchingOrder(Order input, out OrderMB matchingOrderMb)
+    {
+        matchingOrderMb = _orders.FirstOrDefault(o => o.DoOrdersMatch(input));
+        if (matchingOrderMb != null)
+        {
+            Debug.Log("Matching order found");
+            return true;
+        }
+        
+        return false;
     }
 }

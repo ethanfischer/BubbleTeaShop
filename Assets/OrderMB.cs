@@ -68,7 +68,7 @@ public class OrderMB : MonoBehaviour
         BobaText.text = $"Boba: {_bobaOptions[Order.Boba]}";
         IceText.text = $"Ice: {_iceOptions[Order.Ice]}";
         SugarText.text = $"Sugar: {_sugarOptions[Order.Sugar]}";
-        ExtraToppingText.text = $"Extra Toppings: {_extraToppingOptions[Order.ExtraTopping]}";
+        ExtraToppingText.text = $"Extra: {_extraToppingOptions[Order.ExtraTopping]}";
         RemainingTimeText.text = $"Time remaining: {_timeRemaining:0}";
     }
 

@@ -67,6 +67,10 @@ public class ActiveTea : MonoBehaviour
         {
             SubmitTea();
         }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            TrashTea();
+        }
     }
 
     void AddJelly()
@@ -156,5 +160,12 @@ public class ActiveTea : MonoBehaviour
         {
             PopupText.Instance.ShowPopup("No matching order");
         }
+    }
+
+    void TrashTea()
+    {
+        ClearIngredientUIText();
+        PopupText.Instance.ShowPopup("Tea trashed");
+        Debug.Log("Tea trashed");
     }
 }

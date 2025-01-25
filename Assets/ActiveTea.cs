@@ -1,10 +1,16 @@
 using DefaultNamespace;
+using TMPro;
 using UnityEngine;
 
 public class ActiveTea : MonoBehaviour
 {
     [SerializeField]
     OrderSystem _orderSystem;
+
+    [SerializeField]
+    GameObject _activeTeaUI;
+    [SerializeField]
+    GameObject _teaIngredientPrefab;
     
     bool _hasMilk;
     bool _hasTea;
@@ -39,22 +45,36 @@ public class ActiveTea : MonoBehaviour
     
     void AddJelly()
     {
-        throw new System.NotImplementedException();
+        _topping = (int)ToppingEnum.Jelly;
+        AddIngredientTextToUI("Jelly");
+        Debug.Log("Jelly added");
     }
 
     void AddBoba()
     {
         _topping = (int)ToppingEnum.Boba;
+        AddIngredientTextToUI("Boba");
+        Debug.Log("Boba added");
     }
 
     void AddTea()
     {
         _hasTea = true;
+        AddIngredientTextToUI("Tea");
+        Debug.Log("Tea added");
+    }
+    
+    void AddIngredientTextToUI(string tea)
+    {
+        var ingredient = Instantiate(_teaIngredientPrefab, _activeTeaUI.transform);
+        ingredient.GetComponent<TMP_Text>().text = tea;
     }
 
     void AddMilk()
     {
         _hasMilk = true;
+        AddIngredientTextToUI("Milk");
+        Debug.Log("Milk added");
     }
 
     void SubmitTea()

@@ -23,16 +23,18 @@ public class OrderSystem : MonoBehaviour
         }
         _timer += Time.deltaTime;
     }
-    
+
     public bool TryGetMatchingOrder(Order input, out OrderMB matchingOrderMb)
     {
         matchingOrderMb = _orders.FirstOrDefault(o => o.DoOrdersMatch(input));
         if (matchingOrderMb != null)
         {
+            PopupText.Instance.ShowPopup("Matching order found");
             Debug.Log("Matching order found");
             return true;
         }
-        
+
+        PopupText.Instance.ShowPopup("No matching order found");
         return false;
     }
 }

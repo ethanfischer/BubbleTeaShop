@@ -21,6 +21,14 @@ public class ActiveTea : MonoBehaviour
     
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            AddBoba();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            AddIce();
+        }
         if (Input.GetKeyDown(KeyCode.M))
         {
             AddMilk();
@@ -28,10 +36,6 @@ public class ActiveTea : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             AddTea();
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            AddBoba();
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -43,6 +47,13 @@ public class ActiveTea : MonoBehaviour
         }
     }
     
+    void AddIce()
+    {
+        _ice = (int)IceEnum.Normal;
+        AddIngredientTextToUI("Normal Ice");
+        Debug.Log("Normal Ice added");
+    }
+
     void AddJelly()
     {
         _topping = (int)ToppingEnum.Jelly;
@@ -85,6 +96,7 @@ public class ActiveTea : MonoBehaviour
             var order = _orderSystem.TryGetMatchingOrder(o, out var matchingOrder);
             if (order != null)
             {
+                Destroy(matchingOrder);
                 Debug.Log("Tea submitted and matched order");
             }
         }

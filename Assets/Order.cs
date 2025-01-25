@@ -65,7 +65,7 @@ public class Order : MonoBehaviour
         ToppingsText.text = $"Toppings: {_toppingOptions[_toppings]}";
         SugarText.text = $"Sugar: {_sugarOptions[_sugar]}";
         IceText.text = $"Ice: {_iceOptions[_ice]}";
-        RemainingTimeText.text = $"Time remaining: {_timeRemaining:0.0}";
+        RemainingTimeText.text = $"Time remaining: {_timeRemaining:0}";
     }
 
     void Update()
@@ -75,7 +75,7 @@ public class Order : MonoBehaviour
         {
             FailOrder();
         }
-        RemainingTimeText.text = $"Time remaining: {_timeRemaining:0.0}";
+        RemainingTimeText.text = $"Time remaining: {_timeRemaining:0}";
     }
 
     void FailOrder()

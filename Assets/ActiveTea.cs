@@ -63,7 +63,7 @@ public class ActiveTea : MonoBehaviour
         }
 
         //Submit
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
         {
             SubmitTea();
         }

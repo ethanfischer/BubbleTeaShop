@@ -16,7 +16,7 @@ public class Order : MonoBehaviour
     int _sugar;
     int _ice;
     
-    float _timeRemaining = 10f;
+    float _timeRemaining = 60f;
 
     string[] _sizeOptions = new string[]
     {

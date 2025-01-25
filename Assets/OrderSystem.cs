@@ -5,17 +5,16 @@ public class OrderSystem : MonoBehaviour
     [SerializeField]
     Order _orderPrefab;
 
-    float _timer = 0f;
-    const float AddNewOrderTime = 5f;
+    const float ADD_NEW_ORDER_TIME = 45f;
+    float _timer = ADD_NEW_ORDER_TIME;
 
     void Update()
     {
-        _timer += Time.deltaTime;
-
-        if (_timer > AddNewOrderTime)
+        if (_timer > ADD_NEW_ORDER_TIME)
         {
             _timer = 0f;
             Instantiate(_orderPrefab, this.transform);
         }
+        _timer += Time.deltaTime;
     }
 }

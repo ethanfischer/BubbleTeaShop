@@ -1044,6 +1044,7 @@ MonoBehaviour:
   _teaIngredientPrefab: {fileID: 4583977725628410731, guid: 1c8fe309472fd40979ef6268453fa7fb, type: 3}
   _pourSound: {fileID: 8300000, guid: 89a588f0dc7064f5bad224034e931ac5, type: 3}
   _iceSound: {fileID: 8300000, guid: e4421122e0e274a878112fedfde03134, type: 3}
+  _jellySound: {fileID: 8300000, guid: a3a78fbe147a442caa3622fb44baab8d, type: 3}
   _audioSource: {fileID: 1762069034}
 --- !u!82 &1762069034
 AudioSource:

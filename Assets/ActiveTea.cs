@@ -14,9 +14,10 @@ public class ActiveTea : MonoBehaviour
 
     [SerializeField]
     AudioClip _pourSound;
-
     [SerializeField]
     AudioClip _iceSound;
+    [SerializeField]
+    AudioClip _jellySound;
 
     [SerializeField]
     AudioSource _audioSource;
@@ -86,6 +87,8 @@ public class ActiveTea : MonoBehaviour
     {
         _boba = (int)BobaEnum.Jelly;
         AddIngredientTextToUI("Jelly");
+        _audioSource.clip = _jellySound;
+        _audioSource.Play();
         Debug.Log("Jelly added");
     }
 
@@ -116,6 +119,8 @@ public class ActiveTea : MonoBehaviour
     {
         _boba = (int)BobaEnum.Boba;
         AddIngredientTextToUI("Boba");
+        _audioSource.clip = _jellySound;
+        _audioSource.Play();
         transform.Find("Boba").gameObject.SetActive(true);
         Debug.Log("Boba added");
     }

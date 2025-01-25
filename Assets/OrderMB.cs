@@ -42,7 +42,7 @@ public class OrderMB : MonoBehaviour
     {
         "None",
         "Less",
-        "Normal",
+        "Regular",
         "Extra"
     };
     
@@ -91,9 +91,16 @@ public class OrderMB : MonoBehaviour
 
     public bool DoOrdersMatch(Order input)
     {
-        return input.Boba == Order.Boba
-            && input.Ice == Order.Ice
-            && input.Sugar == Order.Sugar
-            && input.ExtraTopping == Order.ExtraTopping;
+        var boba = input.Boba == Order.Boba;
+        var ice = input.Ice == Order.Ice;
+        var sugar = input.Sugar == Order.Sugar;
+        var extraTopping = input.ExtraTopping == Order.ExtraTopping;
+        
+        Debug.Log($"Boba: {boba}, Ice: {ice}, Sugar: {sugar}, ExtraTopping: {extraTopping}");
+        
+        return boba
+            && ice
+            && sugar
+            && extraTopping;
     }
 }

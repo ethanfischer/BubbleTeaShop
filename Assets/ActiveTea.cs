@@ -155,6 +155,7 @@ public class ActiveTea : MonoBehaviour
             ClearIngredientUIText();
             PopupText.Instance.ShowPopup("Order matched");
             Debug.Log("Tea submitted and matched order");
+            Reset();
         }
         else
         {
@@ -167,5 +168,16 @@ public class ActiveTea : MonoBehaviour
         ClearIngredientUIText();
         PopupText.Instance.ShowPopup("Tea trashed");
         Debug.Log("Tea trashed");
+        Reset();
+    }
+
+    void Reset()
+    {
+        _hasTea = false;
+        _hasMilk = false;
+        _boba = 0;
+        _ice = 0;
+        _sugar = 0;
+        _extraTopping = 0;
     }
 }

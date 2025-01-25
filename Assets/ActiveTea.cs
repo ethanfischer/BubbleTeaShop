@@ -106,6 +106,20 @@ public class ActiveTea : MonoBehaviour
         _audioSource.Play();
         AddIngredientTextToUI("Ice");
         Debug.Log("Ice added");
+
+
+        if (_ice == 1)
+        {
+            transform.Find("Ice_One").gameObject.SetActive(true);
+        }
+        else if (_ice == 2)
+        {
+            transform.Find("Ice_Two").gameObject.SetActive(true);
+        }
+        else if (_ice == 3)
+        {
+            transform.Find("Ice_Three").gameObject.SetActive(true);
+        }
     }
 
     void AddCheeseFoam()
@@ -129,6 +143,7 @@ public class ActiveTea : MonoBehaviour
     {
         _hasTea = true;
         AddIngredientTextToUI("Tea");
+        transform.Find("Tea").gameObject.SetActive(true);
         Debug.Log("Tea added");
     }
 
@@ -152,6 +167,7 @@ public class ActiveTea : MonoBehaviour
         _audioSource.clip = _pourSound;
         _audioSource.Play();
         AddIngredientTextToUI("Milk");
+        transform.Find("Milk").gameObject.SetActive(true);
         Debug.Log("Milk added");
     }
 
@@ -199,5 +215,10 @@ public class ActiveTea : MonoBehaviour
         _sugar = 0;
         _extraTopping = 0;
         transform.Find("Boba").gameObject.SetActive(false);
+        transform.Find("Ice_One").gameObject.SetActive(false);
+        transform.Find("Ice_Two").gameObject.SetActive(false);
+        transform.Find("Ice_Three").gameObject.SetActive(false);
+        transform.Find("Milk").gameObject.SetActive(false);
+        transform.Find("Tea").gameObject.SetActive(false);
     }
 }

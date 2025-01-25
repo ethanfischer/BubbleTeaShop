@@ -10,33 +10,58 @@ public class Order : MonoBehaviour
     public TMP_Text SugarText;
     public TMP_Text IceText;
 
-    string _size;
-    string _toppings;
-    string _sugar;
-    string _ice;
-    
-    public void Initialize(string size, string toppings, string sugar, string ice)
-    {
-        _size = size;
-        _toppings = toppings;
-        _sugar = sugar;
-        _ice = ice;
+    int _size;
+    int _toppings;
+    int _sugar;
+    int _ice;
 
-        SizeText.text = $"Size: {_size}";
-        ToppingsText.text = $"Toppings: {_toppings}";
-        SugarText.text = $"Sugar: {_sugar}";
-        IceText.text = $"Ice: {_ice}";
-    }
+    string[] _sizeOptions = new string[]
+    {
+        "Small",
+        "Medium",
+        "Large"
+    };
+
+    string[] _toppingOptions = new string[]
+    {
+        "None",
+        "Boba",
+        "Jelly"
+    };
     
-    // Start is called before the first frame update
+    string[] _sugarOptions = new string[]
+    {
+        "None",
+        "30%",
+        "50%",
+        "75%",
+        "100%"
+    };
+    
+    string[] _iceOptions = new string[]
+    {
+        "None",
+        "Less",
+        "Normal",
+        "Extra"
+    };
+
     void Start()
     {
-        
+        _size = Random.Range(0, _sizeOptions.Length);
+        _toppings = Random.Range(0, _toppingOptions.Length);
+        _sugar = Random.Range(0, _sugarOptions.Length);
+        _ice = Random.Range(0, _iceOptions.Length);
+
+        SizeText.text = $"Size: {_sizeOptions[_size]}";
+        ToppingsText.text = $"Toppings: {_toppingOptions[_toppings]}";
+        SugarText.text = $"Sugar: {_sugarOptions[_sugar]}";
+        IceText.text = $"Ice: {_iceOptions[_ice]}";
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

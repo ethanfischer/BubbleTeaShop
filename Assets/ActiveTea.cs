@@ -99,7 +99,7 @@ public class ActiveTea : MonoBehaviour
 
     void AddBoba()
     {
-        _extraTopping = (int)BobaEnum.Boba;
+        _boba = (int)BobaEnum.Boba;
         AddIngredientTextToUI("Boba");
         Debug.Log("Boba added");
     }
@@ -129,10 +129,12 @@ public class ActiveTea : MonoBehaviour
         if (!_hasMilk)
         {
             PopupText.Instance.ShowPopup("Missing milk");
+            return;
         }
         if (!_hasTea)
         {
             PopupText.Instance.ShowPopup("Missing tea");
+            return;
         }
         var order = new Order(_boba, _ice, _sugar, _extraTopping);
         if (_orderSystem.TryGetMatchingOrder(order, out var matchingOrder))

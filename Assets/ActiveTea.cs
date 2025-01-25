@@ -12,6 +12,15 @@ public class ActiveTea : MonoBehaviour
     [SerializeField]
     GameObject _teaIngredientPrefab;
 
+    [SerializeField]
+    AudioClip _pourSound;
+
+    [SerializeField]
+    AudioClip _iceSound;
+
+    [SerializeField]
+    AudioSource _audioSource;
+
     bool _hasMilk;
     bool _hasTea;
     int _boba;
@@ -90,6 +99,8 @@ public class ActiveTea : MonoBehaviour
     void AddIceScoop()
     {
         _ice++;
+        _audioSource.clip = _iceSound;
+        _audioSource.Play();
         AddIngredientTextToUI("Ice");
         Debug.Log("Ice added");
     }
@@ -133,6 +144,8 @@ public class ActiveTea : MonoBehaviour
     void AddMilk()
     {
         _hasMilk = true;
+        _audioSource.clip = _pourSound;
+        _audioSource.Play();
         AddIngredientTextToUI("Milk");
         Debug.Log("Milk added");
     }

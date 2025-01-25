@@ -15,7 +15,7 @@ public class Order : MonoBehaviour
     int _sugar;
     int _ice;
     
-    float _timeRemaining = 0;
+    float _timeRemaining = 10f;
 
     string[] _sizeOptions = new string[]
     {
@@ -56,8 +56,6 @@ public class Order : MonoBehaviour
         _ice = Random.Range(0, _iceOptions.Length);
 
         SetUIText();
-
-        _timeRemaining = 30f;
     }
     
     void SetUIText()
@@ -71,5 +69,15 @@ public class Order : MonoBehaviour
     void Update()
     {
         _timeRemaining -= Time.deltaTime;
+        if (_timeRemaining <= 0)
+        {
+            FailOrder();
+        }
+    }
+
+    void FailOrder()
+    {
+        Debug.Log("Order failed");
+        Destroy(this.gameObject);
     }
 }

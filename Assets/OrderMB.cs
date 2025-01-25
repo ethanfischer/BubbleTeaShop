@@ -35,7 +35,7 @@ public class OrderMB : MonoBehaviour
         "None",
         "Less",
         "Regular",
-        "Extra%",
+        "Extra",
     };
 
     string[] _iceOptions = new string[]

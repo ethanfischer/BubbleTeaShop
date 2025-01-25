@@ -42,7 +42,7 @@ public class ActiveTea : MonoBehaviour
         {
             AddMilk();
         }
-        
+
         //Sugar
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -68,7 +68,7 @@ public class ActiveTea : MonoBehaviour
             SubmitTea();
         }
     }
-    
+
     void AddJelly()
     {
         _boba = (int)BobaEnum.Jelly;
@@ -117,6 +117,14 @@ public class ActiveTea : MonoBehaviour
         ingredient.GetComponent<TMP_Text>().text = tea;
     }
 
+    void ClearIngredientUIText()
+    {
+        foreach (Transform child in _activeTeaUI.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
     void AddMilk()
     {
         _hasMilk = true;
@@ -139,7 +147,8 @@ public class ActiveTea : MonoBehaviour
         var order = new Order(_boba, _ice, _sugar, _extraTopping);
         if (_orderSystem.TryGetMatchingOrder(order, out var matchingOrder))
         {
-            Destroy(matchingOrder);
+            Destroy(matchingOrder.gameObject);
+            ClearIngredientUIText();
             PopupText.Instance.ShowPopup("Order matched");
             Debug.Log("Tea submitted and matched order");
         }

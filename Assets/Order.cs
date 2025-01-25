@@ -2,17 +2,19 @@ namespace DefaultNamespace
 {
     public class Order
     {
-        public Order(int size, int topping, int sugar, int ice)
+        public Order(int boba, int ice, int sugar, int extraTopping)
         {
-            Size = size;
-            Topping = topping;
-            Sugar = sugar;
+            Boba = boba;
             Ice = ice;
+            //Milk
+            Sugar = sugar;
+            //Tea
+            ExtraTopping = extraTopping;
         }
         
-        public int Size { get; private set; }
-        public int Topping { get; private set; }
-        public int Sugar { get; private set; }
+        public int Boba { get; private set; }
         public int Ice { get; private set; }
+        public int Sugar { get; private set; }
+        public int ExtraTopping { get; private set; }
     }
 }

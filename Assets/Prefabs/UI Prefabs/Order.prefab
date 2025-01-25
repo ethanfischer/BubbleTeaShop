@@ -32,10 +32,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2578251157697080789}
   - {fileID: 814705549826323489}
-  - {fileID: 264199220261971162}
   - {fileID: 6649391325094894764}
+  - {fileID: 264199220261971162}
+  - {fileID: 3499306557445041372}
   - {fileID: 4693153490413498347}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120,10 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01818a3d1a9a747119be0e6824a8121b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SizeText: {fileID: 7963332904670908821}
-  ToppingsText: {fileID: 3712041732100024036}
-  SugarText: {fileID: 6971503837937793460}
+  BobaText: {fileID: 3712041732100024036}
   IceText: {fileID: 9203094096584436532}
+  SugarText: {fileID: 6971503837937793460}
+  ExtraToppingText: {fileID: 8183330041492985778}
   RemainingTimeText: {fileID: 7371030934233433793}
 --- !u!1 &2075307480828148281
 GameObject:
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sugar: 30%
+  m_text: 'Sugar:
 
 '
   m_isRightToLeft: 0
@@ -326,9 +326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ice: Regular
-
-'
+  m_text: "Ice: \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -409,7 +407,7 @@ GameObject:
   - component: {fileID: 6968824607153763366}
   - component: {fileID: 3712041732100024036}
   m_Layer: 5
-  m_Name: Toppings
+  m_Name: Boba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,9 +460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Toppings: Boba
-
-'
+  m_text: 'Boba:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -667,7 +663,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &8507484480157377142
+--- !u!1 &8680724475072848906
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -675,23 +671,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2578251157697080789}
-  - component: {fileID: 9179950686083157834}
-  - component: {fileID: 7963332904670908821}
+  - component: {fileID: 3499306557445041372}
+  - component: {fileID: 2734495110979383696}
+  - component: {fileID: 8183330041492985778}
   m_Layer: 5
-  m_Name: Size
+  m_Name: ExtraTopping
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &2578251157697080789
+--- !u!224 &3499306557445041372
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8507484480157377142}
+  m_GameObject: {fileID: 8680724475072848906}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -704,21 +700,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
---- !u!222 &9179950686083157834
+--- !u!222 &2734495110979383696
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8507484480157377142}
+  m_GameObject: {fileID: 8680724475072848906}
   m_CullTransparentMesh: 1
---- !u!114 &7963332904670908821
+--- !u!114 &8183330041492985778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8507484480157377142}
+  m_GameObject: {fileID: 8680724475072848906}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -732,7 +728,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Size: Regular'
+  m_text: 'Extra Topping:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

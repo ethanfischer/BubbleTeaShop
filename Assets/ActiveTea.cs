@@ -11,59 +11,95 @@ public class ActiveTea : MonoBehaviour
     GameObject _activeTeaUI;
     [SerializeField]
     GameObject _teaIngredientPrefab;
-    
+
     bool _hasMilk;
     bool _hasTea;
-    int _size;
-    int _topping;
-    int _sugar;
+    int _boba;
     int _ice;
-    
+    int _sugar;
+    int _extraTopping;
+
     void Update()
     {
+        //Boba
         if (Input.GetKeyDown(KeyCode.B))
         {
             AddBoba();
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            AddIce();
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            AddMilk();
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            AddTea();
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
             AddJelly();
         }
+
+        //Ice
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            AddIceScoop();
+        }
+
+        //Milk
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            AddMilk();
+        }
+        
+        //Sugar
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            AddSugar();
+        }
+
+        //Tea
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            AddTea();
+        }
+
+
+        //Toppings
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            AddCheeseFoam();
+        }
+
+        //Submit
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SubmitTea();
         }
     }
     
-    void AddIce()
-    {
-        _ice = (int)IceEnum.Normal;
-        AddIngredientTextToUI("Normal Ice");
-        Debug.Log("Normal Ice added");
-    }
-
     void AddJelly()
     {
-        _topping = (int)ToppingEnum.Jelly;
+        _boba = (int)BobaEnum.Jelly;
         AddIngredientTextToUI("Jelly");
         Debug.Log("Jelly added");
     }
 
+    void AddSugar()
+    {
+        _sugar++;
+        AddIngredientTextToUI("Sugar");
+        Debug.Log("Sugar added");
+    }
+
+    void AddIceScoop()
+    {
+        _ice++;
+        AddIngredientTextToUI("Ice");
+        Debug.Log("Ice added");
+    }
+
+    void AddCheeseFoam()
+    {
+        _extraTopping = (int)ExtraToppingEnum.CheeseFoam;
+        AddIngredientTextToUI("Cheese Foam");
+        Debug.Log("Cheese Foam added");
+    }
+
     void AddBoba()
     {
-        _topping = (int)ToppingEnum.Boba;
+        _extraTopping = (int)BobaEnum.Boba;
         AddIngredientTextToUI("Boba");
         Debug.Log("Boba added");
     }
@@ -74,7 +110,7 @@ public class ActiveTea : MonoBehaviour
         AddIngredientTextToUI("Tea");
         Debug.Log("Tea added");
     }
-    
+
     void AddIngredientTextToUI(string tea)
     {
         var ingredient = Instantiate(_teaIngredientPrefab, _activeTeaUI.transform);
@@ -90,19 +126,24 @@ public class ActiveTea : MonoBehaviour
 
     void SubmitTea()
     {
-        if(_hasMilk && _hasTea)
+        if (!_hasMilk)
         {
-            var o = new Order(_size, _topping, _sugar, _ice);
-            var order = _orderSystem.TryGetMatchingOrder(o, out var matchingOrder);
-            if (order != null)
-            {
-                Destroy(matchingOrder);
-                Debug.Log("Tea submitted and matched order");
-            }
+            PopupText.Instance.ShowPopup("Missing milk");
+        }
+        if (!_hasTea)
+        {
+            PopupText.Instance.ShowPopup("Missing tea");
+        }
+        var order = new Order(_boba, _ice, _sugar, _extraTopping);
+        if (_orderSystem.TryGetMatchingOrder(order, out var matchingOrder))
+        {
+            Destroy(matchingOrder);
+            PopupText.Instance.ShowPopup("Order matched");
+            Debug.Log("Tea submitted and matched order");
         }
         else
         {
-            Debug.Log("Missing milk or tea");
+            PopupText.Instance.ShowPopup("No matching order");
         }
     }
 }

@@ -85,4 +85,9 @@ public class OrderSystem : MonoBehaviour
             Destroy(order.gameObject);
         }
     }
+
+    public void RemoveOrderFromList(OrderMB order)
+    {
+        _orders.Remove(order);
+    }
 }

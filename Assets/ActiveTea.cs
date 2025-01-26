@@ -291,6 +291,7 @@ public class ActiveTea : MonoBehaviour
 
     void HandleCorrectOrder(OrderMB matchingOrder)
     {
+        OrderSystem.Instance.RemoveOrderFromList(matchingOrder);
         Destroy(matchingOrder.gameObject);
         ClearIngredientUIText();
         PopupText.Instance.ShowPopup("<color=green>$5</color>", 0.5f);

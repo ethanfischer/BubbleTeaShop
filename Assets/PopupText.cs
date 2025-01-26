@@ -31,7 +31,7 @@ public class PopupText : MonoBehaviour
     public void GameOver()
     {
         _isGameOver = true;
-        _text.text = "YOU MISSED AN ORDER.\nGAME OVER";
+        _text.text = "GAME OVER";
         _timer = float.MaxValue;
     }
     

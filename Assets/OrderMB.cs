@@ -33,14 +33,14 @@ public class OrderMB : MonoBehaviour
 
     string[] _bobaOptions = new string[]
     {
-        "",
+        "-",
         "Boba",
         "Jelly"
     };
 
     string[] _sugarOptions = new string[]
     {
-        "",
+        "-",
         "Less Sugar",
         "Regular Sugar",
         "Extra Sugar",
@@ -48,7 +48,7 @@ public class OrderMB : MonoBehaviour
 
     string[] _iceOptions = new string[]
     {
-        "",
+        "-",
         "Less Ice",
         "Regular Ice",
         "Extra Ice"
@@ -56,7 +56,7 @@ public class OrderMB : MonoBehaviour
 
     string[] _extraToppingOptions = new string[]
     {
-        "",
+        "-",
         "Cheese Foam",
     };
 

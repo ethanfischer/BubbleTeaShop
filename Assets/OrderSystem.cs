@@ -11,7 +11,7 @@ public class OrderSystem : MonoBehaviour
     OrderMB _orderMbPrefab;
 
     List<OrderMB> _orders = new List<OrderMB>();
-    const float ADD_NEW_ORDER_TIME = 20f;
+    const float ADD_NEW_ORDER_TIME = 10f;
     float _timer = ADD_NEW_ORDER_TIME;
 
     void Update()

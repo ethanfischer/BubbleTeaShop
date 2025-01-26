@@ -16,7 +16,7 @@ public class OrderSystem : MonoBehaviour
     AudioClip _orderSound;
     [SerializeField]
     AudioSource _orderAudioSource;
-    
+
     [SerializeField]
     TMP_Text _cashText;
     public decimal Cash = Decimal.Zero;
@@ -81,7 +81,7 @@ public class OrderSystem : MonoBehaviour
 
         _timer += Time.deltaTime;
     }
-    
+
     void HandleNextOrder()
     {
         _timer = 0f;
@@ -110,6 +110,12 @@ public class OrderSystem : MonoBehaviour
         OrdersFullfilled++;
         Cash += 5;
         _cashText.text = $"${Cash}";
+
+        if (OrdersFullfilled >= 10)
+        {
+            Level.Instance.NextLevel();
+            Reset();
+        }
     }
 
     public void RecordTrashedTea()
@@ -140,5 +146,12 @@ public class OrderSystem : MonoBehaviour
         OrderSystem.Instance.ClearOrders();
         Destroy(OrderSystem.Instance.gameObject);
         Music.Instance.StopMusic();
+    }
+
+    public void Reset()
+    {
+        ClearOrders();
+        _orders.Clear();
+        OrdersFullfilled = 0;
     }
 }

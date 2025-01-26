@@ -42,6 +42,7 @@ public class ActiveTea : MonoBehaviour
     GameObject _sugarCube;
     Vector3 _sugarCubeInitialPosition;
     bool _didSelectBoba;
+    bool _skipFirstTick = true;
 
     void Start()
     {
@@ -59,10 +60,18 @@ public class ActiveTea : MonoBehaviour
             if (!Tutorial.Instance.DidCloseTutorial)
             {
                 yield return null;
-                yield return null;
+
                 continue;
             }
-            
+            else if (_skipFirstTick)
+            {
+                _skipFirstTick = false;
+
+                yield return null;
+
+                continue;
+            }
+
             transform.Rotate(0, .01f, 0);
             //Boba
             if (Input.GetKeyDown(KeyCode.B))
@@ -73,7 +82,7 @@ public class ActiveTea : MonoBehaviour
                 }
                 else
                 {
-                    if(_didSelectBoba)
+                    if (_didSelectBoba)
                     {
                         PopupText.Instance.ShowPopup("Boba already selected", 1f);
                     }

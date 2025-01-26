@@ -48,60 +48,66 @@ public class ActiveTea : MonoBehaviour
         if (_sugarCube == null) Debug.LogError("Sugar cube not found");
 
         _sugarCubeInitialPosition = _sugarCube.transform.position;
+        StartCoroutine(Tick());
     }
 
-    void Update()
+    IEnumerator Tick()
     {
-        transform.Rotate(0, .005f, 0);
-        //Boba
-        if (Input.GetKeyDown(KeyCode.B))
+        while (true)
         {
-            AddBoba();
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            AddJelly();
-        }
+            transform.Rotate(0, .005f, 0);
+            //Boba
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                yield return StartCoroutine(BobaCoroutine());
+            }
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                AddJelly();
+            }
 
-        //Ice
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            AddIceScoop();
-        }
+            //Ice
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                AddIceScoop();
+            }
 
-        //Milk
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            AddMilk();
-        }
+            //Milk
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                AddMilk();
+            }
 
-        //Sugar
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            AddSugar();
-        }
+            //Sugar
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                AddSugar();
+            }
 
-        //Tea
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            AddTea();
-        }
+            //Tea
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                AddTea();
+            }
 
 
-        //Toppings
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            AddCheeseFoam();
-        }
+            //Toppings
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                AddCheeseFoam();
+            }
 
-        //Submit
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
-        {
-            SubmitTea();
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            TrashTea();
+            //Submit
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+            {
+                SubmitTea();
+            }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                TrashTea();
+            }
+
+            yield return null;
         }
     }
 
@@ -193,14 +199,26 @@ public class ActiveTea : MonoBehaviour
         Debug.Log("Cheese Foam added");
     }
 
-    void AddBoba()
+    IEnumerator BobaCoroutine()
     {
-        _boba = (int)BobaEnum.Boba;
-        AddIngredientTextToUI("Boba");
-        _audioSource.clip = _jellySound;
-        _audioSource.Play();
-        transform.Find("Boba").gameObject.SetActive(true);
-        Debug.Log("Boba added");
+        CameraManager.Instance.ActivateBobaPose();
+        var didSelectBoba = false;
+        while (!didSelectBoba)
+        {
+            yield return null;
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                didSelectBoba = true;
+                _boba = (int)BobaEnum.Boba;
+                AddIngredientTextToUI("Boba");
+                _audioSource.clip = _jellySound;
+                _audioSource.Play();
+                transform.Find("Boba").gameObject.SetActive(true);
+                Debug.Log("Boba added");
+            }
+        }
+        
+        CameraManager.Instance.ActivateDefaultPose();
     }
 
     void AddTea()

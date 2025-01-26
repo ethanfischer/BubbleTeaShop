@@ -7,10 +7,10 @@ using UnityEngine;
 
 public class OrderMB : MonoBehaviour
 {
-    public TMP_Text SizeText;
-    public TMP_Text ToppingsText;
-    public TMP_Text SugarText;
+    public TMP_Text BobaText;
     public TMP_Text IceText;
+    public TMP_Text SugarText;
+    public TMP_Text ExtraToppingText;
     public TMP_Text RemainingTimeText;
 
     public Order Order { get; private set; }
@@ -23,48 +23,53 @@ public class OrderMB : MonoBehaviour
         "Large"
     };
 
-    string[] _toppingOptions = new string[]
+    string[] _bobaOptions = new string[]
     {
-        "None",
+        "",
         "Boba",
         "Jelly"
     };
 
     string[] _sugarOptions = new string[]
     {
-        "None",
-        "30%",
-        "50%",
-        "75%",
-        "100%"
+        "",
+        "Less Sugar",
+        "Regular Sugar",
+        "Extra Sugar",
     };
 
     string[] _iceOptions = new string[]
     {
-        "None",
-        "Less",
-        "Normal",
-        "Extra"
+        "",
+        "Less Ice",
+        "Regular Ice",
+        "Extra Ice"
+    };
+    
+    string[] _extraToppingOptions = new string[]
+    {
+        "",
+        "Cheese Foam",
     };
 
     void Start()
     {
         Order = new Order(
-            Random.Range(0, _sizeOptions.Length),
-            Random.Range(0, _toppingOptions.Length),
+            Random.Range(0, _bobaOptions.Length),
+            Random.Range(0, _iceOptions.Length),
             Random.Range(0, _sugarOptions.Length),
-            Random.Range(0, _iceOptions.Length));
+            Random.Range(0, _extraToppingOptions.Length));
 
         SetUIText();
     }
 
     void SetUIText()
     {
-        SizeText.text = $"Size: {_sizeOptions[Order.Size]}";
-        ToppingsText.text = $"Toppings: {_toppingOptions[Order.Topping]}";
-        SugarText.text = $"Sugar: {_sugarOptions[Order.Sugar]}";
-        IceText.text = $"Ice: {_iceOptions[Order.Ice]}";
-        RemainingTimeText.text = $"Time remaining: {_timeRemaining:0}";
+        BobaText.text = _bobaOptions[Order.Boba];
+        IceText.text = _iceOptions[Order.Ice];
+        SugarText.text = _sugarOptions[Order.Sugar];
+        ExtraToppingText.text = _extraToppingOptions[Order.ExtraTopping];
+        RemainingTimeText.text = $"\nTime remaining: {_timeRemaining:0}";
     }
 
     void Update()
@@ -81,13 +86,21 @@ public class OrderMB : MonoBehaviour
     {
         Debug.Log("Order failed");
         Destroy(this.gameObject);
+        PopupText.Instance.GameOver();
     }
 
     public bool DoOrdersMatch(Order input)
     {
-        return input.Size == Order.Size
-            && input.Topping == Order.Topping
-            && input.Sugar == Order.Sugar
-            && input.Ice == Order.Ice;
+        var boba = input.Boba == Order.Boba;
+        var ice = input.Ice == Order.Ice;
+        var sugar = input.Sugar == Order.Sugar;
+        var extraTopping = input.ExtraTopping == Order.ExtraTopping;
+        
+        Debug.Log($"Boba: {boba}, Ice: {ice}, Sugar: {sugar}, ExtraTopping: {extraTopping}");
+        
+        return boba
+            && ice
+            && sugar
+            && extraTopping;
     }
 }

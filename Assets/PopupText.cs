@@ -18,11 +18,21 @@ public class PopupText : MonoBehaviour
 
     [SerializeField]
     TMP_Text _text;
+    bool _isGameOver;
 
     public void ShowPopup(string text)
     {
+        if (_isGameOver) return;
+        
         _text.text = text;
         _timer = 2f;
+    }
+    
+    public void GameOver()
+    {
+        _isGameOver = true;
+        _text.text = "YOU MISSED AN ORDER.\nGAME OVER";
+        _timer = float.MaxValue;
     }
     
     public void ClearText()

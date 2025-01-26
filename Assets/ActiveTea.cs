@@ -59,6 +59,7 @@ public class ActiveTea : MonoBehaviour
             if (!Tutorial.Instance.DidCloseTutorial)
             {
                 yield return null;
+                yield return null;
                 continue;
             }
             

@@ -20,9 +20,6 @@ public class IconManager : MonoBehaviour
     public Sprite NoSugarSprite;
     public Sprite NoIceSprite;
     public Sprite NoBobaSprite;
-
-
-
     
     //singleton unity pattern
     private static IconManager _instance;

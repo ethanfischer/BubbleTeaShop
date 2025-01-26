@@ -25,31 +25,31 @@ public class OrderMB : MonoBehaviour
 
     string[] _bobaOptions = new string[]
     {
-        "None",
+        "",
         "Boba",
         "Jelly"
     };
 
     string[] _sugarOptions = new string[]
     {
-        "None",
-        "Less",
-        "Regular",
-        "Extra",
+        "",
+        "Less Sugar",
+        "Regular Sugar",
+        "Extra Sugar",
     };
 
     string[] _iceOptions = new string[]
     {
-        "None",
-        "Less",
-        "Regular",
-        "Extra"
+        "",
+        "Less Ice",
+        "Regular Ice",
+        "Extra Ice"
     };
     
     string[] _extraToppingOptions = new string[]
     {
-        "None",
-        "CheeseFoam",
+        "",
+        "Cheese Foam",
     };
 
     void Start()
@@ -65,11 +65,11 @@ public class OrderMB : MonoBehaviour
 
     void SetUIText()
     {
-        BobaText.text = $"Boba: {_bobaOptions[Order.Boba]}";
-        IceText.text = $"Ice: {_iceOptions[Order.Ice]}";
-        SugarText.text = $"Sugar: {_sugarOptions[Order.Sugar]}";
-        ExtraToppingText.text = $"Extra: {_extraToppingOptions[Order.ExtraTopping]}";
-        RemainingTimeText.text = $"Time remaining: {_timeRemaining:0}";
+        BobaText.text = _bobaOptions[Order.Boba];
+        IceText.text = _iceOptions[Order.Ice];
+        SugarText.text = _sugarOptions[Order.Sugar];
+        ExtraToppingText.text = _extraToppingOptions[Order.ExtraTopping];
+        RemainingTimeText.text = $"\nTime remaining: {_timeRemaining:0}";
     }
 
     void Update()

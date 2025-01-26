@@ -13,6 +13,11 @@ using Random = UnityEngine.Random;
 public class OrderSystem : MonoBehaviour
 {
     [SerializeField]
+    AudioClip _orderSound;
+    [SerializeField]
+    AudioSource _orderAudioSource;
+    
+    [SerializeField]
     TMP_Text _cashText;
     public decimal Cash = Decimal.Zero;
 
@@ -58,7 +63,6 @@ public class OrderSystem : MonoBehaviour
 
         var result = Random.Range(0f, upperLimit);
 
-        Debug.LogError($"AddNewOrderTime: {result}");
         return result;
     }
 
@@ -72,13 +76,20 @@ public class OrderSystem : MonoBehaviour
     {
         if (_timer > _nextOrderTime)
         {
-            Debug.Log("AddNewOrderTime: " + _nextOrderTime);
-            _timer = 0f;
-            _orders.Add(Instantiate(_orderMbPrefab, this.transform));
-            _nextOrderTime = GetNextOrderTime();
+            HandleNextOrder();
         }
 
         _timer += Time.deltaTime;
+    }
+    
+    void HandleNextOrder()
+    {
+        _timer = 0f;
+        _orders.Add(Instantiate(_orderMbPrefab, this.transform));
+        _nextOrderTime = GetNextOrderTime();
+        _orderAudioSource.clip = _orderSound;
+        _orderAudioSource.Play();
+        Debug.Log("AddNewOrderTime: " + _nextOrderTime);
     }
 
     public bool TryGetMatchingOrder(Order input, out OrderMB matchingOrderMb)

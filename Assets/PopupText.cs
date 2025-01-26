@@ -28,10 +28,10 @@ public class PopupText : MonoBehaviour
         _timer = f;
     }
     
-    public void GameOver()
+    public void GameOver(string text = "GAME OVER")
     {
         _isGameOver = true;
-        _text.text = "GAME OVER";
+        _text.text = text;
         _timer = float.MaxValue;
     }
     

@@ -7,13 +7,20 @@ using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class OrderSystem : MonoBehaviour
 {
     [SerializeField]
+    AudioClip _orderSound;
+    [SerializeField]
+    AudioSource _orderAudioSource;
+
+    [SerializeField]
     TMP_Text _cashText;
-    public decimal Cash = Decimal.Zero; 
-    
+    public decimal Cash = Decimal.Zero;
+
     //singleton unity pattern
     private static OrderSystem _instance;
     public static OrderSystem Instance
@@ -35,29 +42,54 @@ public class OrderSystem : MonoBehaviour
     float _timer;
     bool _skipFirstFrame = true;
 
-    float _addNewOrderTime => GameDifficulty.Difficulty switch
+    float _nextOrderTime;
+
+    float GetNextOrderTime()
     {
-        (int)GameDifficultyEnum.Easy => OrdersFullfilled >= 29 ? 30f - OrdersFullfilled : 30f,
-        (int)GameDifficultyEnum.Medium => OrdersFullfilled >= 19 ? 20f - OrdersFullfilled : 20f,
-        (int)GameDifficultyEnum.Hard => OrdersFullfilled >= 9 ? 10f - OrdersFullfilled : 10f,
-        (int)GameDifficultyEnum.Testing => 1f,
-        _ => 0f
-    };
+        var upperLimit = GameDifficulty.Difficulty switch
+        {
+            (int)GameDifficultyEnum.Easy => 30f,
+            (int)GameDifficultyEnum.Medium => 20f,
+            (int)GameDifficultyEnum.Hard => 10f,
+            (int)GameDifficultyEnum.Testing => 1f,
+            _ => 0f
+        };
+
+        upperLimit -= OrdersFullfilled;
+        if (upperLimit <= 1)
+        {
+            upperLimit = 1;
+        }
+
+        var result = Random.Range(0f, upperLimit);
+
+        return result;
+    }
 
     void Start()
     {
-        _timer = _addNewOrderTime;
+        _nextOrderTime = 4.5f;
+        _timer = 0f;
     }
 
     void Update()
     {
-        if (_timer > _addNewOrderTime)
+        if (_timer > _nextOrderTime)
         {
-            Debug.Log("AddNewOrderTime: " + _addNewOrderTime);
-            _timer = 0f;
-            _orders.Add(Instantiate(_orderMbPrefab, this.transform));
+            HandleNextOrder();
         }
+
         _timer += Time.deltaTime;
+    }
+
+    void HandleNextOrder()
+    {
+        _timer = 0f;
+        _orders.Add(Instantiate(_orderMbPrefab, this.transform));
+        _nextOrderTime = GetNextOrderTime();
+        _orderAudioSource.clip = _orderSound;
+        _orderAudioSource.Play();
+        Debug.Log("AddNewOrderTime: " + _nextOrderTime);
     }
 
     public bool TryGetMatchingOrder(Order input, out OrderMB matchingOrderMb)
@@ -78,8 +110,14 @@ public class OrderSystem : MonoBehaviour
         OrdersFullfilled++;
         Cash += 5;
         _cashText.text = $"${Cash}";
+
+        if (OrdersFullfilled >= 10)
+        {
+            Level.Instance.NextLevel();
+            Reset();
+        }
     }
-    
+
     public void RecordTrashedTea()
     {
         Cash -= 2.50m;
@@ -100,8 +138,7 @@ public class OrderSystem : MonoBehaviour
     {
         _orders.Remove(order);
     }
-    
-    
+
     public void GameOver(string text = "GAME OVER")
     {
         Debug.Log("Order failed");
@@ -109,5 +146,12 @@ public class OrderSystem : MonoBehaviour
         OrderSystem.Instance.ClearOrders();
         Destroy(OrderSystem.Instance.gameObject);
         Music.Instance.StopMusic();
+    }
+
+    public void Reset()
+    {
+        ClearOrders();
+        _orders.Clear();
+        OrdersFullfilled = 0;
     }
 }

@@ -33,52 +33,13 @@ public class OrderMB : MonoBehaviour
     float _timeRemaining;
     Image _timeBarImage;
 
-    string[] _sizeOptions = new string[]
-    {
-        "Small",
-        "Medium",
-        "Large"
-    };
 
-    string[] _bobaOptions = new string[]
-    {
-        "-",
-        "Boba",
-        "Jelly"
-    };
-
-    string[] _sugarOptions = new string[]
-    {
-        "-",
-        "Less Sugar",
-        "Regular Sugar",
-        "Extra Sugar",
-    };
-
-    string[] _iceOptions = new string[]
-    {
-        "-",
-        "Less Ice",
-        "Regular Ice",
-        "Extra Ice"
-    };
-
-    string[] _extraToppingOptions = new string[]
-    {
-        "-",
-        "Cheese Foam",
-    };
     bool _skipFirstFrame = true;
 
     void Start()
     {
         _timeRemaining = InitialTime;
-        Order = new Order(
-            Random.Range(0, _bobaOptions.Length),
-            Random.Range(0, _iceOptions.Length),
-            Random.Range(0, _sugarOptions.Length),
-            Random.Range(0, _extraToppingOptions.Length));
-
+        Order = OrderFactory.CreateOrder();
         SetUIText();
         _initialBarWidth = _timeBar.sizeDelta.x;
         _timeBarImage = _timeBar.GetComponent<Image>();
@@ -86,10 +47,10 @@ public class OrderMB : MonoBehaviour
 
     void SetUIText()
     {
-        BobaText.text = _bobaOptions[Order.Boba];
-        IceText.text = _iceOptions[Order.Ice];
-        SugarText.text = _sugarOptions[Order.Sugar];
-        ExtraToppingText.text = _extraToppingOptions[Order.ExtraTopping];
+        BobaText.text = OrderFactory.GetBobaText(Order.Boba);
+        IceText.text = OrderFactory.GetIceText(Order.Ice);
+        SugarText.text = OrderFactory.GetSugarText(Order.Sugar);
+        ExtraToppingText.text = OrderFactory.GetExtraToppingText(Order.ExtraTopping);
     }
 
     void Update()

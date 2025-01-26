@@ -52,6 +52,7 @@ public class ActiveTea : MonoBehaviour
 
     void Update()
     {
+        transform.Rotate(0, .005f, 0);
         //Boba
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -313,7 +314,7 @@ public class ActiveTea : MonoBehaviour
         Reset();
         if (OrderSystem.Instance.Cash < 0)
         {
-            OrderSystem.Instance.GameOver("<color=red>You ran out of money</color>");
+            OrderSystem.Instance.GameOver("<color=red>-$2.50\nYou ran out of money</color>");
         }
     }
 

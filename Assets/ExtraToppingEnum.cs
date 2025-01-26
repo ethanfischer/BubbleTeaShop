@@ -1,1 +1,1 @@
-public enum ExtraToppingEnum { CheeseFoam = 1 }
+public enum ExtraToppingEnum { None = 0, CheeseFoam = 1 }

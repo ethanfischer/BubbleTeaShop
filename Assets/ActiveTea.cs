@@ -202,7 +202,17 @@ public class ActiveTea : MonoBehaviour
     {
         _hasTea = true;
         AddIngredientTextToUI("Tea");
-        transform.Find("Tea").gameObject.SetActive(true);
+        if (_hasMilk)
+        {
+            transform.Find("MilkAndTea").gameObject.SetActive(true);
+            transform.Find("Tea").gameObject.SetActive(false);
+            transform.Find("Milk").gameObject.SetActive(false);
+        }
+        else
+        {
+            transform.Find("Tea").gameObject.SetActive(true);
+        }
+
         Debug.Log("Tea added");
     }
 
@@ -227,7 +237,18 @@ public class ActiveTea : MonoBehaviour
         _audioSource.clip = _pourSound;
         _audioSource.Play();
         AddIngredientTextToUI("Milk");
-        transform.Find("Milk").gameObject.SetActive(true);
+
+        if (_hasTea)
+        {
+            transform.Find("MilkAndTea").gameObject.SetActive(true);
+            transform.Find("Tea").gameObject.SetActive(false);
+            transform.Find("Milk").gameObject.SetActive(false);
+        }
+        else
+        {
+            transform.Find("Milk").gameObject.SetActive(true);
+        }
+
         Debug.Log("Milk added");
     }
 
@@ -289,5 +310,6 @@ public class ActiveTea : MonoBehaviour
         transform.Find("Tea").gameObject.SetActive(false);
         transform.Find("CheeseFoamHonbComb").gameObject.SetActive(false);
         transform.Find("Grass_Jelly").gameObject.SetActive(false);
+        transform.Find("MilkAndTea").gameObject.SetActive(false);
     }
 }

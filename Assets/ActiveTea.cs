@@ -68,7 +68,7 @@ public class ActiveTea : MonoBehaviour
                 {
                     if(_didSelectBoba)
                     {
-                        PopupText.Instance.ShowPopup("You already selected a Boba");
+                        PopupText.Instance.ShowPopup("Boba already selected", 1f);
                     }
                     else
                     {
@@ -277,7 +277,7 @@ public class ActiveTea : MonoBehaviour
         _audioSource.Play();
         var bobaGameObject = transform.Find("Boba");
         bobaGameObject.gameObject.SetActive(true);
-        bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.gray;
+        bobaGameObject.GetComponent<MeshRenderer>().material.color = new Color(0.4f, 0.2f, 0.1f);
         Debug.Log("Regular Boba added");
         return didSelectBoba;
     }

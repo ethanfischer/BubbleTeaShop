@@ -20,7 +20,9 @@ public class OrderMB : MonoBehaviour
     float _initialBarWidth;
 
     public Order Order { get; private set; }
-    const float INITIAL_TIME = 30;
+    const float INITIAL_TIME = 45; //Easy
+    // const float INITIAL_TIME = 30; //Medium
+    // const float INITIAL_TIME = 30; //Hard
     float _timeRemaining = INITIAL_TIME;
     Image _timeBarImage;
 

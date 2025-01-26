@@ -1,1 +1,1 @@
-public enum BobaEnum { None = 0, Boba = 1, Jelly = 2 }
+public enum BobaEnum { None = 0, BobaRegular = 1, Jelly = 2, BobaStawberry = 3, BobaMango = 4, BobaBlueberry = 5 }

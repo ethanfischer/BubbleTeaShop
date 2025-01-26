@@ -41,6 +41,8 @@ public class ActiveTea : MonoBehaviour
     int _extraTopping;
     GameObject _sugarCube;
     Vector3 _sugarCubeInitialPosition;
+    bool _didSelectBoba;
+    bool _skipFirstTick = true;
 
     void Start()
     {
@@ -48,60 +50,96 @@ public class ActiveTea : MonoBehaviour
         if (_sugarCube == null) Debug.LogError("Sugar cube not found");
 
         _sugarCubeInitialPosition = _sugarCube.transform.position;
+        StartCoroutine(Tick());
     }
 
-    void Update()
+    IEnumerator Tick()
     {
-        transform.Rotate(0, .005f, 0);
-        //Boba
-        if (Input.GetKeyDown(KeyCode.B))
+        while (true)
         {
-            AddBoba();
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            AddJelly();
-        }
+            if (!Tutorial.Instance.DidCloseTutorial)
+            {
+                yield return null;
 
-        //Ice
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            AddIceScoop();
-        }
+                continue;
+            }
+            else if (_skipFirstTick)
+            {
+                _skipFirstTick = false;
 
-        //Milk
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            AddMilk();
-        }
+                yield return null;
 
-        //Sugar
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            AddSugar();
-        }
+                continue;
+            }
 
-        //Tea
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            AddTea();
-        }
+            transform.Rotate(0, .01f, 0);
+            //Boba
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                if (Level.Instance.LevelIndex < 4)
+                {
+                    AddRegularBoba();
+                }
+                else
+                {
+                    if (_didSelectBoba)
+                    {
+                        PopupText.Instance.ShowPopup("Boba already selected", 1f);
+                    }
+                    else
+                    {
+                        yield return StartCoroutine(BobaCoroutine());
+                        yield return null;
+                    }
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                AddJelly();
+            }
+
+            //Ice
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                AddIceScoop();
+            }
+
+            //Milk
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                AddMilk();
+            }
+
+            //Sugar
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                AddSugar();
+            }
+
+            //Tea
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                AddTea();
+            }
 
 
-        //Toppings
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            AddCheeseFoam();
-        }
+            //Toppings
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                AddCheeseFoam();
+            }
 
-        //Submit
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
-        {
-            SubmitTea();
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            TrashTea();
+            //Submit
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+            {
+                SubmitTea();
+            }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                TrashTea();
+            }
+
+            yield return null;
         }
     }
 
@@ -193,14 +231,71 @@ public class ActiveTea : MonoBehaviour
         Debug.Log("Cheese Foam added");
     }
 
-    void AddBoba()
+    IEnumerator BobaCoroutine()
     {
-        _boba = (int)BobaEnum.Boba;
-        AddIngredientTextToUI("Boba");
+        CameraManager.Instance.ActivateBobaPose();
+        while (!_didSelectBoba)
+        {
+            yield return null;
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                _didSelectBoba = AddRegularBoba();
+            }
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                _didSelectBoba = true;
+                _boba = (int)BobaEnum.BobaMango;
+                AddIngredientTextToUI("Mango Boba");
+                _audioSource.clip = _jellySound;
+                _audioSource.Play();
+                var bobaGameObject = transform.Find("Boba");
+                bobaGameObject.gameObject.SetActive(true);
+                bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
+                Debug.Log("Mango Boba added");
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                _didSelectBoba = true;
+                _boba = (int)BobaEnum.BobaStawberry;
+                AddIngredientTextToUI("Strawberry Boba");
+                _audioSource.clip = _jellySound;
+                _audioSource.Play();
+                var bobaGameObject = transform.Find("Boba");
+                bobaGameObject.gameObject.SetActive(true);
+                bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+                Debug.Log("Strawberry Boba added");
+            }
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                _didSelectBoba = true;
+                _boba = (int)BobaEnum.BobaBlueberry;
+                AddIngredientTextToUI("Blueberry Boba");
+                _audioSource.clip = _jellySound;
+                _audioSource.Play();
+                var bobaGameObject = transform.Find("Boba");
+                bobaGameObject.gameObject.SetActive(true);
+                bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+                Debug.Log("Blueberry Boba added");
+            }
+        }
+
+        CameraManager.Instance.ActivateDefaultPose();
+    }
+
+    bool AddRegularBoba()
+    {
+        bool didSelectBoba;
+        didSelectBoba = true;
+        _boba = (int)BobaEnum.BobaRegular;
+        AddIngredientTextToUI("Regular Boba");
         _audioSource.clip = _jellySound;
         _audioSource.Play();
-        transform.Find("Boba").gameObject.SetActive(true);
-        Debug.Log("Boba added");
+        var bobaGameObject = transform.Find("Boba");
+        bobaGameObject.gameObject.SetActive(true);
+        bobaGameObject.GetComponent<MeshRenderer>().material.color = new Color(0.4f, 0.2f, 0.1f);
+        Debug.Log("Regular Boba added");
+        return didSelectBoba;
     }
 
     void AddTea()
@@ -326,6 +421,7 @@ public class ActiveTea : MonoBehaviour
         _ice = 0;
         _sugar = 0;
         _extraTopping = 0;
+        _didSelectBoba = false;
         transform.Find("Boba").gameObject.SetActive(false);
         transform.Find("Ice_One").gameObject.SetActive(false);
         transform.Find("Ice_Two").gameObject.SetActive(false);

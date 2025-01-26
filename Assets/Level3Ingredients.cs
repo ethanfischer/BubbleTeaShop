@@ -6,7 +6,7 @@ namespace DefaultNamespace
         public Dictionary<int, string> BobaOptions => new()
         {
             { 0, "-" },
-            { 1, "Boba" },
+            { 1, "Regular Boba" },
             { 2, "Grass Jelly" }
         };
 

@@ -133,7 +133,6 @@ public class OrderSystem : MonoBehaviour
         _orders.Remove(order);
     }
 
-
     public void GameOver(string text = "GAME OVER")
     {
         Debug.Log("Order failed");

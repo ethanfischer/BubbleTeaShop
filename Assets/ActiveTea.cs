@@ -313,7 +313,7 @@ public class ActiveTea : MonoBehaviour
         Reset();
         if (OrderSystem.Instance.Cash < 0)
         {
-            OrderSystem.Instance.GameOver("<color=red>You ran out of money</color>");
+            OrderSystem.Instance.GameOver("<color=red>-$2.50\nYou ran out of money</color>");
         }
     }
 

@@ -68,6 +68,7 @@ public class OrderMB : MonoBehaviour
         "-",
         "Cheese Foam",
     };
+
     bool _skipFirstFrame = true;
 
     void Start()
@@ -77,7 +78,7 @@ public class OrderMB : MonoBehaviour
             Random.Range(0, _bobaOptions.Length),
             Random.Range(0, _iceOptions.Length),
             Random.Range(0, _sugarOptions.Length),
-            Random.Range(0, _extraToppingOptions.Length));
+            new[] { 0, 0, 1 }[Random.Range(0, 2)]);
 
         SetUIText();
         _initialBarWidth = _timeBar.sizeDelta.x;

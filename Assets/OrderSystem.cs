@@ -24,14 +24,15 @@ public class OrderSystem : MonoBehaviour
     OrderMB _orderMbPrefab;
 
     List<OrderMB> _orders = new List<OrderMB>();
+    public int OrdersFullfilled { get; private set; }
     float _timer;
     bool _skipFirstFrame = true;
     
     float _addNewOrderTime => GameDifficulty.Difficulty switch
     {
-        (int)GameDifficultyEnum.Easy => 45f,
-        (int)GameDifficultyEnum.Medium => 30f,
-        (int)GameDifficultyEnum.Hard => 15f,
+        (int)GameDifficultyEnum.Easy => 30f - OrdersFullfilled * 2f,
+        (int)GameDifficultyEnum.Medium => 20f - OrdersFullfilled * 2,
+        (int)GameDifficultyEnum.Hard => 10f,
         (int)GameDifficultyEnum.Testing => 1f,
         _ => 0f
     };
@@ -56,7 +57,6 @@ public class OrderSystem : MonoBehaviour
         matchingOrderMb = _orders.FirstOrDefault(o => o.DoOrdersMatch(input));
         if (matchingOrderMb != null)
         {
-            PopupText.Instance.ShowPopup("Matching order found");
             Debug.Log("Matching order found");
             return true;
         }
@@ -64,11 +64,17 @@ public class OrderSystem : MonoBehaviour
         PopupText.Instance.ShowPopup("No matching order found");
         return false;
     }
+    
+    public void RecordFullfilledOrder()
+    {
+        OrdersFullfilled++;
+    }
 
     public void ClearOrders()
     {
         foreach (var order in _orders)
         {
+            if(order == null) { continue; }
             Debug.Log("Destroying order");
             Destroy(order.gameObject);
         }

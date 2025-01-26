@@ -283,6 +283,7 @@ public class ActiveTea : MonoBehaviour
         Debug.Log("Tea submitted and matched order");
         _audioSource.clip = _correctOrderSound;
         _audioSource.Play();
+        OrderSystem.Instance.RecordFullfilledOrder();
         Reset();
     }
 

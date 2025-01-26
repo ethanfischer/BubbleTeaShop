@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Security.Cryptography;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using Color = UnityEngine.Color;
 
 public class OrderMB : MonoBehaviour
 {
@@ -14,12 +17,12 @@ public class OrderMB : MonoBehaviour
 
     [SerializeField]
     RectTransform _timeBar;
-    // public TMP_Text RemainingTimeText;
     float _initialBarWidth;
 
     public Order Order { get; private set; }
     const float INITIAL_TIME = 10;
     float _timeRemaining = INITIAL_TIME;
+    Image _timeBarImage;
 
     string[] _sizeOptions = new string[]
     {
@@ -67,6 +70,7 @@ public class OrderMB : MonoBehaviour
 
         SetUIText();
         _initialBarWidth = _timeBar.sizeDelta.x;
+        _timeBarImage = _timeBar.GetComponent<Image>();
     }
 
     void SetUIText()
@@ -75,7 +79,6 @@ public class OrderMB : MonoBehaviour
         IceText.text = _iceOptions[Order.Ice];
         SugarText.text = _sugarOptions[Order.Sugar];
         ExtraToppingText.text = _extraToppingOptions[Order.ExtraTopping];
-        // RemainingTimeText.text = $"\nTime remaining: {_timeRemaining:0}";
     }
 
     void Update()
@@ -96,6 +99,12 @@ public class OrderMB : MonoBehaviour
 
         // Scale the bar width proportionally
         _timeBar.sizeDelta = new Vector2(_initialBarWidth * proportion, _timeBar.sizeDelta.y);
+
+        _timeBarImage = _timeBar.GetComponent<Image>();
+
+        var colorTargetTimeOffset = INITIAL_TIME * 0.5f;
+        float colorProportion = Mathf.Clamp01((_timeRemaining - colorTargetTimeOffset) / (INITIAL_TIME - colorTargetTimeOffset));
+        _timeBarImage.color = Color.Lerp(Color.red, Color.green, colorProportion);
     }
 
     void FailOrder()

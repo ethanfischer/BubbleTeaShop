@@ -1,6 +1,9 @@
+using System.Collections;
+using System.Security.Cryptography;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class ActiveTea : MonoBehaviour
 {
@@ -20,6 +23,8 @@ public class ActiveTea : MonoBehaviour
     AudioClip _jellySound;
     [SerializeField]
     AudioClip _correctOrderSound;
+    [SerializeField]
+    AudioClip _waterDropSound;
 
     [SerializeField]
     AudioSource _audioSource;
@@ -30,6 +35,16 @@ public class ActiveTea : MonoBehaviour
     int _ice;
     int _sugar;
     int _extraTopping;
+    GameObject _sugarCube;
+    Vector3 _sugarCubeInitialPosition;
+
+    void Start()
+    {
+        _sugarCube = GameObject.Find("SugarCube");
+        if (_sugarCube == null) Debug.LogError("Sugar cube not found");
+
+        _sugarCubeInitialPosition = _sugarCube.transform.position;
+    }
 
     void Update()
     {
@@ -99,7 +114,47 @@ public class ActiveTea : MonoBehaviour
     {
         _sugar++;
         AddIngredientTextToUI("Sugar");
+        _audioSource.clip = _waterDropSound;
+        _audioSource.Play();
+        StartCoroutine(FlashSugarCube());
         Debug.Log("Sugar added");
+    }
+
+    IEnumerator FlashSugarCube()
+    {
+        _sugarCube.SetActive(true);
+
+        var moveAmount = 1.7f;
+        var targetPosition = _sugarCubeInitialPosition + Vector3.down * moveAmount;
+        var duration = .5f;
+        var elapsedTime = 0f;
+
+        // Get the material and its color
+        var cubeRenderer = _sugarCube.GetComponent<Renderer>();
+        var material = cubeRenderer.material;
+        var initialColor = material.color;
+
+        while (elapsedTime < duration)
+        {
+            // Calculate eased progress using a quadratic easing formula for acceleration
+            var t = elapsedTime / duration;
+            var easedT = 1 - Mathf.Pow(1 - t, 2); // Quadratic easing-out for deceleration
+
+            // Update position
+            _sugarCube.transform.position = Vector3.Lerp(_sugarCubeInitialPosition, targetPosition, easedT);
+
+            // Update alpha for fade-out effect
+            var alpha = Mathf.Lerp(1f, 0f, t);
+            material.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the cube is fully faded and at its final position
+        _sugarCube.transform.position = targetPosition;
+        material.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0f);
+        _sugarCube.SetActive(false);
     }
 
     void AddIceScoop()
@@ -198,7 +253,7 @@ public class ActiveTea : MonoBehaviour
             PopupText.Instance.ShowPopup("No matching order");
         }
     }
-    
+
     void HandleCorrectOrder(OrderMB matchingOrder)
     {
         Destroy(matchingOrder.gameObject);

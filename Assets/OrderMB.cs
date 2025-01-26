@@ -20,10 +20,17 @@ public class OrderMB : MonoBehaviour
     float _initialBarWidth;
 
     public Order Order { get; private set; }
-    const float INITIAL_TIME = 45; //Easy
-    // const float INITIAL_TIME = 30; //Medium
-    // const float INITIAL_TIME = 30; //Hard
-    float _timeRemaining = INITIAL_TIME;
+
+    float InitialTime => GameDifficulty.Difficulty switch
+    {
+        (int)GameDifficultyEnum.Easy => 45f,
+        (int)GameDifficultyEnum.Medium => 30f,
+        (int)GameDifficultyEnum.Hard => 15f,
+        (int)GameDifficultyEnum.Testing => 5f,
+        _ => 0f
+    };
+
+    float _timeRemaining;
     Image _timeBarImage;
 
     string[] _sizeOptions = new string[]
@@ -61,9 +68,11 @@ public class OrderMB : MonoBehaviour
         "-",
         "Cheese Foam",
     };
+    bool _skipFirstFrame = true;
 
     void Start()
     {
+        _timeRemaining = InitialTime;
         Order = new Order(
             Random.Range(0, _bobaOptions.Length),
             Random.Range(0, _iceOptions.Length),
@@ -93,27 +102,35 @@ public class OrderMB : MonoBehaviour
 
         ShrinkTimebar();
     }
-    
+
     void ShrinkTimebar()
     {
         // Calculate the proportion of time remaining
-        float proportion = _timeRemaining / INITIAL_TIME;
+        float proportion = _timeRemaining / InitialTime;
 
         // Scale the bar width proportionally
         _timeBar.sizeDelta = new Vector2(_initialBarWidth * proportion, _timeBar.sizeDelta.y);
 
         _timeBarImage = _timeBar.GetComponent<Image>();
 
-        var colorTargetTimeOffset = INITIAL_TIME * 0.5f;
-        float colorProportion = Mathf.Clamp01((_timeRemaining - colorTargetTimeOffset) / (INITIAL_TIME - colorTargetTimeOffset));
+        var colorTargetTimeOffset = InitialTime * 0.5f;
+        float colorProportion = Mathf.Clamp01((_timeRemaining - colorTargetTimeOffset) / (InitialTime - colorTargetTimeOffset));
         _timeBarImage.color = Color.Lerp(Color.red, Color.green, colorProportion);
     }
 
     void FailOrder()
     {
+        //One strike you're out
+        GameOver();
+    }
+
+    void GameOver()
+    {
         Debug.Log("Order failed");
         Destroy(this.gameObject);
         PopupText.Instance.GameOver();
+        OrderSystem.Instance.ClearOrders();
+        Destroy(OrderSystem.Instance.gameObject);
         Music.Instance.StopMusic();
     }
 

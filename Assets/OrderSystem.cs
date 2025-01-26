@@ -1,22 +1,49 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class OrderSystem : MonoBehaviour
 {
+    //singleton unity pattern
+    private static OrderSystem _instance;
+    public static OrderSystem Instance
+    { get
+    {
+        if (_instance == null)
+        {
+            _instance = FindObjectOfType<OrderSystem>();
+        }
+        return _instance;
+    } }
+
     [FormerlySerializedAs("_orderPrefab")]
     [SerializeField]
     OrderMB _orderMbPrefab;
 
     List<OrderMB> _orders = new List<OrderMB>();
-    const float ADD_NEW_ORDER_TIME = 10f;
-    float _timer = ADD_NEW_ORDER_TIME;
+    float _timer;
+    bool _skipFirstFrame = true;
+    
+    float _addNewOrderTime => GameDifficulty.Difficulty switch
+    {
+        (int)GameDifficultyEnum.Easy => 45f,
+        (int)GameDifficultyEnum.Medium => 30f,
+        (int)GameDifficultyEnum.Hard => 15f,
+        (int)GameDifficultyEnum.Testing => 1f,
+        _ => 0f
+    };
+
+    void Start()
+    {
+        _timer = _addNewOrderTime;
+    }
 
     void Update()
     {
-        if (_timer > ADD_NEW_ORDER_TIME)
+        if (_timer > _addNewOrderTime)
         {
             _timer = 0f;
             _orders.Add(Instantiate(_orderMbPrefab, this.transform));
@@ -36,5 +63,14 @@ public class OrderSystem : MonoBehaviour
 
         PopupText.Instance.ShowPopup("No matching order found");
         return false;
+    }
+
+    public void ClearOrders()
+    {
+        foreach (var order in _orders)
+        {
+            Debug.Log("Destroying order");
+            Destroy(order.gameObject);
+        }
     }
 }

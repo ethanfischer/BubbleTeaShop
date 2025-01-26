@@ -11,7 +11,7 @@ public class OrderMB : MonoBehaviour
     public TMP_Text IceText;
     public TMP_Text SugarText;
     public TMP_Text ExtraToppingText;
-    public TMP_Text RemainingTimeText;
+    // public TMP_Text RemainingTimeText;
 
     public Order Order { get; private set; }
     float _timeRemaining = 60f;
@@ -69,7 +69,7 @@ public class OrderMB : MonoBehaviour
         IceText.text = _iceOptions[Order.Ice];
         SugarText.text = _sugarOptions[Order.Sugar];
         ExtraToppingText.text = _extraToppingOptions[Order.ExtraTopping];
-        RemainingTimeText.text = $"\nTime remaining: {_timeRemaining:0}";
+        // RemainingTimeText.text = $"\nTime remaining: {_timeRemaining:0}";
     }
 
     void Update()
@@ -79,7 +79,7 @@ public class OrderMB : MonoBehaviour
         {
             FailOrder();
         }
-        RemainingTimeText.text = $"Time remaining: {_timeRemaining:0}";
+        // RemainingTimeText.text = $"Time remaining: {_timeRemaining:0}";
     }
 
     void FailOrder()

@@ -74,6 +74,8 @@ public class OrderSystem : MonoBehaviour
 
     void Update()
     {
+        if (!Tutorial.Instance.DidCloseTutorial) return;
+        
         if (_timer > _nextOrderTime)
         {
             HandleNextOrder();

@@ -55,6 +55,8 @@ public class OrderMB : MonoBehaviour
 
     void Update()
     {
+        if (!Tutorial.Instance.DidCloseTutorial) return;
+        
         _timeRemaining -= Time.deltaTime;
         if (_timeRemaining <= 0)
         {

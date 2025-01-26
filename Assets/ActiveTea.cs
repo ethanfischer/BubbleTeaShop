@@ -56,6 +56,12 @@ public class ActiveTea : MonoBehaviour
     {
         while (true)
         {
+            if (!Tutorial.Instance.DidCloseTutorial)
+            {
+                yield return null;
+                continue;
+            }
+            
             transform.Rotate(0, .01f, 0);
             //Boba
             if (Input.GetKeyDown(KeyCode.B))

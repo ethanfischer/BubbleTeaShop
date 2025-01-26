@@ -1330,6 +1330,8 @@ MonoBehaviour:
   _jellySound: {fileID: 8300000, guid: a3a78fbe147a442caa3622fb44baab8d, type: 3}
   _correctOrderSound: {fileID: 8300000, guid: ab1bf49dce46d4805ade87a1c3d02c28, type: 3}
   _waterDropSound: {fileID: 8300000, guid: f9e87e37a076f42098c15631849e14ff, type: 3}
+  _buzzerWrongSound: {fileID: 8300000, guid: c740b0867cc43454b82fc632e9f98f68, type: 3}
+  _splatSound: {fileID: 8300000, guid: edaaa5b558ff541709ebecc6b17c8b0d, type: 3}
   _audioSource: {fileID: 1367031269}
 --- !u!82 &1367031269
 AudioSource:

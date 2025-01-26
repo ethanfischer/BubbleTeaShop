@@ -25,6 +25,10 @@ public class ActiveTea : MonoBehaviour
     AudioClip _correctOrderSound;
     [SerializeField]
     AudioClip _waterDropSound;
+    [SerializeField]
+    AudioClip _buzzerWrongSound;
+    [SerializeField]
+    AudioClip _splatSound;
 
     [SerializeField]
     AudioSource _audioSource;
@@ -271,8 +275,15 @@ public class ActiveTea : MonoBehaviour
         }
         else
         {
-            PopupText.Instance.ShowPopup("No matching order");
+            HandleWrongOrder();
         }
+    }
+    
+    void HandleWrongOrder()
+    {
+        _audioSource.clip = _buzzerWrongSound;
+        _audioSource.Play();
+        PopupText.Instance.ShowPopup("Bad", 1f);
     }
 
     void HandleCorrectOrder(OrderMB matchingOrder)
@@ -290,7 +301,9 @@ public class ActiveTea : MonoBehaviour
     void TrashTea()
     {
         ClearIngredientUIText();
-        PopupText.Instance.ShowPopup("Tea trashed");
+        PopupText.Instance.ShowPopup("Tea trashed", .5f);
+        _audioSource.clip = _splatSound;
+        _audioSource.Play();
         Debug.Log("Tea trashed");
         Reset();
     }

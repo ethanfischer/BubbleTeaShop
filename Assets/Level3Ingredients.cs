@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 namespace DefaultNamespace
 {
-    public class Level2Ingredients : ILevelIngredients
+    public class Level3Ingredients : ILevelIngredients
     {
         public Dictionary<int, string> BobaOptions => new()
         {
             { 0, "-" },
             { 1, "Boba" },
+            { 2, "Grass Jelly" }
         };
 
         public Dictionary<int, string> SugarOptions => new()
@@ -28,6 +29,7 @@ namespace DefaultNamespace
         public Dictionary<int, string> ExtraToppingOptions => new()
         {
             { 0, "-" },
+            { 1, "Cheese Foam" }
         };
     }
 }

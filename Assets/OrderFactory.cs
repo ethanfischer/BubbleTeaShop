@@ -23,6 +23,8 @@ namespace DefaultNamespace
                     return new Level1Ingredients();
                 case 2:
                     return new Level2Ingredients();
+                case 3:
+                    return new Level3Ingredients();
                 default:
                     return new Level1Ingredients();
             }

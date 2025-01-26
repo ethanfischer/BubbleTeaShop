@@ -217,6 +217,9 @@ public class ActiveTea : MonoBehaviour
             transform.Find("Tea").gameObject.SetActive(true);
         }
 
+        _audioSource.clip = _pourSound;
+        _audioSource.Play();
+        
         Debug.Log("Tea added");
     }
 
@@ -283,14 +286,14 @@ public class ActiveTea : MonoBehaviour
     {
         _audioSource.clip = _buzzerWrongSound;
         _audioSource.Play();
-        PopupText.Instance.ShowPopup("Bad", 1f);
+        PopupText.Instance.ShowPopup("<color=red>X</color>", 0.75f);
     }
 
     void HandleCorrectOrder(OrderMB matchingOrder)
     {
         Destroy(matchingOrder.gameObject);
         ClearIngredientUIText();
-        PopupText.Instance.ShowPopup("Good", 0.5f);
+        PopupText.Instance.ShowPopup("<color=green>$5</color>", 0.5f);
         Debug.Log("Tea submitted and matched order");
         _audioSource.clip = _correctOrderSound;
         _audioSource.Play();
@@ -301,7 +304,7 @@ public class ActiveTea : MonoBehaviour
     void TrashTea()
     {
         ClearIngredientUIText();
-        PopupText.Instance.ShowPopup("Tea trashed", .5f);
+        PopupText.Instance.ShowPopup("<color=red>-$2.50</color>", .5f);
         _audioSource.clip = _splatSound;
         _audioSource.Play();
         Debug.Log("Tea trashed");

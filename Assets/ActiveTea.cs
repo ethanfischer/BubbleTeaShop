@@ -18,6 +18,8 @@ public class ActiveTea : MonoBehaviour
     AudioClip _iceSound;
     [SerializeField]
     AudioClip _jellySound;
+    [SerializeField]
+    AudioClip _correctOrderSound;
 
     [SerializeField]
     AudioSource _audioSource;
@@ -89,6 +91,7 @@ public class ActiveTea : MonoBehaviour
         AddIngredientTextToUI("Jelly");
         _audioSource.clip = _jellySound;
         _audioSource.Play();
+        transform.Find("Grass_Jelly").gameObject.SetActive(true);
         Debug.Log("Jelly added");
     }
 
@@ -126,6 +129,7 @@ public class ActiveTea : MonoBehaviour
     {
         _extraTopping = (int)ExtraToppingEnum.CheeseFoam;
         AddIngredientTextToUI("Cheese Foam");
+        transform.Find("CheeseFoamHonbComb").gameObject.SetActive(true);
         Debug.Log("Cheese Foam added");
     }
 
@@ -187,16 +191,23 @@ public class ActiveTea : MonoBehaviour
         var order = new Order(_boba, _ice, _sugar, _extraTopping);
         if (_orderSystem.TryGetMatchingOrder(order, out var matchingOrder))
         {
-            Destroy(matchingOrder.gameObject);
-            ClearIngredientUIText();
-            PopupText.Instance.ShowPopup("Good", 0.5f);
-            Debug.Log("Tea submitted and matched order");
-            Reset();
+            HandleCorrectOrder(matchingOrder);
         }
         else
         {
             PopupText.Instance.ShowPopup("No matching order");
         }
+    }
+    
+    void HandleCorrectOrder(OrderMB matchingOrder)
+    {
+        Destroy(matchingOrder.gameObject);
+        ClearIngredientUIText();
+        PopupText.Instance.ShowPopup("Good", 0.5f);
+        Debug.Log("Tea submitted and matched order");
+        _audioSource.clip = _correctOrderSound;
+        _audioSource.Play();
+        Reset();
     }
 
     void TrashTea()
@@ -221,5 +232,7 @@ public class ActiveTea : MonoBehaviour
         transform.Find("Ice_Three").gameObject.SetActive(false);
         transform.Find("Milk").gameObject.SetActive(false);
         transform.Find("Tea").gameObject.SetActive(false);
+        transform.Find("CheeseFoamHonbComb").gameObject.SetActive(false);
+        transform.Find("Grass_Jelly").gameObject.SetActive(false);
     }
 }

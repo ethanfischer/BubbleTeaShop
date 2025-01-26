@@ -20,18 +20,18 @@ public class PopupText : MonoBehaviour
     TMP_Text _text;
     bool _isGameOver;
 
-    public void ShowPopup(string text)
+    public void ShowPopup(string text, float f = 2f)
     {
         if (_isGameOver) return;
         
         _text.text = text;
-        _timer = 2f;
+        _timer = f;
     }
     
     public void GameOver()
     {
         _isGameOver = true;
-        _text.text = "YOU MISSED AN ORDER.\nGAME OVER";
+        _text.text = "GAME OVER";
         _timer = float.MaxValue;
     }
     

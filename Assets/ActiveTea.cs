@@ -189,7 +189,7 @@ public class ActiveTea : MonoBehaviour
         {
             Destroy(matchingOrder.gameObject);
             ClearIngredientUIText();
-            PopupText.Instance.ShowPopup("Order matched");
+            PopupText.Instance.ShowPopup("Good", 0.5f);
             Debug.Log("Tea submitted and matched order");
             Reset();
         }

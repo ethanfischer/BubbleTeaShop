@@ -18,6 +18,8 @@ public class ActiveTea : MonoBehaviour
     AudioClip _iceSound;
     [SerializeField]
     AudioClip _jellySound;
+    [SerializeField]
+    AudioClip _correctOrderSound;
 
     [SerializeField]
     AudioSource _audioSource;
@@ -189,16 +191,23 @@ public class ActiveTea : MonoBehaviour
         var order = new Order(_boba, _ice, _sugar, _extraTopping);
         if (_orderSystem.TryGetMatchingOrder(order, out var matchingOrder))
         {
-            Destroy(matchingOrder.gameObject);
-            ClearIngredientUIText();
-            PopupText.Instance.ShowPopup("Good", 0.5f);
-            Debug.Log("Tea submitted and matched order");
-            Reset();
+            HandleCorrectOrder(matchingOrder);
         }
         else
         {
             PopupText.Instance.ShowPopup("No matching order");
         }
+    }
+    
+    void HandleCorrectOrder(OrderMB matchingOrder)
+    {
+        Destroy(matchingOrder.gameObject);
+        ClearIngredientUIText();
+        PopupText.Instance.ShowPopup("Good", 0.5f);
+        Debug.Log("Tea submitted and matched order");
+        _audioSource.clip = _correctOrderSound;
+        _audioSource.Play();
+        Reset();
     }
 
     void TrashTea()

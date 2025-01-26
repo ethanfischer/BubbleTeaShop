@@ -89,6 +89,7 @@ public class ActiveTea : MonoBehaviour
         AddIngredientTextToUI("Jelly");
         _audioSource.clip = _jellySound;
         _audioSource.Play();
+        transform.Find("Grass_Jelly").gameObject.SetActive(true);
         Debug.Log("Jelly added");
     }
 
@@ -126,6 +127,7 @@ public class ActiveTea : MonoBehaviour
     {
         _extraTopping = (int)ExtraToppingEnum.CheeseFoam;
         AddIngredientTextToUI("Cheese Foam");
+        transform.Find("CheeseFoamHonbComb").gameObject.SetActive(true);
         Debug.Log("Cheese Foam added");
     }
 
@@ -221,5 +223,7 @@ public class ActiveTea : MonoBehaviour
         transform.Find("Ice_Three").gameObject.SetActive(false);
         transform.Find("Milk").gameObject.SetActive(false);
         transform.Find("Tea").gameObject.SetActive(false);
+        transform.Find("CheeseFoamHonbComb").gameObject.SetActive(false);
+        transform.Find("Grass_Jelly").gameObject.SetActive(false);
     }
 }

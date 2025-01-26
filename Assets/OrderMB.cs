@@ -5,15 +5,21 @@ using System.Security.Cryptography;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Color = UnityEngine.Color;
 
 public class OrderMB : MonoBehaviour
 {
-    public TMP_Text BobaText;
-    public TMP_Text IceText;
-    public TMP_Text SugarText;
-    public TMP_Text ExtraToppingText;
+    [FormerlySerializedAs("BobaText")]
+    public Image BobaImage;
+    [FormerlySerializedAs("IceText")]
+    public Image IceImage;
+    [FormerlySerializedAs("SugarText")]
+    public Image SugarImage;
+    [FormerlySerializedAs("ExtraToppingText")]
+    public Image ExtraToppingImage;
+
 
     [SerializeField]
     RectTransform _timeBar;
@@ -40,23 +46,103 @@ public class OrderMB : MonoBehaviour
     {
         _timeRemaining = InitialTime;
         Order = OrderFactory.CreateOrder();
-        SetUIText();
+        SetIngredientImages();
         _initialBarWidth = _timeBar.sizeDelta.x;
         _timeBarImage = _timeBar.GetComponent<Image>();
     }
 
-    void SetUIText()
+    void SetIngredientImages()
     {
-        BobaText.text = OrderFactory.GetBobaText(Order.Boba);
-        IceText.text = OrderFactory.GetIceText(Order.Ice);
-        SugarText.text = OrderFactory.GetSugarText(Order.Sugar);
-        ExtraToppingText.text = OrderFactory.GetExtraToppingText(Order.ExtraTopping);
+        var bobaSpriteName = OrderFactory.GetBobaText(Order.Boba);
+        var iceSpriteName = OrderFactory.GetIceText(Order.Ice);
+        var sugarSpriteName = OrderFactory.GetSugarText(Order.Sugar);
+        var extraToppingSpriteName = OrderFactory.GetExtraToppingText(Order.ExtraTopping);
+
+        var iconManager = IconManager.Instance;
+
+
+        BobaImage.GetComponent<Image>().enabled = true;
+        IceImage.GetComponent<Image>().enabled = true;
+        SugarImage.GetComponent<Image>().enabled = true;
+        ExtraToppingImage.GetComponent<Image>().enabled = true;
+
+        //Boba
+        if (bobaSpriteName == "Strawberry Boba")
+        {
+            BobaImage.sprite = iconManager.StrawberryBobaSprite;
+        }
+        else if (bobaSpriteName == "Blueberry Boba")
+        {
+            BobaImage.sprite = iconManager.BlueberryBobaSprite;
+        }
+        else if (bobaSpriteName == "Mango Boba")
+        {
+            BobaImage.sprite = iconManager.MangoBobaSprite;
+        }
+        else if (bobaSpriteName == "Grass Jelly")
+        {
+            BobaImage.sprite = iconManager.GrassJellySprite;
+        }
+        else if (bobaSpriteName == "Regular Boba")
+        {
+            BobaImage.sprite = iconManager.RegularBobaSprite;
+        }
+        else
+        {
+            BobaImage.GetComponent<Image>().enabled = false;
+        }
+
+        //Ice
+        if (iceSpriteName == "Extra Ice")
+        {
+            IceImage.sprite = iconManager.IceSprite3;
+        }
+        else if (iceSpriteName == "Regular Ice")
+        {
+            IceImage.sprite = iconManager.IceSprite2;
+        }
+        else if (iceSpriteName == "Less Ice")
+        {
+            IceImage.sprite = iconManager.IceSprite;
+        }
+        else
+        {
+            IceImage.GetComponent<Image>().enabled = false;
+        }
+
+        //Sugar
+        if (sugarSpriteName == "Extra Sugar")
+        {
+            SugarImage.sprite = iconManager.SugarSprite3;
+        }
+        else if (sugarSpriteName == "Regular Sugar")
+        {
+            SugarImage.sprite = iconManager.SugarSprite2;
+        }
+        else if (sugarSpriteName == "Less Sugar")
+        {
+            SugarImage.sprite = iconManager.SugarSprite;
+        }
+        else
+        {
+            SugarImage.GetComponent<Image>().enabled = false;
+        }
+
+        //ExtraTopping
+        if (extraToppingSpriteName == "Cheese Foam")
+        {
+            ExtraToppingImage.sprite = iconManager.CheeseFoamSprite;
+        }
+        else
+        {
+            ExtraToppingImage.GetComponent<Image>().enabled = false;
+        }
     }
 
     void Update()
     {
         if (!Tutorial.Instance.DidCloseTutorial) return;
-        
+
         _timeRemaining -= Time.deltaTime;
         if (_timeRemaining <= 0)
         {

@@ -23,7 +23,7 @@ public class OrderMB : MonoBehaviour
 
     [SerializeField]
     RectTransform _timeBar;
-    float _initialBarWidth;
+    float _initialBarHeight;
 
     public Order Order { get; private set; }
 
@@ -47,7 +47,7 @@ public class OrderMB : MonoBehaviour
         _timeRemaining = InitialTime;
         Order = OrderFactory.CreateOrder();
         SetIngredientImages();
-        _initialBarWidth = _timeBar.sizeDelta.x;
+        _initialBarHeight = _timeBar.sizeDelta.y;
         _timeBarImage = _timeBar.GetComponent<Image>();
     }
 
@@ -159,7 +159,7 @@ public class OrderMB : MonoBehaviour
         float proportion = _timeRemaining / InitialTime;
 
         // Scale the bar width proportionally
-        _timeBar.sizeDelta = new Vector2(_initialBarWidth * proportion, _timeBar.sizeDelta.y);
+        _timeBar.sizeDelta = new Vector2(_timeBar.sizeDelta.x, _initialBarHeight * proportion);
 
         _timeBarImage = _timeBar.GetComponent<Image>();
 

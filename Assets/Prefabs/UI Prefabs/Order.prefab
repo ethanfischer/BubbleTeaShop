@@ -63,7 +63,6 @@ MonoBehaviour:
   BobaImage: {fileID: 2655015022082280522}
   IceImage: {fileID: 356221929016482566}
   SugarImage: {fileID: 4094816948184431999}
-  MilkImage: {fileID: 7920335968084758362}
   ExtraToppingImage: {fileID: 2446284401367760653}
   _timeBar: {fileID: 5476728664415800955}
 --- !u!1 &2075307480828148281
@@ -250,8 +249,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 4.11, y: -13.95}
-  m_SizeDelta: {x: 10, y: 250}
+  m_AnchoredPosition: {x: 4.11, y: -10.5}
+  m_SizeDelta: {x: 10, y: 290}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &4926360581122184562
 CanvasRenderer:
@@ -281,8 +280,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6a5c702d8383f4636a0e700e08f598e6, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

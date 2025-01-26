@@ -16,11 +16,29 @@ public class Tutorial : MonoBehaviour
         return instance;
     } }
     
-    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.E))
         {
+            GameDifficulty.Difficulty = (int)GameDifficultyEnum.Easy;
+            if (!DidCloseTutorial)
+            {
+                DidCloseTutorial = true;
+                gameObject.SetActive(false);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            GameDifficulty.Difficulty = (int)GameDifficultyEnum.Medium;
+            if (!DidCloseTutorial)
+            {
+                DidCloseTutorial = true;
+                gameObject.SetActive(false);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            GameDifficulty.Difficulty = (int)GameDifficultyEnum.Hard;
             if (!DidCloseTutorial)
             {
                 DidCloseTutorial = true;

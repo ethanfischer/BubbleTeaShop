@@ -121,17 +121,8 @@ public class OrderMB : MonoBehaviour
     void FailOrder()
     {
         //One strike you're out
-        GameOver();
-    }
-
-    void GameOver()
-    {
-        Debug.Log("Order failed");
+        OrderSystem.Instance.GameOver();
         Destroy(this.gameObject);
-        PopupText.Instance.GameOver();
-        OrderSystem.Instance.ClearOrders();
-        Destroy(OrderSystem.Instance.gameObject);
-        Music.Instance.StopMusic();
     }
 
     public bool DoOrdersMatch(Order input)

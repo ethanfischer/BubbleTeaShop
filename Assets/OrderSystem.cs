@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
@@ -10,6 +12,7 @@ public class OrderSystem : MonoBehaviour
 {
     [SerializeField]
     TMP_Text _cashText;
+    public decimal Cash = Decimal.Zero; 
     
     //singleton unity pattern
     private static OrderSystem _instance;
@@ -73,7 +76,14 @@ public class OrderSystem : MonoBehaviour
     public void RecordFullfilledOrder()
     {
         OrdersFullfilled++;
-        _cashText.text = $"${OrdersFullfilled*5}";
+        Cash += 5;
+        _cashText.text = $"${Cash}";
+    }
+    
+    public void RecordTrashedTea()
+    {
+        Cash -= 2.50m;
+        _cashText.text = $"${Cash}";
     }
 
     public void ClearOrders()
@@ -89,5 +99,15 @@ public class OrderSystem : MonoBehaviour
     public void RemoveOrderFromList(OrderMB order)
     {
         _orders.Remove(order);
+    }
+    
+    
+    public void GameOver(string text = "GAME OVER")
+    {
+        Debug.Log("Order failed");
+        PopupText.Instance.GameOver(text);
+        OrderSystem.Instance.ClearOrders();
+        Destroy(OrderSystem.Instance.gameObject);
+        Music.Instance.StopMusic();
     }
 }

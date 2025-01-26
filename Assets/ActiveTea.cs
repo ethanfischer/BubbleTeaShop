@@ -219,7 +219,7 @@ public class ActiveTea : MonoBehaviour
 
         _audioSource.clip = _pourSound;
         _audioSource.Play();
-        
+
         Debug.Log("Tea added");
     }
 
@@ -281,7 +281,7 @@ public class ActiveTea : MonoBehaviour
             HandleWrongOrder();
         }
     }
-    
+
     void HandleWrongOrder()
     {
         _audioSource.clip = _buzzerWrongSound;
@@ -306,10 +306,15 @@ public class ActiveTea : MonoBehaviour
     {
         ClearIngredientUIText();
         PopupText.Instance.ShowPopup("<color=red>-$2.50</color>", .5f);
+        OrderSystem.Instance.RecordTrashedTea();
         _audioSource.clip = _splatSound;
         _audioSource.Play();
         Debug.Log("Tea trashed");
         Reset();
+        if (OrderSystem.Instance.Cash < 0)
+        {
+            OrderSystem.Instance.GameOver("<color=red>You ran out of money</color>");
+        }
     }
 
     void Reset()

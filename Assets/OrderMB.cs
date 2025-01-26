@@ -89,7 +89,7 @@ public class OrderMB : MonoBehaviour
         }
         else
         {
-            BobaImage.GetComponent<Image>().enabled = false;
+            BobaImage.sprite = iconManager.NoBobaSprite;
         }
 
         //Ice
@@ -107,7 +107,7 @@ public class OrderMB : MonoBehaviour
         }
         else
         {
-            IceImage.GetComponent<Image>().enabled = false;
+            IceImage.sprite = iconManager.NoIceSprite;
         }
 
         //Sugar
@@ -125,7 +125,7 @@ public class OrderMB : MonoBehaviour
         }
         else
         {
-            SugarImage.GetComponent<Image>().enabled = false;
+            SugarImage.sprite = iconManager.NoSugarSprite;
         }
 
         //ExtraTopping
@@ -136,6 +136,7 @@ public class OrderMB : MonoBehaviour
         else
         {
             ExtraToppingImage.GetComponent<Image>().enabled = false;
+            ExtraToppingImage.sprite = iconManager.CheeseFoamSprite;
         }
     }
 

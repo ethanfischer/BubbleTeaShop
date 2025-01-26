@@ -17,6 +17,12 @@ public class IconManager : MonoBehaviour
     public Sprite CheeseFoamSprite;
     public Sprite GrassJellySprite;
     public Sprite Blank;
+    public Sprite NoSugarSprite;
+    public Sprite NoIceSprite;
+    public Sprite NoBobaSprite;
+
+
+
     
     //singleton unity pattern
     private static IconManager _instance;
@@ -30,7 +36,4 @@ public class IconManager : MonoBehaviour
 
         return _instance;
     } }
-
-
-
 }

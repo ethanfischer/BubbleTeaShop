@@ -28,7 +28,7 @@ namespace DefaultNamespace
                 case 4:
                     return new Level4Ingredients();
                 default:
-                    return new Level1Ingredients();
+                    return new Level4Ingredients();
             }
         }
         

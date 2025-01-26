@@ -11,10 +11,15 @@ public class OrderMB : MonoBehaviour
     public TMP_Text IceText;
     public TMP_Text SugarText;
     public TMP_Text ExtraToppingText;
+
+    [SerializeField]
+    RectTransform _timeBar;
     // public TMP_Text RemainingTimeText;
+    float _initialBarWidth;
 
     public Order Order { get; private set; }
-    float _timeRemaining = 60f;
+    const float INITIAL_TIME = 10;
+    float _timeRemaining = INITIAL_TIME;
 
     string[] _sizeOptions = new string[]
     {
@@ -45,7 +50,7 @@ public class OrderMB : MonoBehaviour
         "Regular Ice",
         "Extra Ice"
     };
-    
+
     string[] _extraToppingOptions = new string[]
     {
         "",
@@ -61,6 +66,7 @@ public class OrderMB : MonoBehaviour
             Random.Range(0, _extraToppingOptions.Length));
 
         SetUIText();
+        _initialBarWidth = _timeBar.sizeDelta.x;
     }
 
     void SetUIText()
@@ -79,7 +85,17 @@ public class OrderMB : MonoBehaviour
         {
             FailOrder();
         }
-        // RemainingTimeText.text = $"Time remaining: {_timeRemaining:0}";
+
+        ShrinkTimebar();
+    }
+    
+    void ShrinkTimebar()
+    {
+        // Calculate the proportion of time remaining
+        float proportion = _timeRemaining / INITIAL_TIME;
+
+        // Scale the bar width proportionally
+        _timeBar.sizeDelta = new Vector2(_initialBarWidth * proportion, _timeBar.sizeDelta.y);
     }
 
     void FailOrder()
@@ -95,9 +111,9 @@ public class OrderMB : MonoBehaviour
         var ice = input.Ice == Order.Ice;
         var sugar = input.Sugar == Order.Sugar;
         var extraTopping = input.ExtraTopping == Order.ExtraTopping;
-        
+
         Debug.Log($"Boba: {boba}, Ice: {ice}, Sugar: {sugar}, ExtraTopping: {extraTopping}");
-        
+
         return boba
             && ice
             && sugar

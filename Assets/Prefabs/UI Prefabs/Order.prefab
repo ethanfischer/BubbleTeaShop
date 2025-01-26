@@ -94,6 +94,7 @@ MonoBehaviour:
   IceText: {fileID: 9203094096584436532}
   SugarText: {fileID: 6971503837937793460}
   ExtraToppingText: {fileID: 8183330041492985778}
+  _timeBar: {fileID: 5476728664415800955}
 --- !u!1 &2075307480828148281
 GameObject:
   m_ObjectHideFlags: 0

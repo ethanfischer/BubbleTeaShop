@@ -72,7 +72,7 @@ public class ActiveTea : MonoBehaviour
                 continue;
             }
 
-            transform.Rotate(0, .01f, 0);
+            transform.Rotate(0, .05f, 0);
             //Boba
             if (Input.GetKeyDown(KeyCode.B))
             {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -6,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
@@ -43,6 +45,7 @@ public class OrderSystem : MonoBehaviour
     bool _skipFirstFrame = true;
 
     float _nextOrderTime;
+    bool _isGameOver;
 
     float GetNextOrderTime()
     {
@@ -74,8 +77,9 @@ public class OrderSystem : MonoBehaviour
 
     void Update()
     {
+        if(_isGameOver) return;
         if (!Tutorial.Instance.DidCloseTutorial) return;
-        
+
         if (_timer > _nextOrderTime)
         {
             HandleNextOrder();
@@ -146,8 +150,15 @@ public class OrderSystem : MonoBehaviour
         Debug.Log("Order failed");
         PopupText.Instance.GameOver(text);
         OrderSystem.Instance.ClearOrders();
-        Destroy(OrderSystem.Instance.gameObject);
         Music.Instance.StopMusic();
+        StartCoroutine(RestartGame());
+        _isGameOver = true;
+    }
+
+    IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Reset()

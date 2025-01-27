@@ -2132,7 +2132,7 @@ MonoBehaviour:
   IceSprite2: {fileID: 21300000, guid: b0b7e46d0125346e5aac61637dfbf17e, type: 3}
   IceSprite3: {fileID: 21300000, guid: 5f29f407663aa426f9459b34146c85f2, type: 3}
   MilkSprite: {fileID: 21300000, guid: 1389159c5e02343138b3ebf60bd91d39, type: 3}
-  SugarSprite: {fileID: 21300000, guid: ac3363b7942b04bcab1acc28b765ad73, type: 3}
+  SugarSprite: {fileID: 21300000, guid: dec3520c6bead4c6d94f4d39add2dd84, type: 3}
   SugarSprite2: {fileID: 21300000, guid: 93e554fba55b44dafa542749f41d261c, type: 3}
   SugarSprite3: {fileID: 21300000, guid: 6f881489970814b5ba1343ee582e60ce, type: 3}
   TeaSprite: {fileID: 21300000, guid: 21e419a4d8a1045c3a5d08cd50ccb9d7, type: 3}

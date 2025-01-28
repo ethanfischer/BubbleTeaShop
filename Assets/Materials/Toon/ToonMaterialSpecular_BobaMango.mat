@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ToonMaterial_CheeseFoam
+  m_Name: ToonMaterialSpecular_BobaMango
   m_Shader: {fileID: 4800000, guid: a3a26add045c44759be77209b7d13dd9, type: 3}
-  m_Parent: {fileID: 2100000, guid: f28b6b5ae4a1e41eba6dffa9cf624e7e, type: 2}
+  m_Parent: {fileID: 2100000, guid: 8dd3434afe2394242b407fac226f841e, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -25,8 +25,11 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _ShadowIntensity: 0.454
-    - _Steps: 3
+    - _ShadowIntensity: 1
+    - _Shininess: 15
+    - _ShininessThreshold: 0.892
+    - _Steps: 1
     m_Colors:
-    - _Color: {r: 0.8627451, g: 0.8235294, b: 0.7254902, a: 1}
+    - _Color: {r: 0.92156863, g: 0.7411765, b: 0.35686275, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

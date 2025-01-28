@@ -1043,9 +1043,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189424271}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.95, y: 0.95, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1367031266}
@@ -1099,7 +1099,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189424271}
-  m_Mesh: {fileID: 3371799226304767270, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
+  m_Mesh: {fileID: 8652476435714328174, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
 --- !u!1001 &219391762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4122,7 +4122,7 @@ PrefabInstance:
     - target: {fileID: -6537407414453537507, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 71f986c9157e54f42ae0e4c58a147653, type: 2}
+      objectReference: {fileID: 2100000, guid: 5f9ee891f09ca498194cfc2c6c0562bc, type: 2}
     - target: {fileID: -6188150180595403382, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4158,7 +4158,7 @@ PrefabInstance:
     - target: {fileID: -1263971554597318379, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 71f986c9157e54f42ae0e4c58a147653, type: 2}
+      objectReference: {fileID: 2100000, guid: 5f9ee891f09ca498194cfc2c6c0562bc, type: 2}
     - target: {fileID: -1141752997242343472, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90
@@ -4170,7 +4170,7 @@ PrefabInstance:
     - target: {fileID: 2370240108712174190, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 71f986c9157e54f42ae0e4c58a147653, type: 2}
+      objectReference: {fileID: 2100000, guid: 5f9ee891f09ca498194cfc2c6c0562bc, type: 2}
     - target: {fileID: 2770324832858192405, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4190,7 +4190,7 @@ PrefabInstance:
     - target: {fileID: 6076140574077323114, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 23bdc879249df4c97b9c34f21b0baf39, type: 2}
+      objectReference: {fileID: 2100000, guid: 4c8aed709245340c1adf2f7c11accc4c, type: 2}
     - target: {fileID: 7722696518849458338, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9239185
@@ -4288,6 +4288,8 @@ MonoBehaviour:
   _audioSource: {fileID: 1367031269}
   _spinSpeed: 0
   _shouldLoseIfOutOfMoney: 0
+  _defaultIceColor: {r: 0.5215685, g: 0.84705883, b: 0.9686274, a: 0.53333336}
+  _submergedIceColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 0.34901962}
 --- !u!82 &1367031269
 AudioSource:
   m_ObjectHideFlags: 0

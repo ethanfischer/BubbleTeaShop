@@ -43,17 +43,22 @@ public class ActiveTea : MonoBehaviour
     Vector3 _sugarCubeInitialPosition;
     bool _didSelectBoba;
     bool _skipFirstTick = true;
-    
+
     [SerializeField]
     float _spinSpeed = 0.05f;
     [SerializeField]
     bool _shouldLoseIfOutOfMoney;
 
+    [SerializeField]
+    Color _defaultIceColor;
+    [SerializeField]
+    Color _submergedIceColor;
+
     void Start()
     {
         _sugarCube = GameObject.Find("SugarCube");
         if (_sugarCube == null) Debug.LogError("Sugar cube not found");
-
+        
         _sugarCubeInitialPosition = _sugarCube.transform.position;
         StartCoroutine(Tick());
     }
@@ -78,7 +83,7 @@ public class ActiveTea : MonoBehaviour
             }
 
             transform.Rotate(0, _spinSpeed, 0);
-            
+
             //Boba
             if (Input.GetKeyDown(KeyCode.B))
             {
@@ -214,7 +219,6 @@ public class ActiveTea : MonoBehaviour
         AddIngredientTextToUI("Ice");
         Debug.Log("Ice added");
 
-
         if (_ice == 1)
         {
             transform.Find("Ice_One").gameObject.SetActive(true);
@@ -226,6 +230,29 @@ public class ActiveTea : MonoBehaviour
         else if (_ice == 3)
         {
             transform.Find("Ice_Three").gameObject.SetActive(true);
+        }
+
+        HandleIceSubmerged();
+    }
+
+    void HandleIceSubmerged()
+    {
+        var iceOne = transform.Find("Ice_One").gameObject;
+        var iceTwo = transform.Find("Ice_Two").gameObject;
+        var iceThree = transform.Find("Ice_Three").gameObject;
+        var ices = new[] { iceOne, iceTwo, iceThree };
+        var milkAndTea = transform.Find("MilkAndTea").gameObject;
+        var tea = transform.Find("Tea").gameObject;
+        foreach (var ice in ices)
+        {
+            if (tea.activeSelf || milkAndTea.activeSelf)
+            {
+                ice.GetComponent<MeshRenderer>().material.color = _submergedIceColor;
+            }
+            else
+            {
+                ice.GetComponent<MeshRenderer>().material.color = _defaultIceColor;
+            }
         }
     }
 
@@ -318,6 +345,8 @@ public class ActiveTea : MonoBehaviour
         {
             transform.Find("Tea").gameObject.SetActive(true);
         }
+        
+        HandleIceSubmerged();
 
         _audioSource.clip = _pourSound;
         _audioSource.Play();
@@ -358,6 +387,7 @@ public class ActiveTea : MonoBehaviour
             transform.Find("Milk").gameObject.SetActive(true);
         }
 
+        HandleIceSubmerged();
         Debug.Log("Milk added");
     }
 

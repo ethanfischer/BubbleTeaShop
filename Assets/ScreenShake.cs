@@ -33,6 +33,7 @@ public class ScreenShake : MonoBehaviour
 
     public void TriggerShake(float duration = 0.5f, float magnitude = 10f)
     {
+        return; //needs testing
         _duration = duration;
         _magnitude = magnitude;
         if (uiElement != null)

@@ -1,4 +1,4 @@
-Shader "Custom/CelShaderWithSpecular"
+Shader "Custom/CelShaderWithFlatSpecular"
 {
     Properties
     {
@@ -7,7 +7,7 @@ Shader "Custom/CelShaderWithSpecular"
         _Steps ("Shading Steps", Range(1, 8)) = 3
         _ShadowIntensity ("Shadow Intensity", Range(0, 1)) = 0.5
         _SpecularColor ("Specular Color", Color) = (1, 1, 1, 1)
-        _Shininess ("Shininess", Range(1, 512)) = 64
+        _ShininessThreshold ("Specular Threshold", Range(0, 1)) = 0.5
     }
     SubShader
     {
@@ -40,7 +40,7 @@ Shader "Custom/CelShaderWithSpecular"
             int _Steps;
             float _ShadowIntensity;
             float4 _SpecularColor;
-            float _Shininess;
+            float _ShininessThreshold;
 
             v2f vert (appdata v)
             {
@@ -61,14 +61,16 @@ Shader "Custom/CelShaderWithSpecular"
                 float quantized = floor(NdotL * _Steps) / _Steps;
                 float shadow = lerp(_ShadowIntensity, 1.0, quantized);
 
-                // Specular highlights
+                // Specular highlights (flat, single shade)
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
                 float3 reflectDir = reflect(-lightDir, i.worldNormal);
+                float specularIntensity = max(0, dot(viewDir, reflectDir));
 
-                float specular = pow(max(0, dot(viewDir, reflectDir)), _Shininess);
+                // Apply threshold to create flat specular highlight
+                float specular = step(_ShininessThreshold, specularIntensity); // 1 if above threshold, 0 otherwise
                 half4 specularColor = _SpecularColor * specular;
 
-                // Base color with diffuse and specular
+                // Base color with diffuse and flat specular
                 half4 textureColor = tex2D(_MainTex, float2(0.5, 0.5));
                 half4 finalColor = (_Color * textureColor * shadow) + specularColor;
 

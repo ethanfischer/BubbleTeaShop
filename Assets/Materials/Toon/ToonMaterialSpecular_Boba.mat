@@ -27,6 +27,8 @@ Material:
     m_Floats:
     - _ShadowIntensity: 0
     - _Shininess: 15
+    - _ShininessThreshold: 0.892
     - _Steps: 1
-    m_Colors: []
+    m_Colors:
+    - _SpecularColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
   m_BuildTextureStacks: []

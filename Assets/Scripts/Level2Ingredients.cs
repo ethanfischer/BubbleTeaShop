@@ -16,7 +16,11 @@ namespace DefaultNamespace
             { 2, "Regular Sugar" },
             { 3, "Extra Sugar" },
         };
-        public Dictionary<int, string> TeaOptions { get; }
+        
+        public Dictionary<int, string> TeaOptions => new()
+        {
+            {0, "Regular Tea"},
+        };
 
         public Dictionary<int, string> IceOptions => new()
         {

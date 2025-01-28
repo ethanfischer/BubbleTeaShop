@@ -199,13 +199,15 @@ public class OrderMB : MonoBehaviour
         var boba = input.Boba == Order.Boba;
         var ice = input.Ice == Order.Ice;
         var sugar = input.Sugar == Order.Sugar;
+        var tea = input.Tea == Order.Tea;
         var extraTopping = input.ExtraTopping == Order.ExtraTopping;
 
-        Debug.Log($"Boba: {boba}, Ice: {ice}, Sugar: {sugar}, ExtraTopping: {extraTopping}");
+        Debug.Log($"Boba: {boba}, Ice: {ice}, Sugar: {sugar}, Tea: {tea}, ExtraTopping: {extraTopping}");
 
         return boba
             && ice
             && sugar
+            && tea
             && extraTopping;
     }
     
@@ -222,7 +224,7 @@ public class OrderMB : MonoBehaviour
         var initialPosition = _rectTransform.anchoredPosition;
         while (_rectTransform.anchoredPosition.y < initialPosition.y + 1000f)
         {
-            _rectTransform.anchoredPosition = _rectTransform.anchoredPosition + Vector2.up * 10f;
+            _rectTransform.anchoredPosition += Vector2.up * 100f;
             yield return null;
         }
         

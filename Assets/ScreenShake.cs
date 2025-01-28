@@ -21,6 +21,8 @@ public class ScreenShake : MonoBehaviour
     private Vector3 originalPosition;
     float _magnitude;
     float _duration;
+    [SerializeField]
+    bool _disableShake = false;
 
     void Start()
     {
@@ -33,7 +35,8 @@ public class ScreenShake : MonoBehaviour
 
     public void TriggerShake(float duration = 0.5f, float magnitude = 10f)
     {
-        return; //needs testing
+        if (_disableShake) return;
+        
         _duration = duration;
         _magnitude = magnitude;
         if (uiElement != null)

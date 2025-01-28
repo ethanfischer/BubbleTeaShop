@@ -4,6 +4,7 @@ using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 
 public class ActiveTea : MonoBehaviour
 {
@@ -63,7 +64,7 @@ public class ActiveTea : MonoBehaviour
     [SerializeField]
     Color _submergedIceColor;
     [SerializeField]
-    bool _shouldShowPopup = true;
+    bool _shouldPopupTypedIngredients = true;
 
     void Start()
     {
@@ -430,7 +431,7 @@ public class ActiveTea : MonoBehaviour
 
     void AddIngredientTextToUI(string text)
     {
-        if (_shouldShowPopup)
+        if (_shouldPopupTypedIngredients)
         {
             PopupText.Instance.ShowPopup($"<size=120>{text}</size>", 0.2f);
         }

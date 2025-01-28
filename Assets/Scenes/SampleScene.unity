@@ -1757,7 +1757,6 @@ Transform:
   - {fileID: 317552748}
   - {fileID: 129521994}
   - {fileID: 1862915366}
-  - {fileID: 1367031266}
   - {fileID: 1893811901}
   - {fileID: 2134700376}
   - {fileID: 1600812347}
@@ -3603,7 +3602,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 693148166}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_LocalScale.x
@@ -3643,7 +3642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3871,6 +3870,7 @@ MonoBehaviour:
   _shouldLoseIfOutOfMoney: 0
   _defaultIceColor: {r: 0.5215685, g: 0.84705883, b: 0.9686274, a: 0.53333336}
   _submergedIceColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 0.34901962}
+  _shouldPopupTypedIngredients: 0
 --- !u!82 &1367031269
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5946,6 +5946,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 9068066171365230619, guid: 1a79ae32724dc43068f0af803fc6d464, type: 3}
+      propertyPath: _disableShake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9070909112529997640, guid: 1a79ae32724dc43068f0af803fc6d464, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5975,6 +5979,7 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 4739002880996497977}
   - {fileID: 693148166}
+  - {fileID: 1367031265}
   - {fileID: 1094027065}
   - {fileID: 1654558720}
   - {fileID: 294472606}

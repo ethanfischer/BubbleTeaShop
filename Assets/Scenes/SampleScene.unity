@@ -2796,7 +2796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb4f928385d84d97a50b69b9ad0eb24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelIndex: 4
+  LevelIndex: 1
 --- !u!4 &1019618217
 Transform:
   m_ObjectHideFlags: 0
@@ -3205,7 +3205,7 @@ PrefabInstance:
     - target: {fileID: -6537407414453537507, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f060aff555b264c8faa5c0ba4585a3f8, type: 2}
+      objectReference: {fileID: 2100000, guid: 71f986c9157e54f42ae0e4c58a147653, type: 2}
     - target: {fileID: -6188150180595403382, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3220,11 +3220,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5587302048263810121, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5398987385365414791, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4948746357445854071, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3236,12 +3236,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1465136766039031500, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1263971554597318379, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f060aff555b264c8faa5c0ba4585a3f8, type: 2}
+      objectReference: {fileID: 2100000, guid: 71f986c9157e54f42ae0e4c58a147653, type: 2}
     - target: {fileID: 919132149155446097, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_Name
       value: BobaTeaCup
@@ -3249,7 +3249,7 @@ PrefabInstance:
     - target: {fileID: 2370240108712174190, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f060aff555b264c8faa5c0ba4585a3f8, type: 2}
+      objectReference: {fileID: 2100000, guid: 71f986c9157e54f42ae0e4c58a147653, type: 2}
     - target: {fileID: 2770324832858192405, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3337,6 +3337,7 @@ MonoBehaviour:
   _buzzerWrongSound: {fileID: 8300000, guid: c740b0867cc43454b82fc632e9f98f68, type: 3}
   _splatSound: {fileID: 8300000, guid: edaaa5b558ff541709ebecc6b17c8b0d, type: 3}
   _audioSource: {fileID: 1367031269}
+  _spinSpeed: 0
 --- !u!82 &1367031269
 AudioSource:
   m_ObjectHideFlags: 0

@@ -43,6 +43,9 @@ public class ActiveTea : MonoBehaviour
     Vector3 _sugarCubeInitialPosition;
     bool _didSelectBoba;
     bool _skipFirstTick = true;
+    
+    [SerializeField]
+    float _spinSpeed = 0.05f;
 
     void Start()
     {
@@ -72,7 +75,7 @@ public class ActiveTea : MonoBehaviour
                 continue;
             }
 
-            transform.Rotate(0, .05f, 0);
+            transform.Rotate(0, _spinSpeed, 0);
             
             //Boba
             if (Input.GetKeyDown(KeyCode.B))

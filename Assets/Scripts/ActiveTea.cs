@@ -359,7 +359,7 @@ public class ActiveTea : MonoBehaviour
         var ingredient = Instantiate(_teaIngredientPrefab, _activeTeaUI.transform);
         ingredient.GetComponent<TMP_Text>().text = tea;
         ingredient.transform.SetSiblingIndex(0);
-        ScreenShake.Instance.TriggerShake(0.05f, 2f);
+        ScreenShake.Instance.TriggerShake(0.02f, 2f);
     }
 
     void ClearIngredientUIText()

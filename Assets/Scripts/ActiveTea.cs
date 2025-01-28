@@ -396,7 +396,8 @@ public class ActiveTea : MonoBehaviour
         OrderSystem.Instance.RemoveOrderFromList(matchingOrder);
         Destroy(matchingOrder.gameObject);
         ClearIngredientUIText();
-        PopupText.Instance.ShowPopup("<color=green>$5</color>", 0.5f);
+        var cashColor = PopupText.Instance.GetCashColorHexCode();
+        PopupText.Instance.ShowPopup($"<color=#{cashColor}>$5</color>", 0.5f);
         Debug.Log("Tea submitted and matched order");
         _audioSource.clip = _correctOrderSound;
         _audioSource.Play();

@@ -38,6 +38,7 @@ public class OrderMB : MonoBehaviour
 
     float _timeRemaining;
     Image _timeBarImage;
+    Color _timeBarColor;
 
 
     bool _skipFirstFrame = true;
@@ -49,6 +50,7 @@ public class OrderMB : MonoBehaviour
         SetIngredientImages();
         _initialBarHeight = _timeBar.sizeDelta.y;
         _timeBarImage = _timeBar.GetComponent<Image>();
+        _timeBarColor = _timeBarImage.color;
     }
 
     void SetIngredientImages()
@@ -165,7 +167,7 @@ public class OrderMB : MonoBehaviour
 
         var colorTargetTimeOffset = InitialTime * 0.5f;
         float colorProportion = Mathf.Clamp01((_timeRemaining - colorTargetTimeOffset) / (InitialTime - colorTargetTimeOffset));
-        _timeBarImage.color = Color.Lerp(Color.red, Color.green, colorProportion);
+        _timeBarImage.color = Color.Lerp(Color.red, _timeBarColor, colorProportion);
     }
 
     void FailOrder()

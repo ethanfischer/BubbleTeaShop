@@ -1,10 +1,13 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PopupText : MonoBehaviour
 {
+    [FormerlySerializedAs("_green")]
     [SerializeField]
-    Color _green;
+    Color _earnedCashColor;
     float _timer = 0f;
     //singleton unity pattern
     private static PopupText _instance;
@@ -28,6 +31,11 @@ public class PopupText : MonoBehaviour
         
         _text.text = text;
         _timer = f;
+    }
+
+    public string GetCashColorHexCode()
+    {
+        return _earnedCashColor.ToHexString();
     }
     
     public void GameOver(string text = "GAME OVER")

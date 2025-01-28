@@ -2683,6 +2683,9 @@ MonoBehaviour:
   _bobaPose:
     position: {x: -9.609, y: 0.46, z: -6.13}
     rotation: {x: 0.306, y: 0, z: 0, w: 0.951}
+  _teaPose:
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &984796149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3475,6 +3478,9 @@ MonoBehaviour:
   _buzzerWrongSound: {fileID: 8300000, guid: c740b0867cc43454b82fc632e9f98f68, type: 3}
   _splatSound: {fileID: 8300000, guid: edaaa5b558ff541709ebecc6b17c8b0d, type: 3}
   _audioSource: {fileID: 1367031269}
+  _teaRegularTexture: {fileID: 2800000, guid: eaab5f1ffef5d447a920912f0212355d, type: 3}
+  _teaTaroTexture: {fileID: 2800000, guid: b1a81434b06804312a2a2832f4c75e8b, type: 3}
+  _teaMatchaTexture: {fileID: 2800000, guid: c388bc620877f492b9f20794528d522b, type: 3}
   _spinSpeed: 0
   _shouldLoseIfOutOfMoney: 0
   _defaultIceColor: {r: 0.5215685, g: 0.84705883, b: 0.9686274, a: 0.53333336}

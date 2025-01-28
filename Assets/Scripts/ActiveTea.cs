@@ -33,6 +33,13 @@ public class ActiveTea : MonoBehaviour
     [SerializeField]
     AudioSource _audioSource;
 
+    [SerializeField]
+    Texture _teaRegularTexture;
+    [SerializeField]
+    Texture _teaTaroTexture;
+    [SerializeField]
+    Texture _teaMatchaTexture;
+
     bool _hasMilk;
     bool _hasTea;
     int _boba;
@@ -356,7 +363,8 @@ public class ActiveTea : MonoBehaviour
                 _audioSource.Play();
                 var teaObject = transform.Find("Tea");
                 teaObject.gameObject.SetActive(true);
-                teaObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+                teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaTaroTexture;
+                _hasTea = true;
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
@@ -367,7 +375,8 @@ public class ActiveTea : MonoBehaviour
                 _audioSource.Play();
                 var teaObject = transform.Find("Tea");
                 teaObject.gameObject.SetActive(true);
-                teaObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaMatchaTexture;
+                _hasTea = true;
             }
         }
 
@@ -390,15 +399,18 @@ public class ActiveTea : MonoBehaviour
     {
         _hasTea = true;
         AddIngredientTextToUI("Tea");
+        var teaObject = transform.Find("Tea");
         if (_hasMilk)
         {
             transform.Find("MilkAndTea").gameObject.SetActive(true);
-            transform.Find("Tea").gameObject.SetActive(false);
+            teaObject.gameObject.SetActive(false);
             transform.Find("Milk").gameObject.SetActive(false);
         }
         else
         {
             transform.Find("Tea").gameObject.SetActive(true);
+            teaObject.gameObject.SetActive(true);
+            teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaRegularTexture;
         }
 
         HandleIceSubmerged();

@@ -65,6 +65,7 @@ MonoBehaviour:
   SugarImage: {fileID: 4094816948184431999}
   ExtraToppingImage: {fileID: 2446284401367760653}
   _timeBar: {fileID: 5476728664415800955}
+  _timeBarEndColor: {r: 0.934, g: 0, b: 0.19975731, a: 1}
 --- !u!1 &2075307480828148281
 GameObject:
   m_ObjectHideFlags: 0

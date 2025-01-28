@@ -39,6 +39,8 @@ public class OrderMB : MonoBehaviour
     float _timeRemaining;
     Image _timeBarImage;
     Color _timeBarColor;
+    [SerializeField]
+    Color _timeBarEndColor;
 
 
     bool _skipFirstFrame = true;
@@ -167,7 +169,7 @@ public class OrderMB : MonoBehaviour
 
         var colorTargetTimeOffset = InitialTime * 0.5f;
         float colorProportion = Mathf.Clamp01((_timeRemaining - colorTargetTimeOffset) / (InitialTime - colorTargetTimeOffset));
-        _timeBarImage.color = Color.Lerp(Color.red, _timeBarColor, colorProportion);
+        _timeBarImage.color = Color.Lerp(_timeBarEndColor, _timeBarColor, colorProportion);
     }
 
     void FailOrder()

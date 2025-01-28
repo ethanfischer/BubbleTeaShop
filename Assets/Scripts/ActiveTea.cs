@@ -426,7 +426,7 @@ public class ActiveTea : MonoBehaviour
     {
         ScreenShake.Instance.TriggerShake(0.1f, 5f);
         OrderSystem.Instance.RemoveOrderFromList(matchingOrder);
-        Destroy(matchingOrder.gameObject);
+        matchingOrder.Complete();
         ClearIngredientUIText();
         var cashColor = PopupText.Instance.GetCashColorHexCode();
         PopupText.Instance.ShowPopup($"<color=#{cashColor}>$5</color>", 0.5f);

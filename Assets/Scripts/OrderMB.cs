@@ -1,9 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Security.Cryptography;
 using DefaultNamespace;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -44,9 +40,11 @@ public class OrderMB : MonoBehaviour
 
 
     bool _skipFirstFrame = true;
+    RectTransform _rectTransform;
 
     void Start()
     {
+        _rectTransform = this.GetComponent<RectTransform>();
         _timeRemaining = InitialTime;
         Order = OrderFactory.CreateOrder();
         SetIngredientImages();
@@ -192,5 +190,26 @@ public class OrderMB : MonoBehaviour
             && ice
             && sugar
             && extraTopping;
+    }
+    
+    public void Complete()
+    {
+        Debug.LogError("Order complete");
+        
+        this.transform.parent.GetComponent<GridLayoutGroup>().enabled = false;
+        StartCoroutine(CompleteCoroutine());
+    }
+    
+    public IEnumerator CompleteCoroutine()
+    {
+        var initialPosition = _rectTransform.anchoredPosition;
+        while (_rectTransform.anchoredPosition.y < initialPosition.y + 1000f)
+        {
+            _rectTransform.anchoredPosition = _rectTransform.anchoredPosition + Vector2.up * 10f;
+            yield return null;
+        }
+        
+        Destroy(this.gameObject);
+        this.transform.parent.GetComponent<GridLayoutGroup>().enabled = true;
     }
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PopupText : MonoBehaviour
 {
+    [SerializeField]
+    Color _green;
     float _timer = 0f;
     //singleton unity pattern
     private static PopupText _instance;

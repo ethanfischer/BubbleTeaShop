@@ -43,6 +43,7 @@ public class ActiveTea : MonoBehaviour
     GameObject _sugarCube;
     Vector3 _sugarCubeInitialPosition;
     bool _didSelectBoba;
+    bool _didSelectTea;
     bool _skipFirstTick = true;
 
     [SerializeField]
@@ -59,7 +60,7 @@ public class ActiveTea : MonoBehaviour
     {
         _sugarCube = GameObject.Find("SugarCube");
         if (_sugarCube == null) Debug.LogError("Sugar cube not found");
-        
+
         _sugarCubeInitialPosition = _sugarCube.transform.position;
         StartCoroutine(Tick());
     }
@@ -131,7 +132,22 @@ public class ActiveTea : MonoBehaviour
             //Tea
             if (Input.GetKeyDown(KeyCode.T))
             {
-                AddTea();
+                if (Level.Instance.LevelIndex < 5)
+                {
+                    AddRegularTea();
+                }
+                else
+                {
+                    if (_didSelectTea)
+                    {
+                        PopupText.Instance.ShowPopup("Tea already selected", 1f);
+                    }
+                    else
+                    {
+                        yield return StartCoroutine(TeaCoroutine());
+                        yield return null;
+                    }
+                }
             }
 
 
@@ -274,7 +290,8 @@ public class ActiveTea : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                _didSelectBoba = AddRegularBoba();
+                _didSelectBoba = true;
+                AddRegularBoba();
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
@@ -317,10 +334,48 @@ public class ActiveTea : MonoBehaviour
         CameraManager.Instance.ActivateDefaultPose();
     }
 
-    bool AddRegularBoba()
+    IEnumerator TeaCoroutine()
     {
-        bool didSelectBoba;
-        didSelectBoba = true;
+        CameraManager.Instance.ActivateTeaPose();
+        while (!_didSelectTea)
+        {
+            yield return null;
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                _didSelectTea = true;
+                _tea = (int)TeaEnum.Regular;
+                AddRegularTea();
+            }
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                _didSelectTea = true;
+                _tea = (int)TeaEnum.Taro;
+                AddIngredientTextToUI("Taro");
+                _audioSource.clip = _pourSound;
+                _audioSource.Play();
+                var teaObject = transform.Find("Tea");
+                teaObject.gameObject.SetActive(true);
+                teaObject.GetComponent<MeshRenderer>().material.color = Color.magenta;
+            }
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                _didSelectTea = true;
+                _tea = (int)TeaEnum.Matcha;
+                AddIngredientTextToUI("Matcha");
+                _audioSource.clip = _pourSound;
+                _audioSource.Play();
+                var teaObject = transform.Find("Tea");
+                teaObject.gameObject.SetActive(true);
+                teaObject.GetComponent<MeshRenderer>().material.color = Color.green;
+            }
+        }
+
+        CameraManager.Instance.ActivateDefaultPose();
+    }
+
+    void AddRegularBoba()
+    {
         _boba = (int)BobaEnum.BobaRegular;
         AddIngredientTextToUI("Regular Boba");
         _audioSource.clip = _jellySound;
@@ -329,10 +384,9 @@ public class ActiveTea : MonoBehaviour
         bobaGameObject.gameObject.SetActive(true);
         bobaGameObject.GetComponent<MeshRenderer>().material.color = new Color(0.4f, 0.2f, 0.1f);
         Debug.Log("Regular Boba added");
-        return didSelectBoba;
     }
 
-    void AddTea()
+    void AddRegularTea()
     {
         _hasTea = true;
         AddIngredientTextToUI("Tea");
@@ -346,7 +400,7 @@ public class ActiveTea : MonoBehaviour
         {
             transform.Find("Tea").gameObject.SetActive(true);
         }
-        
+
         HandleIceSubmerged();
 
         _audioSource.clip = _pourSound;
@@ -462,6 +516,8 @@ public class ActiveTea : MonoBehaviour
         _sugar = 0;
         _extraTopping = 0;
         _didSelectBoba = false;
+        _didSelectTea = false;
+        _tea = 0;
         transform.Find("Boba").gameObject.SetActive(false);
         transform.Find("Ice_One").gameObject.SetActive(false);
         transform.Find("Ice_Two").gameObject.SetActive(false);

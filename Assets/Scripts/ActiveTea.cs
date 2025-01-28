@@ -46,6 +46,8 @@ public class ActiveTea : MonoBehaviour
     
     [SerializeField]
     float _spinSpeed = 0.05f;
+    [SerializeField]
+    bool _shouldLoseIfOutOfMoney;
 
     void Start()
     {
@@ -411,7 +413,7 @@ public class ActiveTea : MonoBehaviour
         _audioSource.Play();
         Debug.Log("Tea trashed");
         Reset();
-        if (OrderSystem.Instance.Cash < 0)
+        if (OrderSystem.Instance.Cash < 0 && _shouldLoseIfOutOfMoney)
         {
             OrderSystem.Instance.GameOver("<color=red>-$2.50\nYou ran out of money</color>");
         }

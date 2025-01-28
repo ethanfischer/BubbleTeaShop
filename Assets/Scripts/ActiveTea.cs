@@ -62,6 +62,8 @@ public class ActiveTea : MonoBehaviour
     Color _defaultIceColor;
     [SerializeField]
     Color _submergedIceColor;
+    [SerializeField]
+    bool _shouldShowPopup = true;
 
     void Start()
     {
@@ -182,6 +184,7 @@ public class ActiveTea : MonoBehaviour
     {
         _boba = (int)BobaEnum.Jelly;
         AddIngredientTextToUI("Jelly");
+
         _audioSource.clip = _jellySound;
         _audioSource.Play();
         transform.Find("Grass_Jelly").gameObject.SetActive(true);
@@ -192,6 +195,7 @@ public class ActiveTea : MonoBehaviour
     {
         _sugar++;
         AddIngredientTextToUI("Sugar");
+
         _audioSource.clip = _waterDropSound;
         _audioSource.Play();
         StartCoroutine(FlashSugarCube());
@@ -241,6 +245,7 @@ public class ActiveTea : MonoBehaviour
         _audioSource.clip = _iceSound;
         _audioSource.Play();
         AddIngredientTextToUI("Ice");
+
         Debug.Log("Ice added");
 
         if (_ice == 1)
@@ -284,6 +289,7 @@ public class ActiveTea : MonoBehaviour
     {
         _extraTopping = (int)ExtraToppingEnum.CheeseFoam;
         AddIngredientTextToUI("Cheese Foam");
+
         transform.Find("CheeseFoamHonbComb").gameObject.SetActive(true);
         Debug.Log("Cheese Foam added");
     }
@@ -387,6 +393,7 @@ public class ActiveTea : MonoBehaviour
     {
         _boba = (int)BobaEnum.BobaRegular;
         AddIngredientTextToUI("Regular Boba");
+
         _audioSource.clip = _jellySound;
         _audioSource.Play();
         var bobaGameObject = transform.Find("Boba");
@@ -421,10 +428,15 @@ public class ActiveTea : MonoBehaviour
         Debug.Log("Tea added");
     }
 
-    void AddIngredientTextToUI(string tea)
+    void AddIngredientTextToUI(string text)
     {
+        if (_shouldShowPopup)
+        {
+            PopupText.Instance.ShowPopup($"<size=120>{text}</size>", 0.2f);
+        }
+        
         var ingredient = Instantiate(_teaIngredientPrefab, _activeTeaUI.transform);
-        ingredient.GetComponent<TMP_Text>().text = tea;
+        ingredient.GetComponent<TMP_Text>().text = text;
         ingredient.transform.SetSiblingIndex(0);
         ScreenShake.Instance.TriggerShake(0.02f, 2f);
     }

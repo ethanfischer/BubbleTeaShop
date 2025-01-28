@@ -359,6 +359,7 @@ public class ActiveTea : MonoBehaviour
         var ingredient = Instantiate(_teaIngredientPrefab, _activeTeaUI.transform);
         ingredient.GetComponent<TMP_Text>().text = tea;
         ingredient.transform.SetSiblingIndex(0);
+        ScreenShake.Instance.TriggerShake(0.05f, 2f);
     }
 
     void ClearIngredientUIText()
@@ -423,6 +424,7 @@ public class ActiveTea : MonoBehaviour
 
     void HandleCorrectOrder(OrderMB matchingOrder)
     {
+        ScreenShake.Instance.TriggerShake(0.1f, 5f);
         OrderSystem.Instance.RemoveOrderFromList(matchingOrder);
         Destroy(matchingOrder.gameObject);
         ClearIngredientUIText();

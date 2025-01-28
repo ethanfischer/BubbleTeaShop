@@ -2805,13 +2805,15 @@ MonoBehaviour:
   SugarSprite: {fileID: 21300000, guid: dec3520c6bead4c6d94f4d39add2dd84, type: 3}
   SugarSprite2: {fileID: 21300000, guid: 93e554fba55b44dafa542749f41d261c, type: 3}
   SugarSprite3: {fileID: 21300000, guid: 6f881489970814b5ba1343ee582e60ce, type: 3}
-  TeaSprite: {fileID: 21300000, guid: 21e419a4d8a1045c3a5d08cd50ccb9d7, type: 3}
   CheeseFoamSprite: {fileID: 21300000, guid: a1472e477852942089ed724eecedc645, type: 3}
   GrassJellySprite: {fileID: 21300000, guid: b37917233717744efbd56d8805dc6eeb, type: 3}
   Blank: {fileID: 21300000, guid: d98521df4031d472fbe0a39c483c870c, type: 3}
   NoSugarSprite: {fileID: 21300000, guid: 66963462896584d488b927dda79a5c77, type: 3}
   NoIceSprite: {fileID: 21300000, guid: 97e9a6b2e82f84360a2bb81bffccc778, type: 3}
   NoBobaSprite: {fileID: 21300000, guid: 8aa82d9996e02401ebc3d4b08c0d42d1, type: 3}
+  MatchaTeaSprite: {fileID: 21300000, guid: 0006651147c9547a18b93d1e1d463eee, type: 3}
+  TaroTeaSprite: {fileID: 21300000, guid: cfa77d4a187d141438a81c7d6de50dad, type: 3}
+  RegularTeaSprite: {fileID: 21300000, guid: 21e419a4d8a1045c3a5d08cd50ccb9d7, type: 3}
 --- !u!4 &1010711514
 Transform:
   m_ObjectHideFlags: 0
@@ -2856,7 +2858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb4f928385d84d97a50b69b9ad0eb24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelIndex: 1
+  LevelIndex: 5
 --- !u!4 &1019618217
 Transform:
   m_ObjectHideFlags: 0

@@ -13,13 +13,15 @@ public class IconManager : MonoBehaviour
     public Sprite SugarSprite;
     public Sprite SugarSprite2;
     public Sprite SugarSprite3;
-    public Sprite TeaSprite;
     public Sprite CheeseFoamSprite;
     public Sprite GrassJellySprite;
     public Sprite Blank;
     public Sprite NoSugarSprite;
     public Sprite NoIceSprite;
     public Sprite NoBobaSprite;
+    public Sprite MatchaTeaSprite;
+    public Sprite TaroTeaSprite;
+    public Sprite RegularTeaSprite;
     
     //singleton unity pattern
     private static IconManager _instance;

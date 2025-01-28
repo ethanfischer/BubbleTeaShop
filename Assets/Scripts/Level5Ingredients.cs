@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 namespace DefaultNamespace
 {
-    public class Level2Ingredients : ILevelIngredients
+    public class Level5Ingredients : ILevelIngredients
     {
         public Dictionary<int, string> BobaOptions => new()
         {
             { 0, "-" },
             { 1, "Regular Boba" },
+            { 2, "Grass Jelly" },
+            { 3, "Strawberry Boba" },
+            { 4, "Mango Boba" },
+            { 5, "Blueberry Boba" },
         };
 
         public Dictionary<int, string> SugarOptions => new()
@@ -16,7 +20,6 @@ namespace DefaultNamespace
             { 2, "Regular Sugar" },
             { 3, "Extra Sugar" },
         };
-        public Dictionary<int, string> TeaOptions { get; }
 
         public Dictionary<int, string> IceOptions => new()
         {
@@ -25,10 +28,18 @@ namespace DefaultNamespace
             { 2, "Regular Ice" },
             { 3, "Extra Ice" }
         };
+        
+        public Dictionary<int, string> TeaOptions => new()
+        {
+            { 0, "Regular Tea" },
+            { 1, "Matcha Tea" },
+            { 2, "Taro Tea" },
+        };
 
         public Dictionary<int, string> ExtraToppingOptions => new()
         {
             { 0, "-" },
+            { 1, "Cheese Foam" }
         };
     }
 }

@@ -38,6 +38,7 @@ public class ActiveTea : MonoBehaviour
     int _boba;
     int _ice;
     int _sugar;
+    int _tea;
     int _extraTopping;
     GameObject _sugarCube;
     Vector3 _sugarCubeInitialPosition;
@@ -404,7 +405,7 @@ public class ActiveTea : MonoBehaviour
             PopupText.Instance.ShowPopup("Missing tea");
             return;
         }
-        var order = new Order(_boba, _ice, _sugar, _extraTopping);
+        var order = new Order(_boba, _ice, _sugar, _tea, _extraTopping);
         if (_orderSystem.TryGetMatchingOrder(order, out var matchingOrder))
         {
             HandleCorrectOrder(matchingOrder);

@@ -6,6 +6,7 @@ namespace DefaultNamespace
         Dictionary<int, string> BobaOptions { get; }
         Dictionary<int, string> IceOptions { get; }
         Dictionary<int, string> SugarOptions { get; }
+        Dictionary<int, string> TeaOptions { get; }
         Dictionary<int, string> ExtraToppingOptions { get; }
     }
 }

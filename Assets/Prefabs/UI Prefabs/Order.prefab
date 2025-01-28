@@ -63,6 +63,7 @@ MonoBehaviour:
   BobaImage: {fileID: 2655015022082280522}
   IceImage: {fileID: 356221929016482566}
   SugarImage: {fileID: 4094816948184431999}
+  TeaImage: {fileID: 1497794323502922424}
   ExtraToppingImage: {fileID: 2446284401367760653}
   _timeBar: {fileID: 5476728664415800955}
   _timeBarEndColor: {r: 0.934, g: 0, b: 0.19975731, a: 1}

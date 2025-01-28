@@ -13,6 +13,7 @@ public class OrderMB : MonoBehaviour
     public Image IceImage;
     [FormerlySerializedAs("SugarText")]
     public Image SugarImage;
+    public Image TeaImage;
     [FormerlySerializedAs("ExtraToppingText")]
     public Image ExtraToppingImage;
 
@@ -58,6 +59,7 @@ public class OrderMB : MonoBehaviour
         var bobaSpriteName = OrderFactory.GetBobaText(Order.Boba);
         var iceSpriteName = OrderFactory.GetIceText(Order.Ice);
         var sugarSpriteName = OrderFactory.GetSugarText(Order.Sugar);
+        var teaSpriteName = OrderFactory.GetTeaText(Order.Tea);
         var extraToppingSpriteName = OrderFactory.GetExtraToppingText(Order.ExtraTopping);
 
         var iconManager = IconManager.Instance;
@@ -129,6 +131,21 @@ public class OrderMB : MonoBehaviour
         {
             SugarImage.sprite = iconManager.NoSugarSprite;
         }
+        
+        //Tea
+        if(teaSpriteName == "Matcha Tea")
+        {
+            TeaImage.sprite = iconManager.MatchaTeaSprite;
+        }
+        else if(teaSpriteName == "Taro Tea")
+        {
+            TeaImage.sprite = iconManager.TaroTeaSprite;
+        }
+        else
+        {
+            TeaImage.sprite = iconManager.RegularTeaSprite;
+        }
+        
 
         //ExtraTopping
         if (extraToppingSpriteName == "Cheese Foam")

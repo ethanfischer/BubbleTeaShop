@@ -12,6 +12,7 @@ namespace DefaultNamespace
                 _ingredients.BobaOptions.ElementAt(Random.Range(0, _ingredients.BobaOptions.Count)).Key,
                 _ingredients.IceOptions.ElementAt(Random.Range(0, _ingredients.IceOptions.Count)).Key,
                 _ingredients.SugarOptions.ElementAt(Random.Range(0, _ingredients.SugarOptions.Count)).Key,
+                _ingredients.TeaOptions.ElementAt(Random.Range(0, _ingredients.TeaOptions.Count)).Key,
                 _ingredients.ExtraToppingOptions.ElementAt(Random.Range(0, _ingredients.ExtraToppingOptions.Count)).Key);
         }
 
@@ -27,8 +28,10 @@ namespace DefaultNamespace
                     return new Level3Ingredients();
                 case 4:
                     return new Level4Ingredients();
+                case 5:
+                    return new Level5Ingredients();
                 default:
-                    return new Level4Ingredients();
+                    return new Level5Ingredients();
             }
         }
         
@@ -37,6 +40,7 @@ namespace DefaultNamespace
         public static string GetIceText(int index) => _ingredients.IceOptions[index];
 
         public static string GetSugarText(int index) => _ingredients.SugarOptions[index];
+        public static string GetTeaText(int index) => _ingredients.TeaOptions[index];
 
         public static string GetExtraToppingText(int index) => _ingredients.ExtraToppingOptions[index];
     }

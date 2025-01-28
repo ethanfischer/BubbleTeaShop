@@ -14,6 +14,7 @@ namespace DefaultNamespace
             {0, "-"},
             {1, "Less Sugar"},
         };
+        public Dictionary<int, string> TeaOptions { get; }
 
         public Dictionary<int,string> IceOptions => new()
         {

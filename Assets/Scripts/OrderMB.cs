@@ -16,8 +16,9 @@ public class OrderMB : MonoBehaviour
     public Image TeaImage;
     [FormerlySerializedAs("ExtraToppingText")]
     public Image ExtraToppingImage;
+    [FormerlySerializedAs("Animator")]
     [SerializeField]
-    public Animator Animator;
+    private Animator _animator;
 
     [SerializeField]
     private OrderAnimations _orderAnimations;
@@ -49,6 +50,7 @@ public class OrderMB : MonoBehaviour
     RectTransform _rectTransform;
     static readonly int _completeOrderAnimation = Animator.StringToHash("CompleteOrderAnimation");
     static readonly int _orderArrivedAnimation = Animator.StringToHash("OrderArrived");
+    static readonly int _orderExpiringAnimation = Animator.StringToHash("OrderExpiringAnimation");
 
     void Start()
     {
@@ -173,6 +175,12 @@ public class OrderMB : MonoBehaviour
         if (!Tutorial.Instance.DidCloseTutorial) return;
 
         _timeRemaining -= Time.deltaTime;
+        if (_timeRemaining <= 5 && _animator.enabled == false)
+        {
+            Debug.Log("Playing order expiring animation");
+            _animator.Play(_orderExpiringAnimation);
+            _animator.enabled = true;
+        }
         if (_timeRemaining <= 0)
         {
             FailOrder();
@@ -228,14 +236,14 @@ public class OrderMB : MonoBehaviour
 
     public void PlayOrderCompleteAnimation()
     {
-        Animator.Play(_completeOrderAnimation);
-        Animator.enabled = true;
+        _animator.Play(_completeOrderAnimation);
+        _animator.enabled = true;
     }
 
     public void PlayNewOrderAnimation()
     {
-        Animator.Play(_orderArrivedAnimation);
-        Animator.enabled = true;
+        _animator.Play(_orderArrivedAnimation);
+        _animator.enabled = true;
     }
 
     void OnOrderAnimationAnimationComplete()
@@ -250,6 +258,6 @@ public class OrderMB : MonoBehaviour
 
     void StopAnimation()
     {
-        Animator.enabled = false;
+        _animator.enabled = false;
     }
 }

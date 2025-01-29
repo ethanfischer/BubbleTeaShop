@@ -80,14 +80,14 @@ public class ActiveTea : MonoBehaviour
         _sugarCubeInitialPosition = _sugarCube.transform.position;
         StartCoroutine(Tick());
     }
-
+    
     IEnumerator Tick()
     {
         while (true)
         {
             if (Tutorial.Instance.IsTutorialActive)
             {
-                yield return null;
+                yield return Tutorial.Instance.Tick();
 
                 continue;
             }

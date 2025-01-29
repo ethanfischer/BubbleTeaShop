@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,11 +13,16 @@ public class Tutorial : MonoBehaviour
     Color _fadeColor;
     [SerializeField]
     CanvasGroup _textGroup;
-    public bool IsTutorialActive { get; private set; } = true;
+    [SerializeField]
+    CanvasGroup _difficultyMenuGroup;
+    [SerializeField]
+    IngredientsInstructions _ingredientsInstructions;
+    public bool IsTutorialActive
+    { get;
+      private set; } = true;
 
     //singleton unity pattern
     private static Tutorial instance;
-    Level _level;
     public static Tutorial Instance
     { get
     {
@@ -27,52 +33,70 @@ public class Tutorial : MonoBehaviour
         return instance;
     } }
 
-    void Start()
+
+    private Level _level;
+    private Level Level
+    { get
     {
-        _level = Level.Instance;
+        if (_level == null)
+        {
+            _level = Level.Instance;
+        }
+        return _level;
+    } }
+
+    public void ShowTutorial()
+    {
+        IsTutorialActive = true;
+        Debug.Log("Showing tutorial");
     }
 
-    void Update()
+    public IEnumerator Tick()
     {
-        if (!IsTutorialActive) return;
+        if (!IsTutorialActive) yield return null;
 
-        if (_level.LevelIndex == 0)
+        if (Level.LevelIndex == 0)
         {
-            Level0();
+            yield return Level0();
         }
-        else if (_level.LevelIndex == 1)
+        else if (Level.LevelIndex == 1)
         {
-            Level1();
+            yield return Level1();
         }
     }
 
-    void Level0()
+    IEnumerator Level0()
     {
+        _difficultyMenuGroup.alpha = 1f;
         if (Input.GetKeyDown(KeyCode.E))
         {
             GameDifficulty.Difficulty = (int)GameDifficultyEnum.Easy;
             CloseTutorial();
-            _level.NextLevel();
+            Level.NextLevel();
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
             GameDifficulty.Difficulty = (int)GameDifficultyEnum.Medium;
             CloseTutorial();
-            _level.NextLevel();
+            Level.NextLevel();
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
             GameDifficulty.Difficulty = (int)GameDifficultyEnum.Hard;
             CloseTutorial();
-            _level.NextLevel();
+            Level.NextLevel();
         }
+
+        yield return null;
     }
 
 
-    void Level1()
+    IEnumerator Level1()
     {
+        Debug.Log("Showing Level 1 tutorial");
         //ShowIngredientToKeyInstructions
-        
+        _ingredientsInstructions.ShowIngredientToKeyInstructions();
+        yield return null;
     }
 
     void CloseTutorial()
@@ -89,4 +113,5 @@ public class Tutorial : MonoBehaviour
         _animator.enabled = false;
         gameObject.SetActive(false);
     }
+
 }

@@ -319,6 +319,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2166355103609425679}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4717354860428002183}
   m_SourcePrefab: {fileID: 100100000, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}
 --- !u!1 &505839955805971174 stripped
 GameObject:
@@ -341,6 +344,7 @@ MonoBehaviour:
   _orderSystem: {fileID: 0}
   _activeTeaUI: {fileID: 0}
   _teaIngredientPrefab: {fileID: 4583977725628410731, guid: 1c8fe309472fd40979ef6268453fa7fb, type: 3}
+  _typeSound: {fileID: 8300000, guid: a135b40d21de64db89ec1cb23abdbfdb, type: 3}
   _pourSound: {fileID: 8300000, guid: 89a588f0dc7064f5bad224034e931ac5, type: 3}
   _iceSound: {fileID: 8300000, guid: e4421122e0e274a878112fedfde03134, type: 3}
   _jellySound: {fileID: 8300000, guid: a3a78fbe147a442caa3622fb44baab8d, type: 3}
@@ -349,6 +353,7 @@ MonoBehaviour:
   _buzzerWrongSound: {fileID: 8300000, guid: c740b0867cc43454b82fc632e9f98f68, type: 3}
   _splatSound: {fileID: 8300000, guid: edaaa5b558ff541709ebecc6b17c8b0d, type: 3}
   _audioSource: {fileID: 1528555072321813651}
+  _secondAudioSource: {fileID: 0}
   _teaRegularTexture: {fileID: 2800000, guid: eaab5f1ffef5d447a920912f0212355d, type: 3}
   _teaTaroTexture: {fileID: 2800000, guid: b1a81434b06804312a2a2832f4c75e8b, type: 3}
   _teaMatchaTexture: {fileID: 2800000, guid: c388bc620877f492b9f20794528d522b, type: 3}
@@ -474,6 +479,102 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &4717354860428002183
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505839955805971174}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &886868754287556700 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 72555ce23fdf649b685495a57f5c45e4, type: 3}

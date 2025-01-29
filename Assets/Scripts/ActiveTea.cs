@@ -19,6 +19,8 @@ public class ActiveTea : MonoBehaviour
     GameObject _teaIngredientPrefab;
 
     [SerializeField]
+    AudioClip _typeSound;
+    [SerializeField]
     AudioClip _pourSound;
     [SerializeField]
     AudioClip _iceSound;
@@ -35,6 +37,8 @@ public class ActiveTea : MonoBehaviour
 
     [SerializeField]
     AudioSource _audioSource;
+    [SerializeField]
+    AudioSource _secondAudioSource;
 
     [SerializeField]
     Texture _teaRegularTexture;
@@ -433,6 +437,9 @@ public class ActiveTea : MonoBehaviour
 
     void AddIngredientTextToUI(string text)
     {
+        _secondAudioSource.clip = _typeSound;
+        _secondAudioSource.Play();
+        
         if (_shouldPopupTypedIngredients)
         {
             PopupText.Instance.ShowPopup($"<size=120>{text}</size>", 0.2f);

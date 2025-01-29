@@ -5186,6 +5186,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BobaTeaCup
       objectReference: {fileID: 0}
+    - target: {fileID: 505839955805971174, guid: 21526b7db90f249ffbcc7754b93e24e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 660274639914398619, guid: 21526b7db90f249ffbcc7754b93e24e2, type: 3}
       propertyPath: _activeTeaUI
       value: 

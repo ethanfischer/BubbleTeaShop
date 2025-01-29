@@ -501,11 +501,14 @@ public class ActiveTea : MonoBehaviour
     {
         _audioSource.clip = _buzzerWrongSound;
         _audioSource.Play();
+        _animator.Play("WrongOrderBobaCupAnimation");
+        _animator.enabled = true;
         PopupText.Instance.ShowPopup("<color=red>X</color>", 0.75f);
     }
 
     void HandleCorrectOrder(OrderMB matchingOrder)
     {
+        _animator.Play("OrderSubmitBubbleTeaCupAnimation");
         _animator.enabled = true;
         ScreenShake.Instance.TriggerShake(0.1f, 5f);
         OrderSystem.Instance.RemoveOrderFromList(matchingOrder);
@@ -520,7 +523,7 @@ public class ActiveTea : MonoBehaviour
         Reset();
     }
     
-    public void OnSubmitAnimationFinished()
+    public void OnOneShotAnimationFinished()
     {
         _animator.enabled = false;
     }

@@ -437,7 +437,7 @@ public class ActiveTea : MonoBehaviour
         {
             PopupText.Instance.ShowPopup($"<size=120>{text}</size>", 0.2f);
         }
-        
+
         var ingredient = Instantiate(_teaIngredientPrefab, _activeTeaUI.transform);
         ingredient.GetComponent<TMP_Text>().text = text;
         ingredient.transform.SetSiblingIndex(0);
@@ -479,11 +479,15 @@ public class ActiveTea : MonoBehaviour
         if (!_hasMilk)
         {
             PopupText.Instance.ShowPopup("Missing milk");
+            _animator.Play("WrongOrderBobaCupAnimation");
+            _animator.enabled = true;
             return;
         }
         if (!_hasTea)
         {
             PopupText.Instance.ShowPopup("Missing tea");
+            _animator.Play("WrongOrderBobaCupAnimation");
+            _animator.enabled = true;
             return;
         }
         var order = new Order(_boba, _ice, _sugar, _tea, _extraTopping);
@@ -522,7 +526,7 @@ public class ActiveTea : MonoBehaviour
         OrderSystem.Instance.RecordFullfilledOrder();
         Reset();
     }
-    
+
     public void OnOneShotAnimationFinished()
     {
         _animator.enabled = false;

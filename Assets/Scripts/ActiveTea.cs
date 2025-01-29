@@ -448,7 +448,7 @@ public class ActiveTea : MonoBehaviour
     {
         foreach (Transform child in _activeTeaUI.transform)
         {
-            Destroy(child.gameObject);
+            child.gameObject.GetComponent<ActiveIngredientText>().FadeOut();
         }
     }
 

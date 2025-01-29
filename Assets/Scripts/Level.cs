@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    public int LevelIndex = 1;
+    public int LevelIndex = 0;
     private static Level _instance;
     public static Level Instance
     { get

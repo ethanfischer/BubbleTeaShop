@@ -16,6 +16,7 @@ public class Tutorial : MonoBehaviour
 
     //singleton unity pattern
     private static Tutorial instance;
+    Level _level;
     public static Tutorial Instance
     { get
     {
@@ -26,32 +27,50 @@ public class Tutorial : MonoBehaviour
         return instance;
     } }
 
+    void Start()
+    {
+        _level = Level.Instance;
+    }
+
     void Update()
+    {
+        if (!IsTutorialActive) return;
+
+        if (_level.LevelIndex == 0)
+        {
+            Level0();
+        }
+        else if (_level.LevelIndex == 1)
+        {
+            Level1();
+        }
+    }
+
+    void Level0()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (IsTutorialActive)
-            {
-                GameDifficulty.Difficulty = (int)GameDifficultyEnum.Easy;
-                CloseTutorial();
-            }
+            GameDifficulty.Difficulty = (int)GameDifficultyEnum.Easy;
+            CloseTutorial();
+            _level.NextLevel();
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            if (IsTutorialActive)
-            {
-                GameDifficulty.Difficulty = (int)GameDifficultyEnum.Medium;
-                CloseTutorial();
-            }
+            GameDifficulty.Difficulty = (int)GameDifficultyEnum.Medium;
+            CloseTutorial();
+            _level.NextLevel();
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
-            if (IsTutorialActive)
-            {
-                GameDifficulty.Difficulty = (int)GameDifficultyEnum.Hard;
-                CloseTutorial();
-            }
+            GameDifficulty.Difficulty = (int)GameDifficultyEnum.Hard;
+            CloseTutorial();
+            _level.NextLevel();
         }
+    }
+
+
+    void Level1()
+    {
     }
 
     void CloseTutorial()

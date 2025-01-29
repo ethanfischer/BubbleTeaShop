@@ -7,6 +7,8 @@ public class Tutorial : MonoBehaviour
     Animator _animator;
     [SerializeField]
     Image _image;
+    [SerializeField]
+    Color _fadeColor;
     public bool DidCloseTutorial { get; private set; }
 
     //singleton unity pattern
@@ -51,7 +53,8 @@ public class Tutorial : MonoBehaviour
 
     void CloseTutorial()
     {
-        _image.color = Color.black;
+        _image.color = _fadeColor;
+        _image.sprite = null;
         _animator.enabled = true;
         DidCloseTutorial = true;
     }

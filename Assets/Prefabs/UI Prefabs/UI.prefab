@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 2730062017695199020}
   - component: {fileID: 7411894669991602436}
   - component: {fileID: 1471041380956592301}
+  - component: {fileID: 8161929148323280706}
   m_Layer: 5
   m_Name: TutorialModal
   m_TagString: Untagged
@@ -126,6 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1285ad8570d4349148b79e812663a0e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 8161929148323280706}
+  _image: {fileID: 6304736847397067790}
 --- !u!225 &1471041380956592301
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -138,6 +141,27 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!95 &8161929148323280706
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495130358429037684}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 653c4a0af9b6b4b8fa48b9af30fa7c55, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &520498573311541422
 GameObject:
   m_ObjectHideFlags: 0

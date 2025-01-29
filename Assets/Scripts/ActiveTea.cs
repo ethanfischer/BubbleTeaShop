@@ -534,6 +534,8 @@ public class ActiveTea : MonoBehaviour
 
     void TrashTea()
     {
+        _animator.Play("TrashBobaAnimation");
+        _animator.enabled = true;
         ClearIngredientUIText();
         PopupText.Instance.ShowPopup("<color=red>-$2.50</color>", .5f);
         OrderSystem.Instance.RecordTrashedTea();

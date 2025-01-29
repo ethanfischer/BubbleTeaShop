@@ -18,12 +18,10 @@ public class OrderMB : MonoBehaviour
     public Image ExtraToppingImage;
     [SerializeField]
     public Animator Animator;
+    
+    [SerializeField]
+    private OrderAnimations _orderAnimations;
 
-    public void PlayAnimation()
-    {
-        Animator.enabled = true;
-        Animator.Play(completeOrderAnimation);
-    }
 
     [SerializeField]
     RectTransform _timeBar;
@@ -221,6 +219,23 @@ public class OrderMB : MonoBehaviour
     
     public void Complete()
     {
+        _orderAnimations.OnOrderAnimationCompleteEvent += OnOrderAnimationAnimationComplete;
         PlayAnimation();
+    }
+    
+    public void PlayAnimation()
+    {
+        // Animator.Play(completeOrderAnimation); //TODO: apparently not needed. But how does it know to play this animation?
+        Animator.enabled = true;
+    }
+    
+    public void OnOrderAnimationAnimationComplete()
+    {
+        Destroy(gameObject);
+    }
+    
+    public void StopAnimation()
+    {
+        Animator.enabled = false;
     }
 }

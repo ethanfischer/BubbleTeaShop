@@ -227,7 +227,6 @@ public class OrderMB : MonoBehaviour
     {
         // Animator.Play(completeOrderAnimation); //TODO: apparently not needed. But how does it know to play this animation?
         Animator.enabled = true;
-        Animator.speed = 5f;
     }
     
     public void OnOrderAnimationAnimationComplete()

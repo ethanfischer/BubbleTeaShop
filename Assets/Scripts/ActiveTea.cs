@@ -9,6 +9,8 @@ using UnityEngine.Serialization;
 public class ActiveTea : MonoBehaviour
 {
     [SerializeField]
+    Animator _animator;
+    [SerializeField]
     OrderSystem _orderSystem;
 
     [SerializeField]
@@ -504,6 +506,7 @@ public class ActiveTea : MonoBehaviour
 
     void HandleCorrectOrder(OrderMB matchingOrder)
     {
+        _animator.enabled = true;
         ScreenShake.Instance.TriggerShake(0.1f, 5f);
         OrderSystem.Instance.RemoveOrderFromList(matchingOrder);
         matchingOrder.Complete();
@@ -515,6 +518,11 @@ public class ActiveTea : MonoBehaviour
         _audioSource.Play();
         OrderSystem.Instance.RecordFullfilledOrder();
         Reset();
+    }
+    
+    public void OnSubmitAnimationFinished()
+    {
+        _animator.enabled = false;
     }
 
     void TrashTea()

@@ -51,9 +51,11 @@ public class OrderMB : MonoBehaviour
     static readonly int _completeOrderAnimation = Animator.StringToHash("CompleteOrderAnimation");
     static readonly int _orderArrivedAnimation = Animator.StringToHash("OrderArrived");
     static readonly int _orderExpiringAnimation = Animator.StringToHash("OrderExpiringAnimation");
+    bool _didStartExpiringAnimation;
 
     void Start()
     {
+        _animator.enabled = true;
         _orderAnimations.OnOrderArrivedAnimationCompleteEvent += OnOrderArrivedAnimationComplete;
         PlayNewOrderAnimation();
         _rectTransform = this.GetComponent<RectTransform>();
@@ -175,11 +177,11 @@ public class OrderMB : MonoBehaviour
         if (!Tutorial.Instance.DidCloseTutorial) return;
 
         _timeRemaining -= Time.deltaTime;
-        if (_timeRemaining <= 5 && _animator.enabled == false)
+        if (_timeRemaining <= 13 && !_didStartExpiringAnimation)
         {
-            Debug.Log("Playing order expiring animation");
+            _didStartExpiringAnimation = true;
             _animator.Play(_orderExpiringAnimation);
-            _animator.enabled = true;
+            Debug.Log("Playing expiring animation");
         }
         if (_timeRemaining <= 0)
         {
@@ -237,13 +239,11 @@ public class OrderMB : MonoBehaviour
     public void PlayOrderCompleteAnimation()
     {
         _animator.Play(_completeOrderAnimation);
-        _animator.enabled = true;
     }
 
     public void PlayNewOrderAnimation()
     {
         _animator.Play(_orderArrivedAnimation);
-        _animator.enabled = true;
     }
 
     void OnOrderAnimationAnimationComplete()
@@ -258,6 +258,6 @@ public class OrderMB : MonoBehaviour
 
     void StopAnimation()
     {
-        _animator.enabled = false;
+        _animator.StopPlayback();
     }
 }

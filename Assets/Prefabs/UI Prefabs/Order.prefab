@@ -63,7 +63,7 @@ MonoBehaviour:
   SugarImage: {fileID: 4094816948184431999}
   TeaImage: {fileID: 1497794323502922424}
   ExtraToppingImage: {fileID: 2446284401367760653}
-  Animator: {fileID: 3463492033235775126}
+  _animator: {fileID: 3463492033235775126}
   _orderAnimations: {fileID: 4716480083584720756}
   _timeBar: {fileID: 5476728664415800955}
   _timeBarEndColor: {r: 0.934, g: 0, b: 0.19975731, a: 1}
@@ -104,10 +104,10 @@ RectTransform:
   - {fileID: 7882467130827653355}
   m_Father: {fileID: 8050635710434755151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 725}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &3463492033235775126
 Animator:
@@ -158,7 +158,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865767285405196638}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

@@ -439,7 +439,7 @@ public class ActiveTea : MonoBehaviour
     {
         _secondAudioSource.clip = _typeSound;
         _secondAudioSource.Play();
-        
+
         if (_shouldPopupTypedIngredients)
         {
             PopupText.Instance.ShowPopup($"<size=120>{text}</size>", 0.2f);
@@ -451,12 +451,16 @@ public class ActiveTea : MonoBehaviour
         ScreenShake.Instance.TriggerShake(0.02f, 2f);
     }
 
-    void ClearIngredientUIText()
+    int ClearIngredientUIText()
     {
+        var count = 0;
         foreach (Transform child in _activeTeaUI.transform)
         {
             child.gameObject.GetComponent<ActiveIngredientText>().FadeOut();
+            count++;
         }
+
+        return count;
     }
 
     void AddMilk()
@@ -543,9 +547,14 @@ public class ActiveTea : MonoBehaviour
     {
         _animator.Play("TrashBobaAnimation");
         _animator.enabled = true;
-        ClearIngredientUIText();
-        PopupText.Instance.ShowPopup("<color=red>-$2.50</color>", .5f);
-        OrderSystem.Instance.RecordTrashedTea();
+        var ingredientsRemoved = ClearIngredientUIText();
+        var cost = ingredientsRemoved * .50m;
+        if (cost == 0)
+        {
+            cost = 0.01m;
+        }
+        PopupText.Instance.ShowPopup($"<color=red>${-cost}</color>", .5f);
+        OrderSystem.Instance.RecordTrashedTea(cost);
         _audioSource.clip = _splatSound;
         _audioSource.Play();
         Debug.Log("Tea trashed");

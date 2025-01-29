@@ -30,7 +30,7 @@ public class OrderMB : MonoBehaviour
 
     public Order Order { get; private set; }
 
-    float InitialTime => GameDifficulty.Difficulty switch
+    float TimeToCompleteOrder => GameDifficulty.Difficulty switch
     {
         (int)GameDifficultyEnum.Easy => 45f,
         (int)GameDifficultyEnum.Medium => 30f,
@@ -62,7 +62,7 @@ public class OrderMB : MonoBehaviour
         _orderAnimations.OnOrderArrivedAnimationCompleteEvent += OnOrderArrivedAnimationComplete;
         PlayNewOrderAnimation();
         _rectTransform = this.GetComponent<RectTransform>();
-        _timeRemaining = InitialTime;
+        _timeRemaining = TimeToCompleteOrder;
         Order = OrderFactory.CreateOrder();
         SetIngredientImages();
         _initialBarHeight = _timeBar.sizeDelta.y;
@@ -202,15 +202,15 @@ public class OrderMB : MonoBehaviour
     void ShrinkTimebar()
     {
         // Calculate the proportion of time remaining
-        float proportion = _timeRemaining / InitialTime;
+        float proportion = _timeRemaining / TimeToCompleteOrder;
 
         // Scale the bar width proportionally
         _timeBar.sizeDelta = new Vector2(_timeBar.sizeDelta.x, _initialBarHeight * proportion);
 
         _timeBarImage = _timeBar.GetComponent<Image>();
 
-        var colorTargetTimeOffset = InitialTime * 0.5f;
-        float colorProportion = Mathf.Clamp01((_timeRemaining - colorTargetTimeOffset) / (InitialTime - colorTargetTimeOffset));
+        var colorTargetTimeOffset = TimeToCompleteOrder * 0.5f;
+        float colorProportion = Mathf.Clamp01((_timeRemaining - colorTargetTimeOffset) / (TimeToCompleteOrder - colorTargetTimeOffset));
         _timeBarImage.color = Color.Lerp(_timeBarEndColor, _timeBarColor, colorProportion);
     }
 

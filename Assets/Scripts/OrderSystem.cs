@@ -52,7 +52,7 @@ public class OrderSystem : MonoBehaviour
         var upperLimit = GameDifficulty.Difficulty switch
         {
             (int)GameDifficultyEnum.Easy => 30f,
-            (int)GameDifficultyEnum.Medium => 20f,
+            (int)GameDifficultyEnum.Medium => 15f,
             (int)GameDifficultyEnum.Hard => 10f,
             (int)GameDifficultyEnum.Testing => 1f,
             _ => 0f
@@ -124,9 +124,9 @@ public class OrderSystem : MonoBehaviour
         }
     }
 
-    public void RecordTrashedTea()
+    public void RecordTrashedTea(decimal cost)
     {
-        Cash -= 2.50m;
+        Cash -= cost;
         _cashText.text = $"${Cash}";
     }
 

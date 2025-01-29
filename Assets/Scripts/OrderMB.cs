@@ -51,7 +51,10 @@ public class OrderMB : MonoBehaviour
     static readonly int _completeOrderAnimation = Animator.StringToHash("CompleteOrderAnimation");
     static readonly int _orderArrivedAnimation = Animator.StringToHash("OrderArrived");
     static readonly int _orderExpiringAnimation = Animator.StringToHash("OrderExpiringAnimation");
-    bool _didStartExpiringAnimation;
+    bool _didStartFirstExpiringAnimation;
+    
+    [SerializeField]
+    int _expirationAnimationTime;
 
     void Start()
     {
@@ -177,11 +180,16 @@ public class OrderMB : MonoBehaviour
         if (!Tutorial.Instance.DidCloseTutorial) return;
 
         _timeRemaining -= Time.deltaTime;
-        if (_timeRemaining <= 13 && !_didStartExpiringAnimation)
+        if (_timeRemaining <= _expirationAnimationTime && !_didStartFirstExpiringAnimation)
         {
-            _didStartExpiringAnimation = true;
+            _didStartFirstExpiringAnimation = true;
             _animator.Play(_orderExpiringAnimation);
-            Debug.Log("Playing expiring animation");
+            _animator.speed = 1f;
+        }
+        if (_didStartFirstExpiringAnimation)
+        {
+            //increase speed as time runs out
+            _animator.speed = _expirationAnimationTime - _timeRemaining;
         }
         if (_timeRemaining <= 0)
         {

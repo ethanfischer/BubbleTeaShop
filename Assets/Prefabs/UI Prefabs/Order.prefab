@@ -67,6 +67,7 @@ MonoBehaviour:
   _orderAnimations: {fileID: 4716480083584720756}
   _timeBar: {fileID: 5476728664415800955}
   _timeBarEndColor: {r: 0.934, g: 0, b: 0.19975731, a: 1}
+  _expirationAnimationTime: 5
 --- !u!1 &1865767285405196638
 GameObject:
   m_ObjectHideFlags: 0

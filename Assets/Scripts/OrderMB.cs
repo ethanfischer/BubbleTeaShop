@@ -18,7 +18,7 @@ public class OrderMB : MonoBehaviour
     public Image ExtraToppingImage;
     [SerializeField]
     public Animator Animator;
-    
+
     [SerializeField]
     private OrderAnimations _orderAnimations;
 
@@ -47,10 +47,13 @@ public class OrderMB : MonoBehaviour
 
     bool _skipFirstFrame = true;
     RectTransform _rectTransform;
-    static readonly int completeOrderAnimation = Animator.StringToHash("CompleteOrderAnimation");
+    static readonly int _completeOrderAnimation = Animator.StringToHash("CompleteOrderAnimation");
+    static readonly int _orderArrivedAnimation = Animator.StringToHash("OrderArrived");
 
     void Start()
     {
+        _orderAnimations.OnOrderArrivedAnimationCompleteEvent += OnOrderArrivedAnimationComplete;
+        PlayNewOrderAnimation();
         _rectTransform = this.GetComponent<RectTransform>();
         _timeRemaining = InitialTime;
         Order = OrderFactory.CreateOrder();
@@ -137,13 +140,13 @@ public class OrderMB : MonoBehaviour
         {
             SugarImage.sprite = iconManager.NoSugarSprite;
         }
-        
+
         //Tea
-        if(teaSpriteName == "Matcha Tea")
+        if (teaSpriteName == "Matcha Tea")
         {
             TeaImage.sprite = iconManager.MatchaTeaSprite;
         }
-        else if(teaSpriteName == "Taro Tea")
+        else if (teaSpriteName == "Taro Tea")
         {
             TeaImage.sprite = iconManager.TaroTeaSprite;
         }
@@ -151,7 +154,7 @@ public class OrderMB : MonoBehaviour
         {
             TeaImage.sprite = iconManager.RegularTeaSprite;
         }
-        
+
 
         //ExtraTopping
         if (extraToppingSpriteName == "Cheese Foam")
@@ -216,25 +219,36 @@ public class OrderMB : MonoBehaviour
             && tea
             && extraTopping;
     }
-    
+
     public void Complete()
     {
         _orderAnimations.OnOrderAnimationCompleteEvent += OnOrderAnimationAnimationComplete;
-        PlayAnimation();
+        PlayOrderCompleteAnimation();
     }
-    
-    public void PlayAnimation()
+
+    public void PlayOrderCompleteAnimation()
     {
-        // Animator.Play(completeOrderAnimation); //TODO: apparently not needed. But how does it know to play this animation?
+        Animator.Play(_completeOrderAnimation);
         Animator.enabled = true;
     }
-    
-    public void OnOrderAnimationAnimationComplete()
+
+    public void PlayNewOrderAnimation()
+    {
+        Animator.Play(_orderArrivedAnimation);
+        Animator.enabled = true;
+    }
+
+    void OnOrderAnimationAnimationComplete()
     {
         Destroy(gameObject);
     }
-    
-    public void StopAnimation()
+
+    void OnOrderArrivedAnimationComplete()
+    {
+        StopAnimation();
+    }
+
+    void StopAnimation()
     {
         Animator.enabled = false;
     }

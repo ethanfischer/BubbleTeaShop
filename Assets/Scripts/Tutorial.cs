@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
 {
+    [SerializeField]
+    Animator _animator;
+    [SerializeField]
+    Image _image;
     public bool DidCloseTutorial { get; private set; }
-    
+
     //singleton unity pattern
     private static Tutorial instance;
     public static Tutorial Instance
@@ -15,35 +20,45 @@ public class Tutorial : MonoBehaviour
         }
         return instance;
     } }
-    
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            GameDifficulty.Difficulty = (int)GameDifficultyEnum.Easy;
             if (!DidCloseTutorial)
             {
-                DidCloseTutorial = true;
-                gameObject.SetActive(false);
+                GameDifficulty.Difficulty = (int)GameDifficultyEnum.Easy;
+                CloseTutorial();
             }
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            GameDifficulty.Difficulty = (int)GameDifficultyEnum.Medium;
             if (!DidCloseTutorial)
             {
-                DidCloseTutorial = true;
-                gameObject.SetActive(false);
+                GameDifficulty.Difficulty = (int)GameDifficultyEnum.Medium;
+                CloseTutorial();
             }
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
-            GameDifficulty.Difficulty = (int)GameDifficultyEnum.Hard;
             if (!DidCloseTutorial)
             {
-                DidCloseTutorial = true;
-                gameObject.SetActive(false);
+                GameDifficulty.Difficulty = (int)GameDifficultyEnum.Hard;
+                CloseTutorial();
             }
         }
+    }
+
+    void CloseTutorial()
+    {
+        _image.color = Color.black;
+        _animator.enabled = true;
+        DidCloseTutorial = true;
+    }
+
+    void OnFadeOutAnimationEnd()
+    {
+        _animator.enabled = false;
+        gameObject.SetActive(false);
     }
 }

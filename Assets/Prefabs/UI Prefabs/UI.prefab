@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 6750363273456064872}
   - component: {fileID: 2730062017695199020}
   - component: {fileID: 7411894669991602436}
+  - component: {fileID: 1471041380956592301}
   m_Layer: 5
   m_Name: TutorialModal
   m_TagString: Untagged
@@ -125,6 +126,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1285ad8570d4349148b79e812663a0e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &1471041380956592301
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495130358429037684}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &520498573311541422
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +329,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661391406250331836}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -540,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf018a083a9584f54aa0075c80c61734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _disableShake: 0
+  _disableShake: 1
 --- !u!1 &1167866413312925045
 GameObject:
   m_ObjectHideFlags: 0

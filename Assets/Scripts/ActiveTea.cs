@@ -85,7 +85,7 @@ public class ActiveTea : MonoBehaviour
     {
         while (true)
         {
-            if (!Tutorial.Instance.DidCloseTutorial)
+            if (Tutorial.Instance.IsTutorialActive)
             {
                 yield return null;
 

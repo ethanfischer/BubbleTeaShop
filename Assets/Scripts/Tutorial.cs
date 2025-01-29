@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,9 @@ public class Tutorial : MonoBehaviour
     Image _image;
     [SerializeField]
     Color _fadeColor;
-    public bool DidCloseTutorial { get; private set; }
+    [SerializeField]
+    CanvasGroup _textGroup;
+    public bool IsTutorialActive { get; private set; } = true;
 
     //singleton unity pattern
     private static Tutorial instance;
@@ -27,7 +30,7 @@ public class Tutorial : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (!DidCloseTutorial)
+            if (IsTutorialActive)
             {
                 GameDifficulty.Difficulty = (int)GameDifficultyEnum.Easy;
                 CloseTutorial();
@@ -35,7 +38,7 @@ public class Tutorial : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            if (!DidCloseTutorial)
+            if (IsTutorialActive)
             {
                 GameDifficulty.Difficulty = (int)GameDifficultyEnum.Medium;
                 CloseTutorial();
@@ -43,7 +46,7 @@ public class Tutorial : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
-            if (!DidCloseTutorial)
+            if (IsTutorialActive)
             {
                 GameDifficulty.Difficulty = (int)GameDifficultyEnum.Hard;
                 CloseTutorial();
@@ -55,8 +58,9 @@ public class Tutorial : MonoBehaviour
     {
         _image.color = _fadeColor;
         _image.sprite = null;
+        _textGroup.alpha = 0f;
         _animator.enabled = true;
-        DidCloseTutorial = true;
+        IsTutorialActive = false;
     }
 
     void OnFadeOutAnimationEnd()

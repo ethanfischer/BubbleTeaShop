@@ -177,7 +177,7 @@ public class OrderMB : MonoBehaviour
 
     void Update()
     {
-        if (!Tutorial.Instance.DidCloseTutorial) return;
+        if (Tutorial.Instance.IsTutorialActive) return;
 
         TimeRemaining -= Time.deltaTime;
         if (TimeRemaining <= _expirationAnimationTime && !_didStartFirstExpiringAnimation)

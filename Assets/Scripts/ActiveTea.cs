@@ -523,18 +523,24 @@ public class ActiveTea : MonoBehaviour
 
     void HandleCorrectOrder(OrderMB matchingOrder)
     {
+        Debug.Log("Tea submitted and matched order");
         _animator.Play("OrderSubmitBubbleTeaCupAnimation");
         _animator.enabled = true;
         ScreenShake.Instance.TriggerShake(0.1f, 5f);
         OrderSystem.Instance.RemoveOrderFromList(matchingOrder);
         matchingOrder.Complete();
         ClearIngredientUIText();
-        var cashColor = PopupText.Instance.GetCashColorHexCode();
-        PopupText.Instance.ShowPopup($"<color=#{cashColor}>$5</color>", 0.5f);
-        Debug.Log("Tea submitted and matched order");
         _audioSource.clip = _correctOrderSound;
         _audioSource.Play();
-        OrderSystem.Instance.RecordFullfilledOrder();
+        var cashColor = PopupText.Instance.GetCashColorHexCode();
+        var earnings = 5m;
+        if (matchingOrder.TimeRemaining < 5f)
+        {
+            earnings = (int)matchingOrder.TimeRemaining;
+        }
+        
+        PopupText.Instance.ShowPopup($"<color=#{cashColor}>${earnings}</color>", 0.5f);
+        OrderSystem.Instance.RecordFullfilledOrder(earnings);
         Reset();
     }
 

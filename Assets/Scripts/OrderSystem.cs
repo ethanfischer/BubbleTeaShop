@@ -111,10 +111,10 @@ public class OrderSystem : MonoBehaviour
         return false;
     }
 
-    public void RecordFullfilledOrder()
+    public void RecordFullfilledOrder(decimal earnings)
     {
         OrdersFullfilled++;
-        Cash += 5;
+        Cash += earnings;
         _cashText.text = $"${Cash}";
 
         if (OrdersFullfilled >= 10)

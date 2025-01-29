@@ -39,7 +39,7 @@ public class OrderMB : MonoBehaviour
         _ => 0f
     };
 
-    float _timeRemaining;
+    public float TimeRemaining { get; private set; }
     Image _timeBarImage;
     Color _timeBarColor;
     [SerializeField]
@@ -62,7 +62,7 @@ public class OrderMB : MonoBehaviour
         _orderAnimations.OnOrderArrivedAnimationCompleteEvent += OnOrderArrivedAnimationComplete;
         PlayNewOrderAnimation();
         _rectTransform = this.GetComponent<RectTransform>();
-        _timeRemaining = TimeToCompleteOrder;
+        TimeRemaining = TimeToCompleteOrder;
         Order = OrderFactory.CreateOrder();
         SetIngredientImages();
         _initialBarHeight = _timeBar.sizeDelta.y;
@@ -179,8 +179,8 @@ public class OrderMB : MonoBehaviour
     {
         if (!Tutorial.Instance.DidCloseTutorial) return;
 
-        _timeRemaining -= Time.deltaTime;
-        if (_timeRemaining <= _expirationAnimationTime && !_didStartFirstExpiringAnimation)
+        TimeRemaining -= Time.deltaTime;
+        if (TimeRemaining <= _expirationAnimationTime && !_didStartFirstExpiringAnimation)
         {
             _didStartFirstExpiringAnimation = true;
             _animator.Play(_orderExpiringAnimation);
@@ -189,9 +189,9 @@ public class OrderMB : MonoBehaviour
         if (_didStartFirstExpiringAnimation)
         {
             //increase speed as time runs out
-            _animator.speed = _expirationAnimationTime - _timeRemaining;
+            _animator.speed = _expirationAnimationTime - TimeRemaining;
         }
-        if (_timeRemaining <= 0)
+        if (TimeRemaining <= 0)
         {
             FailOrder();
         }
@@ -202,7 +202,7 @@ public class OrderMB : MonoBehaviour
     void ShrinkTimebar()
     {
         // Calculate the proportion of time remaining
-        float proportion = _timeRemaining / TimeToCompleteOrder;
+        float proportion = TimeRemaining / TimeToCompleteOrder;
 
         // Scale the bar width proportionally
         _timeBar.sizeDelta = new Vector2(_timeBar.sizeDelta.x, _initialBarHeight * proportion);
@@ -210,7 +210,7 @@ public class OrderMB : MonoBehaviour
         _timeBarImage = _timeBar.GetComponent<Image>();
 
         var colorTargetTimeOffset = TimeToCompleteOrder * 0.5f;
-        float colorProportion = Mathf.Clamp01((_timeRemaining - colorTargetTimeOffset) / (TimeToCompleteOrder - colorTargetTimeOffset));
+        float colorProportion = Mathf.Clamp01((TimeRemaining - colorTargetTimeOffset) / (TimeToCompleteOrder - colorTargetTimeOffset));
         _timeBarImage.color = Color.Lerp(_timeBarEndColor, _timeBarColor, colorProportion);
     }
 

@@ -16,7 +16,14 @@ public class OrderMB : MonoBehaviour
     public Image TeaImage;
     [FormerlySerializedAs("ExtraToppingText")]
     public Image ExtraToppingImage;
+    [SerializeField]
+    public Animator Animator;
 
+    public void PlayAnimation()
+    {
+        Animator.enabled = true;
+        Animator.Play(completeOrderAnimation);
+    }
 
     [SerializeField]
     RectTransform _timeBar;
@@ -42,6 +49,7 @@ public class OrderMB : MonoBehaviour
 
     bool _skipFirstFrame = true;
     RectTransform _rectTransform;
+    static readonly int completeOrderAnimation = Animator.StringToHash("CompleteOrderAnimation");
 
     void Start()
     {
@@ -213,22 +221,6 @@ public class OrderMB : MonoBehaviour
     
     public void Complete()
     {
-        Debug.LogError("Order complete");
-        
-        this.transform.parent.GetComponent<GridLayoutGroup>().enabled = false;
-        StartCoroutine(CompleteCoroutine());
-    }
-    
-    public IEnumerator CompleteCoroutine()
-    {
-        var initialPosition = _rectTransform.anchoredPosition;
-        while (_rectTransform.anchoredPosition.y < initialPosition.y + 1000f)
-        {
-            _rectTransform.anchoredPosition += Vector2.up * 100f;
-            yield return null;
-        }
-        
-        Destroy(this.gameObject);
-        this.transform.parent.GetComponent<GridLayoutGroup>().enabled = true;
+        PlayAnimation();
     }
 }

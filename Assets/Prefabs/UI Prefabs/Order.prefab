@@ -63,6 +63,7 @@ MonoBehaviour:
   SugarImage: {fileID: 4094816948184431999}
   TeaImage: {fileID: 1497794323502922424}
   ExtraToppingImage: {fileID: 2446284401367760653}
+  Animator: {fileID: 3463492033235775126}
   _timeBar: {fileID: 5476728664415800955}
   _timeBarEndColor: {r: 0.934, g: 0, b: 0.19975731, a: 1}
 --- !u!1 &1865767285405196638
@@ -112,7 +113,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865767285405196638}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 06e73ffef62da43d1ba42ae07957d0d8, type: 2}
   m_CullingMode: 0

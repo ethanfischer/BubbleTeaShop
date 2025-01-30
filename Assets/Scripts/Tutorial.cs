@@ -60,6 +60,7 @@ public class Tutorial : MonoBehaviour
         else if (Level.LevelIndex == 1)
         {
             yield return Level1();
+            IsTutorialActive = !_ingredientsInstructions.DidCompleteTutorial;
         }
     }
 
@@ -92,8 +93,7 @@ public class Tutorial : MonoBehaviour
     IEnumerator Level1()
     {
         Debug.Log("Showing Level 1 tutorial");
-        _ingredientsInstructions.ShowIngredientToKeyInstructions();
-        yield return null;
+        yield return _ingredientsInstructions.ShowIngredientToKeyInstructions();
     }
 
     void CloseDifficultyMenu()

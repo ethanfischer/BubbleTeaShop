@@ -20,12 +20,6 @@ public class IngredientsInstructions : MonoBehaviour
     int _instructionIndex;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -42,7 +36,7 @@ public class IngredientsInstructions : MonoBehaviour
 
     public void ShowIngredientToKeyInstructions()
     {
-        _canvasGroup.alpha = 1f;
+        _canvasGroup.alpha = 1f; //TODO: why is this not working?
         if (Level.Instance.LevelIndex == 1)
         {
             if(_instructionIndex == 0)

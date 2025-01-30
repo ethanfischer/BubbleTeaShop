@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class Tutorial : MonoBehaviour
 {
     [SerializeField]
-    Animator _animator;
-    [SerializeField]
     Image _image;
     [SerializeField]
     Color _fadeColor;
@@ -17,9 +15,9 @@ public class Tutorial : MonoBehaviour
     CanvasGroup _difficultyMenuGroup;
     [SerializeField]
     IngredientsInstructions _ingredientsInstructions;
-    public bool IsTutorialActive
-    { get;
-      private set; } = true;
+    [SerializeField]
+    DifficultyMenu _difficultyMenu;
+    public bool IsTutorialActive { get; private set; } = true;
 
     //singleton unity pattern
     private static Tutorial instance;
@@ -71,19 +69,19 @@ public class Tutorial : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             GameDifficulty.Difficulty = (int)GameDifficultyEnum.Easy;
-            CloseTutorial();
+            CloseDifficultyMenu();
             Level.NextLevel();
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
             GameDifficulty.Difficulty = (int)GameDifficultyEnum.Medium;
-            CloseTutorial();
+            CloseDifficultyMenu();
             Level.NextLevel();
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
             GameDifficulty.Difficulty = (int)GameDifficultyEnum.Hard;
-            CloseTutorial();
+            CloseDifficultyMenu();
             Level.NextLevel();
         }
 
@@ -94,24 +92,16 @@ public class Tutorial : MonoBehaviour
     IEnumerator Level1()
     {
         Debug.Log("Showing Level 1 tutorial");
-        //ShowIngredientToKeyInstructions
         _ingredientsInstructions.ShowIngredientToKeyInstructions();
         yield return null;
     }
 
-    void CloseTutorial()
+    void CloseDifficultyMenu()
     {
         _image.color = _fadeColor;
         _image.sprite = null;
         _textGroup.alpha = 0f;
-        _animator.enabled = true;
+        _difficultyMenu.FadeOut();
         IsTutorialActive = false;
     }
-
-    void OnFadeOutAnimationEnd()
-    {
-        _animator.enabled = false;
-        gameObject.SetActive(false);
-    }
-
 }

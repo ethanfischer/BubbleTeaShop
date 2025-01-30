@@ -46,6 +46,8 @@ public class OrderSystem : MonoBehaviour
 
     float _nextOrderTime;
     bool _isGameOver;
+    
+    public bool IsFirstOrderOfLevel { get; private set; } = true;
 
     float GetNextOrderTime()
     {
@@ -113,6 +115,7 @@ public class OrderSystem : MonoBehaviour
 
     public void RecordFullfilledOrder(decimal earnings)
     {
+        IsFirstOrderOfLevel = false;
         OrdersFullfilled++;
         Cash += earnings;
         _cashText.text = $"${Cash}";
@@ -166,5 +169,6 @@ public class OrderSystem : MonoBehaviour
         ClearOrders();
         _orders.Clear();
         OrdersFullfilled = 0;
+        IsFirstOrderOfLevel = true;
     }
 }

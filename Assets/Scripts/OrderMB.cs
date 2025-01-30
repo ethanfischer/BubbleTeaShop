@@ -55,7 +55,6 @@ public class OrderMB : MonoBehaviour
     
     [SerializeField]
     int _expirationAnimationTime;
-    bool _isFirstOrderOfLevel = true;
 
     void Start()
     {
@@ -180,10 +179,9 @@ public class OrderMB : MonoBehaviour
     {
         if (Tutorial.Instance.IsTutorialActive) return;
 
-        if (_isFirstOrderOfLevel)
+        if (OrderSystem.Instance.IsFirstOrderOfLevel)
         {
             Tutorial.Instance.ShowTutorial();
-            _isFirstOrderOfLevel = false;
         }
 
         TimeRemaining -= Time.deltaTime;

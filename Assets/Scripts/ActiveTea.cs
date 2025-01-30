@@ -78,9 +78,9 @@ public class ActiveTea : MonoBehaviour
         if (_sugarCube == null) Debug.LogError("Sugar cube not found");
 
         _sugarCubeInitialPosition = _sugarCube.transform.position;
-        StartCoroutine(Tick());
+        StartCoroutine(Tick()); //TODO: this is a confusing way to do this.
     }
-    
+
     IEnumerator Tick()
     {
         while (true)

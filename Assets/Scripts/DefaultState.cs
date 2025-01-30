@@ -18,11 +18,6 @@ public class DefaultState : IState
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            _stateMachine.SetState(new AddingTeaState(_activeTea, _stateMachine));
-        }
-
         //Boba
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -84,7 +79,6 @@ public class DefaultState : IState
                 }
             }
         }
-
 
         //Toppings
         if (Input.GetKeyDown(KeyCode.C))

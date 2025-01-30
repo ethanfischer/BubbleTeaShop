@@ -42,6 +42,8 @@ public class Tutorial : MonoBehaviour
         }
         return _level;
     } }
+    
+    public bool[] CompletedTutorials { get; private set; } = new bool[20];
 
     public void ShowTutorial()
     {
@@ -60,7 +62,12 @@ public class Tutorial : MonoBehaviour
         else if (Level.LevelIndex == 1)
         {
             Level1();
-            IsTutorialActive = !_ingredientsInstructions.DidCompleteTutorial;
+            
+            if(_ingredientsInstructions.DidCompleteTutorial)
+            {
+                IsTutorialActive = false;
+                CompletedTutorials[1] = true;
+            }
         }
     }
 

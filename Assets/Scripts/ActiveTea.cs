@@ -85,21 +85,21 @@ public class ActiveTea : MonoBehaviour
     {
         while (true)
         {
-            if (Tutorial.Instance.IsTutorialActive)
-            {
-                yield return Tutorial.Instance.Tick();
-
-                continue;
-            }
-            else if (_skipFirstTick)
-            {
-                _skipFirstTick = false;
-
-                yield return null;
-
-                continue;
-            }
-
+            // if (Tutorial.Instance.IsTutorialActive)
+            // {
+            //     yield return Tutorial.Instance.Tick(); //TODO: this is a confusing way to do this. 
+            //
+            //     continue;
+            // }
+            // else if (_skipFirstTick)
+            // {
+            //     _skipFirstTick = false;
+            //
+            //     yield return null;
+            //
+            //     continue;
+            // }
+            //
             transform.Rotate(0, _spinSpeed, 0);
 
             //Boba

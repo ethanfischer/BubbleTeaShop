@@ -49,22 +49,22 @@ public class Tutorial : MonoBehaviour
         Debug.Log("Showing tutorial");
     }
 
-    public IEnumerator Tick()
+    void Update()
     {
-        if (!IsTutorialActive) yield return null;
+        if (!IsTutorialActive) return;
 
         if (Level.LevelIndex == 0)
         {
-            yield return Level0();
+            Level0();
         }
         else if (Level.LevelIndex == 1)
         {
-            yield return Level1();
+            Level1();
             IsTutorialActive = !_ingredientsInstructions.DidCompleteTutorial;
         }
     }
 
-    IEnumerator Level0()
+    void Level0()
     {
         _difficultyMenuGroup.alpha = 1f;
         if (Input.GetKeyDown(KeyCode.E))
@@ -85,15 +85,13 @@ public class Tutorial : MonoBehaviour
             CloseDifficultyMenu();
             Level.NextLevel();
         }
-
-        yield return null;
     }
 
 
-    IEnumerator Level1()
+    void Level1()
     {
         Debug.Log("Showing Level 1 tutorial");
-        yield return _ingredientsInstructions.ShowIngredientToKeyInstructions();
+        _ingredientsInstructions.ShowIngredientToKeyInstructions();
     }
 
     void CloseDifficultyMenu()

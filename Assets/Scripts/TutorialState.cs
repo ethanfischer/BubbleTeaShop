@@ -46,6 +46,7 @@ public class TutorialState : MonoBehaviour, IState
         {
             IsTutorialActive = false;
             CompletedTutorials[Level.LevelIndex] = true;
+            StateMachineService.Instance.SetState(new DefaultState());
         }
     }
     

@@ -19,9 +19,15 @@ public class IngredientsInstructions : MonoBehaviour
     CanvasGroup _canvasGroup;
     KeyCode _listenForKey;
     int _instructionIndex;
+    [SerializeField]
+    Animator _animator;
 
     public bool DidCompleteTutorial { get; private set; } = false;
 
+    void Start()
+    {
+        _animator.StopPlayback();
+    }
 
     // Update is called once per frame
     void Update()
@@ -39,7 +45,8 @@ public class IngredientsInstructions : MonoBehaviour
 
     public void ShowIngredientToKeyInstructions()
     {
-        _canvasGroup.alpha = 1f;
+        _animator.Play("IngredientInstructionFadeIn");
+        
         if (Level.Instance.LevelIndex == 1)
         {
             if (_instructionIndex == 0)
@@ -92,7 +99,13 @@ public class IngredientsInstructions : MonoBehaviour
             }
         }
     }
-
+    
+    public void OnFadeInComplete()
+    {
+        _animator.StopPlayback();
+        _animator.enabled = false;
+    }
+    
     public void Reset()
     {
         _listenForKey = KeyCode.None;

@@ -57,7 +57,7 @@ public class Tutorial : MonoBehaviour
 
         if (Level.LevelIndex == 0)
         {
-            Level0();
+            DifficultyMenu();
         }
         else if (Level.LevelIndex == 1)
         {
@@ -71,7 +71,7 @@ public class Tutorial : MonoBehaviour
         }
     }
 
-    void Level0()
+    void DifficultyMenu()
     {
         _difficultyMenuGroup.alpha = 1f;
         if (Input.GetKeyDown(KeyCode.E))
@@ -100,7 +100,7 @@ public class Tutorial : MonoBehaviour
         Debug.Log("Showing Level 1 tutorial");
         _ingredientsInstructions.ShowIngredientToKeyInstructions();
     }
-
+    
     void CloseDifficultyMenu()
     {
         _image.color = _fadeColor;

@@ -122,7 +122,12 @@ public class TutorialState : MonoBehaviour, IState
             SetIngredientInstructionKeyAndText(6, "", "Enter to submit");
             _listenForKey = KeyCode.Return;
         }
-        else if (_instructionIndex > 5)
+        else if (_instructionIndex == 6)
+        {
+            SetIngredientInstructionKeyAndText(6, "X", "to trash");
+            _listenForKey = KeyCode.X;
+        }
+        else if (_instructionIndex > 6)
         {
             CompleteTutorial();
         }
@@ -140,12 +145,7 @@ public class TutorialState : MonoBehaviour, IState
             SetIngredientInstructionKeyAndText(6, "C", "for Cheese Foam");
             _listenForKey = KeyCode.C;
         }
-        else if (_instructionIndex == 1)
-        {
-            SetIngredientInstructionKeyAndText(6, "X", "to trash");
-            _listenForKey = KeyCode.X;
-        }
-        else if (_instructionIndex > 1)
+        else if (_instructionIndex > 0)
         {
             CompleteTutorial();
         }
@@ -163,12 +163,7 @@ public class TutorialState : MonoBehaviour, IState
             SetIngredientInstructionKeyAndText(6, "S", "for Strawberry"); //TODO: show all the flavors in the order
             _listenForKey = KeyCode.S;
         }
-        else if (_instructionIndex == 2)
-        {
-            SetIngredientInstructionKeyAndText(6, "X", "");
-            _listenForKey = KeyCode.X;
-        }
-        else if (_instructionIndex > 2)
+        else if (_instructionIndex > 1)
         {
             CompleteTutorial();
         }

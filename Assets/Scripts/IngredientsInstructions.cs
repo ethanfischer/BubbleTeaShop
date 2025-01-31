@@ -49,7 +49,7 @@ public class IngredientsInstructions : MonoBehaviour
         {
             if (_instructionIndex == 0)
             {
-                SetIngredientInstructionKeyAndText(order, 1, "B", "for Bubbles");
+                SetIngredientInstructionKeyAndText(order, 1, "B", "for Boba");
                 _listenForKey = KeyCode.B;
             }
             else if (_instructionIndex == 1)

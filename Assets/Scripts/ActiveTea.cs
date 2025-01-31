@@ -248,7 +248,7 @@ public class ActiveTea : MonoBehaviour
     public void AddRegularBoba()
     {
         _boba = (int)BobaEnum.BobaRegular;
-        AddIngredientTextToUI("Regular Boba");
+        AddIngredientTextToUI("Boba");
 
         _audioSource.clip = _jellySound;
         _audioSource.Play();

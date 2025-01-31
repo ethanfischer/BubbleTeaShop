@@ -46,6 +46,8 @@ public class ActiveTea : MonoBehaviour
     Texture _teaTaroTexture;
     [SerializeField]
     Texture _teaMatchaTexture;
+    [SerializeField]
+    Transform _root;
 
     bool _hasMilk;
     bool _hasTea;
@@ -87,7 +89,7 @@ public class ActiveTea : MonoBehaviour
 
         _audioSource.clip = _jellySound;
         _audioSource.Play();
-        transform.Find("Grass_Jelly").gameObject.SetActive(true);
+        _root.Find("Grass_Jelly").gameObject.SetActive(true);
         Debug.Log("Jelly added");
     }
 
@@ -150,15 +152,15 @@ public class ActiveTea : MonoBehaviour
 
         if (_ice == 1)
         {
-            transform.Find("Ice_One").gameObject.SetActive(true);
+            _root.Find("Ice_One").gameObject.SetActive(true);
         }
         else if (_ice == 2)
         {
-            transform.Find("Ice_Two").gameObject.SetActive(true);
+            _root.Find("Ice_Two").gameObject.SetActive(true);
         }
         else if (_ice == 3)
         {
-            transform.Find("Ice_Three").gameObject.SetActive(true);
+            _root.Find("Ice_Three").gameObject.SetActive(true);
         }
 
         HandleIceSubmerged();
@@ -166,12 +168,12 @@ public class ActiveTea : MonoBehaviour
 
     void HandleIceSubmerged()
     {
-        var iceOne = transform.Find("Ice_One").gameObject;
-        var iceTwo = transform.Find("Ice_Two").gameObject;
-        var iceThree = transform.Find("Ice_Three").gameObject;
+        var iceOne = _root.Find("Ice_One").gameObject;
+        var iceTwo = _root.Find("Ice_Two").gameObject;
+        var iceThree = _root.Find("Ice_Three").gameObject;
         var ices = new[] { iceOne, iceTwo, iceThree };
-        var milkAndTea = transform.Find("MilkAndTea").gameObject;
-        var tea = transform.Find("Tea").gameObject;
+        var milkAndTea = _root.Find("MilkAndTea").gameObject;
+        var tea = _root.Find("Tea").gameObject;
         foreach (var ice in ices)
         {
             if (tea.activeSelf || milkAndTea.activeSelf)
@@ -190,7 +192,7 @@ public class ActiveTea : MonoBehaviour
         _extraTopping = (int)ExtraToppingEnum.CheeseFoam;
         AddIngredientTextToUI("Cheese Foam");
 
-        transform.Find("CheeseFoamHonbComb").gameObject.SetActive(true);
+        _root.Find("CheeseFoamHonbComb").gameObject.SetActive(true);
         Debug.Log("Cheese Foam added");
     }
 
@@ -214,7 +216,7 @@ public class ActiveTea : MonoBehaviour
                 AddIngredientTextToUI("Taro");
                 _audioSource.clip = _pourSound;
                 _audioSource.Play();
-                var teaObject = transform.Find("Tea");
+                var teaObject = _root.Find("Tea");
                 teaObject.gameObject.SetActive(true);
                 teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaTaroTexture;
                 _hasTea = true;
@@ -226,7 +228,7 @@ public class ActiveTea : MonoBehaviour
                 AddIngredientTextToUI("Matcha");
                 _audioSource.clip = _pourSound;
                 _audioSource.Play();
-                var teaObject = transform.Find("Tea");
+                var teaObject = _root.Find("Tea");
                 teaObject.gameObject.SetActive(true);
                 teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaMatchaTexture;
                 _hasTea = true;
@@ -243,7 +245,7 @@ public class ActiveTea : MonoBehaviour
 
         _audioSource.clip = _jellySound;
         _audioSource.Play();
-        var bobaGameObject = transform.Find("Boba");
+        var bobaGameObject = _root.Find("Boba" );
         bobaGameObject.gameObject.SetActive(true);
         bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.black;
         DidSelectBoba = true;
@@ -256,7 +258,7 @@ public class ActiveTea : MonoBehaviour
         AddIngredientTextToUI("Mango Boba");
         _audioSource.clip = _jellySound;
         _audioSource.Play();
-        var bobaGameObject = transform.Find("Boba");
+        var bobaGameObject = _root.Find("Boba");
         bobaGameObject.gameObject.SetActive(true);
         bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.yellow; //TODO: Change color to match BobaMango
         DidSelectBoba = true;
@@ -270,7 +272,7 @@ public class ActiveTea : MonoBehaviour
         AddIngredientTextToUI("Strawberry Boba");
         _audioSource.clip = _jellySound;
         _audioSource.Play();
-        var bobaGameObject = transform.Find("Boba");
+        var bobaGameObject = _root.Find("Boba");
         bobaGameObject.gameObject.SetActive(true);
         bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.red; //TODO: Change color to match BobaStrawberry
         Debug.Log("Strawberry Boba added");
@@ -283,7 +285,7 @@ public class ActiveTea : MonoBehaviour
         AddIngredientTextToUI("Blueberry Boba");
         _audioSource.clip = _jellySound;
         _audioSource.Play();
-        var bobaGameObject = transform.Find("Boba");
+        var bobaGameObject = _root.Find("Boba");
         bobaGameObject.gameObject.SetActive(true);
         bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.blue; //TODO: Change color to match BobaBlueberry
         Debug.Log("Blueberry Boba added");
@@ -293,16 +295,16 @@ public class ActiveTea : MonoBehaviour
     {
         _hasTea = true;
         AddIngredientTextToUI("Tea");
-        var teaObject = transform.Find("Tea");
+        var teaObject = _root.Find("Tea");
         if (_hasMilk)
         {
-            transform.Find("MilkAndTea").gameObject.SetActive(true);
+            _root.Find("MilkAndTea").gameObject.SetActive(true);
             teaObject.gameObject.SetActive(false);
-            transform.Find("Milk").gameObject.SetActive(false);
+            _root.Find("Milk").gameObject.SetActive(false);
         }
         else
         {
-            transform.Find("Tea").gameObject.SetActive(true);
+            _root.Find("Tea").gameObject.SetActive(true);
             teaObject.gameObject.SetActive(true);
             teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaRegularTexture;
         }
@@ -352,13 +354,13 @@ public class ActiveTea : MonoBehaviour
 
         if (_hasTea)
         {
-            transform.Find("MilkAndTea").gameObject.SetActive(true);
-            transform.Find("Tea").gameObject.SetActive(false);
-            transform.Find("Milk").gameObject.SetActive(false);
+            _root.Find("MilkAndTea").gameObject.SetActive(true);
+            _root.Find("Tea").gameObject.SetActive(false);
+            _root.Find("Milk").gameObject.SetActive(false);
         }
         else
         {
-            transform.Find("Milk").gameObject.SetActive(true);
+            _root.Find("Milk").gameObject.SetActive(true);
         }
 
         HandleIceSubmerged();
@@ -481,14 +483,14 @@ public class ActiveTea : MonoBehaviour
         DidSelectBoba = false;
         DidSelectTea = false;
         _tea = 0;
-        transform.Find("Boba").gameObject.SetActive(false);
-        transform.Find("Ice_One").gameObject.SetActive(false);
-        transform.Find("Ice_Two").gameObject.SetActive(false);
-        transform.Find("Ice_Three").gameObject.SetActive(false);
-        transform.Find("Milk").gameObject.SetActive(false);
-        transform.Find("Tea").gameObject.SetActive(false);
-        transform.Find("CheeseFoamHonbComb").gameObject.SetActive(false);
-        transform.Find("Grass_Jelly").gameObject.SetActive(false);
-        transform.Find("MilkAndTea").gameObject.SetActive(false);
+        _root.Find("Boba").gameObject.SetActive(false);
+        _root.Find("Ice_One").gameObject.SetActive(false);
+        _root.Find("Ice_Two").gameObject.SetActive(false);
+        _root.Find("Ice_Three").gameObject.SetActive(false);
+        _root.Find("Milk").gameObject.SetActive(false);
+        _root.Find("Tea").gameObject.SetActive(false);
+        _root.Find("CheeseFoamHonbComb").gameObject.SetActive(false);
+        _root.Find("Grass_Jelly").gameObject.SetActive(false);
+        _root.Find("MilkAndTea").gameObject.SetActive(false);
     }
 }

@@ -17,6 +17,7 @@ public class IngredientsInstructions : MonoBehaviour
     CanvasGroup _canvasGroup;
     KeyCode _listenForKey;
     int _instructionIndex;
+    static bool _didSetIngredientInstructionKeyAndText;
 
     public bool DidCompleteTutorial { get; private set; } = false;
 
@@ -32,6 +33,7 @@ public class IngredientsInstructions : MonoBehaviour
     void NextInstruction()
     {
         _instructionIndex++;
+        _didSetIngredientInstructionKeyAndText = false;
     }
 
     public void ShowIngredientToKeyInstructions(OrderMB order)
@@ -79,6 +81,9 @@ public class IngredientsInstructions : MonoBehaviour
 
     static void SetIngredientInstructionKeyAndText(OrderMB order, int index, string key, string text)
     {
+        if(_didSetIngredientInstructionKeyAndText) return;
+        _didSetIngredientInstructionKeyAndText = true;
+        
         order.Instruction1.GetComponent<IngredientInstruction>().Hide();//TODO: just serialize ingredient instruction instead of gameobject and then looking itn up
         order.Instruction2.GetComponent<IngredientInstruction>().Hide();
         order.Instruction3.GetComponent<IngredientInstruction>().Hide();

@@ -13,8 +13,6 @@ public class IngredientsInstructions : MonoBehaviour
 
     [SerializeField]
     TMP_Text _text;
-    [SerializeField]
-    CanvasGroup _canvasGroup;
     KeyCode _listenForKey;
     int _instructionIndex;
     static bool _didSetIngredientInstructionKeyAndText;
@@ -94,8 +92,8 @@ public class IngredientsInstructions : MonoBehaviour
         }
         else if (_instructionIndex > 5)
         {
+            SetIngredientInstructionKeyAndText(order, -1, "", "");
             DidCompleteTutorial = true;
-            _canvasGroup.alpha = 0f;
             Reset();
         }
     }
@@ -103,10 +101,9 @@ public class IngredientsInstructions : MonoBehaviour
     void Level2(OrderMB order)
     {
         DidCompleteTutorial = true;
-        _canvasGroup.alpha = 0f;
+            SetIngredientInstructionKeyAndText(order, -1, "", "");
         Reset();
     }
-    
     
     void Level3(OrderMB order)
     {
@@ -117,95 +114,53 @@ public class IngredientsInstructions : MonoBehaviour
         }
         else if (_instructionIndex == 1)
         {
-            SetIngredientInstructionKeyAndText(order, 6, "", "X");
+            SetIngredientInstructionKeyAndText(order, 6, "X", "to trash");
             _listenForKey = KeyCode.X;
         }
         else if (_instructionIndex > 1)
         {
+            SetIngredientInstructionKeyAndText(order, -1, "", "");
             DidCompleteTutorial = true;
-            _canvasGroup.alpha = 0f;
             Reset();
         }
     }
-    
     
     void Level4(OrderMB order)
     {
         if (_instructionIndex == 0)
         {
-            SetIngredientInstructionKeyAndText(order, 1, "B", "for Boba");
+            SetIngredientInstructionKeyAndText(order, 1, "B", "for Boba Flavors");
             _listenForKey = KeyCode.B;
         }
         else if (_instructionIndex == 1)
         {
-            SetIngredientInstructionKeyAndText(order, 2, "I", "for Ice");
-            _listenForKey = KeyCode.I;
+            SetIngredientInstructionKeyAndText(order, 6, "X", "");
+            _listenForKey = KeyCode.X;
         }
-        else if (_instructionIndex == 2)
+        else if (_instructionIndex > 1)
         {
-            SetIngredientInstructionKeyAndText(order, 3, "M", "for Milk");
-            _listenForKey = KeyCode.M;
-        }
-        else if (_instructionIndex == 3)
-        {
-            SetIngredientInstructionKeyAndText(order, 4, "S", "for Sugar");
-            _listenForKey = KeyCode.S;
-        }
-        else if (_instructionIndex == 4)
-        {
-            SetIngredientInstructionKeyAndText(order, 5, "T", "for Tea");
-            _listenForKey = KeyCode.T;
-        }
-        else if (_instructionIndex == 5)
-        {
-            SetIngredientInstructionKeyAndText(order, 6, "", "Enter");
-            _listenForKey = KeyCode.Return;
-        }
-        else if (_instructionIndex > 5)
-        {
+            SetIngredientInstructionKeyAndText(order, -1, "", "");
             DidCompleteTutorial = true;
-            _canvasGroup.alpha = 0f;
             Reset();
         }
     }
-    
     
     void Level5(OrderMB order)
     {
         if (_instructionIndex == 0)
         {
-            SetIngredientInstructionKeyAndText(order, 1, "B", "for Boba");
+            SetIngredientInstructionKeyAndText(order, 1, "B", "for Boba Flavors");
             _listenForKey = KeyCode.B;
         }
         else if (_instructionIndex == 1)
         {
-            SetIngredientInstructionKeyAndText(order, 2, "I", "for Ice");
-            _listenForKey = KeyCode.I;
+            SetIngredientInstructionKeyAndText(order, 6, "X", "");
+            _listenForKey = KeyCode.X;
         }
-        else if (_instructionIndex == 2)
+        else if (_instructionIndex > 1)
         {
-            SetIngredientInstructionKeyAndText(order, 3, "M", "for Milk");
-            _listenForKey = KeyCode.M;
-        }
-        else if (_instructionIndex == 3)
-        {
-            SetIngredientInstructionKeyAndText(order, 4, "S", "for Sugar");
-            _listenForKey = KeyCode.S;
-        }
-        else if (_instructionIndex == 4)
-        {
-            SetIngredientInstructionKeyAndText(order, 5, "T", "for Tea");
-            _listenForKey = KeyCode.T;
-        }
-        else if (_instructionIndex == 5)
-        {
-            SetIngredientInstructionKeyAndText(order, 6, "", "Enter");
-            _listenForKey = KeyCode.Return;
-        }
-        else if (_instructionIndex > 5)
-        {
+            SetIngredientInstructionKeyAndText(order, -1, "", "");
             DidCompleteTutorial = true;
-            _canvasGroup.alpha = 0f;
             Reset();
         }
     }
@@ -246,13 +201,15 @@ public class IngredientsInstructions : MonoBehaviour
                 instruction = order.Instruction6;
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(index), index, null);
+                break;
         }
-
-        instruction.GetComponent<IngredientInstruction>().FadeIn(); //TODO: just serialize ingredient instruction instead of gameobject and then looking itn up
 
         instruction.transform.Find("Key").gameObject.GetComponent<TMP_Text>().text = key;
         instruction.transform.Find("Text").gameObject.GetComponent<TMP_Text>().text = text;
+
+        if (index == -1) return;
+        instruction.GetComponent<IngredientInstruction>().FadeIn(); //TODO: just serialize ingredient instruction instead of gameobject and then looking itn up
+
     }
 
     public void Reset()

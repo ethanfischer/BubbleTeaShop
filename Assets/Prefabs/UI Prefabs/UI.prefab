@@ -165,7 +165,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6296974654167103284}
-  - {fileID: 2425523072881048994}
   - {fileID: 4785398743341752124}
   m_Father: {fileID: 8214269603854042890}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -194,12 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1285ad8570d4349148b79e812663a0e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 2524940096441266637}
-  _fadeColor: {r: 0, g: 0, b: 0, a: 1}
-  _textGroup: {fileID: 8049347860364391190}
-  _difficultyMenuGroup: {fileID: 6155742471413634820}
   _ingredientsInstructions: {fileID: 3793644835744661045}
-  _difficultyMenu: {fileID: 5190612851179952569}
 --- !u!1 &661391406250331836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,7 +1077,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021497190159133589}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1091,7 +1085,7 @@ RectTransform:
   - {fileID: 1569475971121037845}
   - {fileID: 3776694613256392271}
   - {fileID: 1096559196693181617}
-  m_Father: {fileID: 6750363273456064872}
+  m_Father: {fileID: 8214269603854042890}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1161,6 +1155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 2821225063809640084}
+  _image: {fileID: 2524940096441266637}
+  _textGroup: {fileID: 8049347860364391190}
+  _fadeColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!95 &2821225063809640084
 Animator:
   serializedVersion: 5
@@ -1217,6 +1214,7 @@ RectTransform:
   - {fileID: 2502324524796781719}
   - {fileID: 470556567382530044}
   - {fileID: 5302972052423410005}
+  - {fileID: 2425523072881048994}
   - {fileID: 6750363273456064872}
   - {fileID: 7255999125037212200}
   m_Father: {fileID: 984676579452345663}
@@ -2305,11 +2303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83464127b308543feb9a99389eff3dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 3115125662080174404}
   _key: {fileID: 3126710188195167160}
   _text: {fileID: 4012177381931420875}
-  _canvasGroup: {fileID: 7045670028669962848}
-  _animator: {fileID: 6544768553147764400}
 --- !u!225 &7045670028669962848
 CanvasGroup:
   m_ObjectHideFlags: 0

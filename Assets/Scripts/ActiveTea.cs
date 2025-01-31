@@ -71,7 +71,6 @@ public class ActiveTea : MonoBehaviour
     Color _submergedIceColor;
     [SerializeField]
     bool _shouldPopupTypedIngredients = true;
-    StateMachine _stateMachine;
 
     void Start()
     {
@@ -79,14 +78,6 @@ public class ActiveTea : MonoBehaviour
         if (_sugarCube == null) Debug.LogError("Sugar cube not found");
 
         _sugarCubeInitialPosition = _sugarCube.transform.position;
-
-        _stateMachine = new StateMachine();
-        _stateMachine.SetState(new DefaultState(this, _stateMachine));
-    }
-
-    private void Update()
-    {
-        _stateMachine.Update();
     }
 
     public void AddJelly()

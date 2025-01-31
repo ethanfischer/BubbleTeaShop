@@ -3,17 +3,10 @@ using UnityEngine;
 public class DefaultState : IState
 {
     private ActiveTea _activeTea;
-    private StateMachine _stateMachine;
-
-    public DefaultState(ActiveTea activeTea, StateMachine stateMachine)
-    {
-        _activeTea = activeTea;
-        _stateMachine = stateMachine;
-    }
 
     public void Enter()
     {
-        Debug.Log("Entered IdleState.");
+        _activeTea = GameObject.FindObjectOfType<ActiveTea>();
     }
 
     public void Update()
@@ -33,7 +26,7 @@ public class DefaultState : IState
                 }
                 else
                 {
-                    _stateMachine.SetState(new AddingBobaState(_activeTea, _stateMachine)); //TODO: refactor so all these conditions live in the boba state
+                    StateMachineService.Instance.SetState(new AddingBobaState(_activeTea)); //TODO: refactor so all these conditions live in the boba state
                 }
             }
         }
@@ -75,7 +68,7 @@ public class DefaultState : IState
                 }
                 else
                 {
-                    _stateMachine.SetState(new AddingTeaState(_activeTea, _stateMachine)); //TODO: refactor so all these conditions live in the boba state
+                    StateMachineService.Instance.SetState(new AddingTeaState(_activeTea)); //TODO: refactor so all these conditions live in the boba state
                 }
             }
         }

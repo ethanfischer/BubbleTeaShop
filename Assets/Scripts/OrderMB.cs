@@ -184,7 +184,7 @@ public class OrderMB : MonoBehaviour
 
     void Update()
     {
-        if (Tutorial.Instance.IsTutorialActive) return;
+        if (TutorialState.IsTutorialActive) return;
 
         TimeRemaining -= Time.deltaTime;
         if (TimeRemaining <= _expirationAnimationTime && !_didStartFirstExpiringAnimation)
@@ -272,7 +272,7 @@ public class OrderMB : MonoBehaviour
         
         if (OrderSystem.Instance.IsFirstOrderOfLevel)
         {
-            Tutorial.Instance.ShowTutorial();
+            StateMachineService.Instance.SetTutorialState();
         }
     }
 

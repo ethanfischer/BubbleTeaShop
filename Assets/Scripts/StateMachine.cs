@@ -1,17 +1,17 @@
 public class StateMachine
 {
-    private IState _currentState;
+    public IState CurrentState { get; private set; }
 
     public void SetState(IState newState)
     {
-        _currentState?.Exit();
-        _currentState = newState;
-        _currentState.Enter();
+        CurrentState?.Exit();
+        CurrentState = newState;
+        CurrentState.Enter();
     }
 
     public void Update()
     {
-        _currentState?.Update();
+        CurrentState?.Update();
     }
 }
 

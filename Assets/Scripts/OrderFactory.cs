@@ -23,7 +23,7 @@ namespace DefaultNamespace
         }
         static bool NeedsTutorialOrder()
         {
-            return !Tutorial.Instance.CompletedTutorials[Level.Instance.LevelIndex];
+            return !TutorialState.CompletedTutorials[Level.Instance.LevelIndex];
         }
 
         private static ILevelIngredients GetIngredients()

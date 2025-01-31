@@ -80,7 +80,7 @@ public class OrderSystem : MonoBehaviour
     void Update()
     {
         if(_isGameOver) return;
-        if (Tutorial.Instance.IsTutorialActive) return;
+        if (TutorialState.IsTutorialActive) return;
 
         if (_timer > _nextOrderTime)
         {

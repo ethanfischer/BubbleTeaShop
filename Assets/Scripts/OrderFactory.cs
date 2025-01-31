@@ -52,15 +52,15 @@ namespace DefaultNamespace
                 case 1:
                     return new Order(1, 1, 1, 0, 0);
                 case 2:
-                    return new Order(0, 0, 0, 0, 0);
+                    return new Order(1, 2, 2, 0, 0);
                 case 3:
-                    return new Order(0, 0, 0, 0, 0);
+                    return new Order(1, 2, 2, 0, 1);
                 case 4:
-                    return new Order(0, 0, 0, 0, 0);
+                    return new Order(3, 2, 2, 0, 1);
                 case 5:
-                    return new Order(0, 0, 0, 0, 0);
+                    return new Order(3, 2, 2, 0, 1);
                 default:
-                    return new Order(0, 0, 0, 0, 0);
+                    return new Order(1, 1, 1, 0, 0);
             }
         }
 

@@ -12,6 +12,14 @@ namespace DefaultNamespace
             { 4, "Mango Boba" },
             { 5, "Blueberry Boba" },
         };
+        
+        public Dictionary<int, string> IceOptions => new()
+        {
+            { 0, "-" },
+            { 1, "Less Ice" },
+            { 2, "Regular Ice" },
+            { 3, "Extra Ice" }
+        };
 
         public Dictionary<int, string> SugarOptions => new()
         {
@@ -21,13 +29,6 @@ namespace DefaultNamespace
             { 3, "Extra Sugar" },
         };
 
-        public Dictionary<int, string> IceOptions => new()
-        {
-            { 0, "-" },
-            { 1, "Less Ice" },
-            { 2, "Regular Ice" },
-            { 3, "Extra Ice" }
-        };
         
         public Dictionary<int, string> TeaOptions => new()
         {

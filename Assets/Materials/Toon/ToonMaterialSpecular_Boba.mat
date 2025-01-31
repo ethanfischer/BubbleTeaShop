@@ -25,10 +25,11 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _ShadowIntensity: 0
+    - _ShadowIntensity: 0.453
     - _Shininess: 15
     - _ShininessThreshold: 0.892
-    - _Steps: 1
+    - _Steps: 2.12
     m_Colors:
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
   m_BuildTextureStacks: []

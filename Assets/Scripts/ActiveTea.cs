@@ -254,7 +254,7 @@ public class ActiveTea : MonoBehaviour
         _audioSource.Play();
         var bobaGameObject = transform.Find("Boba");
         bobaGameObject.gameObject.SetActive(true);
-        bobaGameObject.GetComponent<MeshRenderer>().material.color = new Color(0.4f, 0.2f, 0.1f);
+        bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.black;
         DidSelectBoba = true;
         Debug.Log("Regular Boba added");
     }
@@ -267,7 +267,7 @@ public class ActiveTea : MonoBehaviour
         _audioSource.Play();
         var bobaGameObject = transform.Find("Boba");
         bobaGameObject.gameObject.SetActive(true);
-        bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
+        bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.yellow; //TODO: Change color to match BobaMango
         DidSelectBoba = true;
         Debug.Log("Mango Boba added");
     }
@@ -281,7 +281,7 @@ public class ActiveTea : MonoBehaviour
         _audioSource.Play();
         var bobaGameObject = transform.Find("Boba");
         bobaGameObject.gameObject.SetActive(true);
-        bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+        bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.red;//TODO: Change color to match BobaStrawberry
         Debug.Log("Strawberry Boba added");
     }
 
@@ -294,7 +294,7 @@ public class ActiveTea : MonoBehaviour
         _audioSource.Play();
         var bobaGameObject = transform.Find("Boba");
         bobaGameObject.gameObject.SetActive(true);
-        bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+        bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.blue;//TODO: Change color to match BobaBlueberry
         Debug.Log("Blueberry Boba added");
     }
 

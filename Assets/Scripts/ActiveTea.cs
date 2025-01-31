@@ -139,7 +139,7 @@ public class ActiveTea : MonoBehaviour
         _sugarCube.SetActive(false);
     }
 
-    public void AddIceScoop()
+    public void AddIce()
     {
         _ice++;
         _audioSource.clip = _iceSound;
@@ -272,7 +272,7 @@ public class ActiveTea : MonoBehaviour
         _audioSource.Play();
         var bobaGameObject = transform.Find("Boba");
         bobaGameObject.gameObject.SetActive(true);
-        bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.red;//TODO: Change color to match BobaStrawberry
+        bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.red; //TODO: Change color to match BobaStrawberry
         Debug.Log("Strawberry Boba added");
     }
 
@@ -285,7 +285,7 @@ public class ActiveTea : MonoBehaviour
         _audioSource.Play();
         var bobaGameObject = transform.Find("Boba");
         bobaGameObject.gameObject.SetActive(true);
-        bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.blue;//TODO: Change color to match BobaBlueberry
+        bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.blue; //TODO: Change color to match BobaBlueberry
         Debug.Log("Blueberry Boba added");
     }
 
@@ -392,6 +392,15 @@ public class ActiveTea : MonoBehaviour
         }
     }
 
+    public void SubmitTeaForTutorial()
+    {
+        _animator.Play("OrderSubmitBubbleTeaCupAnimation");
+        _animator.enabled = true;
+        _audioSource.clip = _correctOrderSound;
+        _audioSource.Play();
+        ClearIngredientUIText();
+    }
+
     void HandleWrongOrder()
     {
         _audioSource.clip = _buzzerWrongSound;
@@ -449,6 +458,16 @@ public class ActiveTea : MonoBehaviour
         {
             OrderSystem.Instance.GameOver("<color=red>-$2.50\nYou ran out of money</color>");
         }
+    }
+    
+    public void TrashTeaForTutorial()
+    {
+        _animator.Play("TrashBobaAnimation");
+        _animator.enabled = true;
+        _audioSource.clip = _splatSound;
+        _audioSource.Play();
+        ClearIngredientUIText();
+        Reset();
     }
 
     void Reset()

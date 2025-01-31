@@ -40,7 +40,7 @@ public class DefaultState : IState
         //Ice
         if (Input.GetKeyDown(KeyCode.I))
         {
-            _activeTea.AddIceScoop();
+            _activeTea.AddIce();
         }
 
         //Milk

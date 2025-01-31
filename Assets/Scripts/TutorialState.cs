@@ -12,6 +12,8 @@ public class TutorialState : MonoBehaviour, IState
     static bool _didSetIngredientInstructionKeyAndText;
     private Level _level;
     OrderMB _order;
+    ActiveTea _activeTea;
+    Action _listenForKeyAction;
     private Level Level
     { get
     {
@@ -36,12 +38,14 @@ public class TutorialState : MonoBehaviour, IState
     {
         Debug.Log("Showing tutorial");
         _order = OrderSystem.Instance.Orders.First();
+        _activeTea = FindObjectOfType<ActiveTea>();
     }
 
     void IState.Update()
     {
         if (Input.GetKeyDown(_listenForKey))
         {
+            _listenForKeyAction?.Invoke();
             NextInstruction();
         }
 
@@ -92,44 +96,32 @@ public class TutorialState : MonoBehaviour, IState
 
     void Level1()
     {
-        if (_instructionIndex == 0)
+        switch (_instructionIndex)
         {
-            SetIngredientInstructionKeyAndText(1, "B", "for Boba");
-            _listenForKey = KeyCode.B;
-        }
-        else if (_instructionIndex == 1)
-        {
-            SetIngredientInstructionKeyAndText(2, "I", "for Ice");
-            _listenForKey = KeyCode.I;
-        }
-        else if (_instructionIndex == 2)
-        {
-            SetIngredientInstructionKeyAndText(3, "M", "for Milk");
-            _listenForKey = KeyCode.M;
-        }
-        else if (_instructionIndex == 3)
-        {
-            SetIngredientInstructionKeyAndText(4, "S", "for Sugar");
-            _listenForKey = KeyCode.S;
-        }
-        else if (_instructionIndex == 4)
-        {
-            SetIngredientInstructionKeyAndText(5, "T", "for Tea");
-            _listenForKey = KeyCode.T;
-        }
-        else if (_instructionIndex == 5)
-        {
-            SetIngredientInstructionKeyAndText(6, "", "Enter to submit");
-            _listenForKey = KeyCode.Return;
-        }
-        else if (_instructionIndex == 6)
-        {
-            SetIngredientInstructionKeyAndText(6, "X", "to trash");
-            _listenForKey = KeyCode.X;
-        }
-        else if (_instructionIndex > 6)
-        {
-            CompleteTutorial();
+            case 0:
+                SetIngredientInstructionKeyAndText(1, "B", "for Boba", KeyCode.B, () => _activeTea.AddRegularBoba());
+                break;
+            case 1:
+                SetIngredientInstructionKeyAndText(2, "I", "for Ice", KeyCode.I, () => _activeTea.AddIce());
+                break;
+            case 2:
+                SetIngredientInstructionKeyAndText(3, "M", "for Milk", KeyCode.M, () => _activeTea.AddMilk());
+                break;
+            case 3:
+                SetIngredientInstructionKeyAndText(4, "S", "for Sugar", KeyCode.S, () => _activeTea.AddSugar());
+                break;
+            case 4:
+                SetIngredientInstructionKeyAndText(5, "T", "for Tea", KeyCode.T, () => _activeTea.AddRegularTea());
+                break;
+            case 5:
+                SetIngredientInstructionKeyAndText(6, "",  "<color=green>Enter</color> to submit", KeyCode.Return, () => _activeTea.SubmitTeaForTutorial());
+                break;
+            case 6:
+                SetIngredientInstructionKeyAndText(6, "<color=red>X</color>", "to trash", KeyCode.X, () => _activeTea.TrashTeaForTutorial());
+                break;
+            case > 6:
+                CompleteTutorial();
+                break;
         }
     }
 
@@ -140,57 +132,55 @@ public class TutorialState : MonoBehaviour, IState
 
     void Level3()
     {
-        if (_instructionIndex == 0)
+        switch (_instructionIndex)
         {
-            SetIngredientInstructionKeyAndText(6, "C", "for Cheese Foam");
-            _listenForKey = KeyCode.C;
-        }
-        else if (_instructionIndex > 0)
-        {
-            CompleteTutorial();
+            case 0:
+                SetIngredientInstructionKeyAndText(6, "C", "for Cheese Foam", KeyCode.C);
+                break;
+            case > 0:
+                CompleteTutorial();
+                break;
         }
     }
 
     void Level4()
     {
-        if (_instructionIndex == 0)
+        switch (_instructionIndex)
         {
-            SetIngredientInstructionKeyAndText(1, "B", "for Boba Flavors");
-            _listenForKey = KeyCode.B;
-        }
-        else if (_instructionIndex == 1)
-        {
-            SetIngredientInstructionKeyAndText(6, "S", "for Strawberry"); //TODO: show all the flavors in the order
-            _listenForKey = KeyCode.S;
-        }
-        else if (_instructionIndex > 1)
-        {
-            CompleteTutorial();
+            case 0:
+                SetIngredientInstructionKeyAndText(1, "B", "for Boba Flavors", KeyCode.B);
+                break;
+            case 1:
+                SetIngredientInstructionKeyAndText(6, "S", "for Strawberry", KeyCode.S); //TODO: show all the flavors in the order
+                break;
+            case > 1:
+                CompleteTutorial();
+                break;
         }
     }
 
     void Level5()
     {
-        if (_instructionIndex == 0)
+        switch (_instructionIndex)
         {
-            SetIngredientInstructionKeyAndText(1, "T", "for Tea Flavors");
-            _listenForKey = KeyCode.T;
-        }
-        else if (_instructionIndex == 1)
-        {
-            SetIngredientInstructionKeyAndText(6, "M", "for Matcha"); //TODO: show all the flavors in the order
-            _listenForKey = KeyCode.M;
-        }
-        else if (_instructionIndex > 1)
-        {
-            CompleteTutorial();
+            case 0:
+                SetIngredientInstructionKeyAndText(1, "T", "for Tea Flavors", KeyCode.T);
+                break;
+            case 1:
+                SetIngredientInstructionKeyAndText(6, "M", "for Matcha", KeyCode.M); //TODO: show all the flavors in the order
+                break;
+            case > 1:
+                CompleteTutorial();
+                break;
         }
     }
 
-    void SetIngredientInstructionKeyAndText(int index, string key, string text)
+    void SetIngredientInstructionKeyAndText(int index, string key, string text, KeyCode listenForKey, Action onComplete = null)
     {
         if (_didSetIngredientInstructionKeyAndText) return;
 
+        _listenForKey = listenForKey;
+        _listenForKeyAction = onComplete;
         _didSetIngredientInstructionKeyAndText = true;
 
         _order.Instruction1.GetComponent<IngredientInstruction>().Hide(); //TODO: just serialize ingredient instruction instead of gameobject and then looking itn up

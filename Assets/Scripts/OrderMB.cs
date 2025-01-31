@@ -21,6 +21,19 @@ public class OrderMB : MonoBehaviour
     private Animator _animator;
 
     [SerializeField]
+    GameObject _instruction1;
+    [SerializeField]
+    GameObject _instruction2;
+    [SerializeField]
+    GameObject _instruction3;
+    [SerializeField]
+    GameObject _instruction4;
+    [SerializeField]
+    GameObject _instruction5;
+    [SerializeField]
+    GameObject _instruction6;
+    
+    [SerializeField]
     private OrderAnimations _orderAnimations;
 
 

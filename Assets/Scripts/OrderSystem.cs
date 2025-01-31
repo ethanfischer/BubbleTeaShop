@@ -39,7 +39,7 @@ public class OrderSystem : MonoBehaviour
     [SerializeField]
     OrderMB _orderMbPrefab;
 
-    List<OrderMB> _orders = new List<OrderMB>();
+    public List<OrderMB> Orders { get; } = new List<OrderMB>();
     public int OrdersFullfilled { get; private set; }
     float _timer;
     bool _skipFirstFrame = true;
@@ -93,7 +93,7 @@ public class OrderSystem : MonoBehaviour
     void HandleNextOrder()
     {
         _timer = 0f;
-        _orders.Add(Instantiate(_orderMbPrefab, this.transform));
+        Orders.Add(Instantiate(_orderMbPrefab, this.transform));
         _nextOrderTime = GetNextOrderTime();
         _orderAudioSource.clip = _orderSound;
         _orderAudioSource.Play();
@@ -102,7 +102,7 @@ public class OrderSystem : MonoBehaviour
 
     public bool TryGetMatchingOrder(Order input, out OrderMB matchingOrderMb)
     {
-        matchingOrderMb = _orders.FirstOrDefault(o => o.DoOrdersMatch(input));
+        matchingOrderMb = Orders.FirstOrDefault(o => o.DoOrdersMatch(input));
         if (matchingOrderMb != null)
         {
             Debug.Log("Matching order found");
@@ -135,7 +135,7 @@ public class OrderSystem : MonoBehaviour
 
     public void ClearOrders()
     {
-        foreach (var order in _orders)
+        foreach (var order in Orders)
         {
             if (order == null) { continue; }
             Debug.Log("Destroying order");
@@ -145,7 +145,7 @@ public class OrderSystem : MonoBehaviour
 
     public void RemoveOrderFromList(OrderMB order)
     {
-        _orders.Remove(order);
+        Orders.Remove(order);
     }
 
     public void GameOver(string text = "GAME OVER")
@@ -167,7 +167,7 @@ public class OrderSystem : MonoBehaviour
     public void Reset()
     {
         ClearOrders();
-        _orders.Clear();
+        Orders.Clear();
         OrdersFullfilled = 0;
         IsFirstOrderOfLevel = true;
     }

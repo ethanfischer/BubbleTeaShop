@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -98,7 +99,8 @@ public class Tutorial : MonoBehaviour
     void Level1()
     {
         Debug.Log("Showing Level 1 tutorial");
-        _ingredientsInstructions.ShowIngredientToKeyInstructions();
+        var order = OrderSystem.Instance.Orders.First();
+        _ingredientsInstructions.ShowIngredientToKeyInstructions(order);
     }
     
     void CloseDifficultyMenu()

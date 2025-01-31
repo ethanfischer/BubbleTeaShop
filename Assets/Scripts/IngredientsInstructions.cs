@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,9 +8,6 @@ using UnityEngine.UI;
 
 public class IngredientsInstructions : MonoBehaviour
 {
-    [SerializeField]
-    Image _image;
-
     [SerializeField]
     TMP_Text _key;
 
@@ -43,52 +41,40 @@ public class IngredientsInstructions : MonoBehaviour
         _instructionIndex++;
     }
 
-    public void ShowIngredientToKeyInstructions()
+    public void ShowIngredientToKeyInstructions(OrderMB order)
     {
         _animator.Play("IngredientInstructionFadeIn");
-        
+
         if (Level.Instance.LevelIndex == 1)
         {
             if (_instructionIndex == 0)
             {
-                _image.sprite = IconManager.Instance.RegularBobaSprite;
-                _key.text = "B";
-                _text.text = "for bubbles";
+                SetIngredientInstructionKeyAndText(order, 1, "B", "for Bubbles");
                 _listenForKey = KeyCode.B;
             }
             else if (_instructionIndex == 1)
             {
-                _image.sprite = IconManager.Instance.IceSprite;
-                _key.text = "I";
-                _text.text = "for Ice";
+                SetIngredientInstructionKeyAndText(order, 2, "I", "for Ice");
                 _listenForKey = KeyCode.I;
             }
             else if (_instructionIndex == 2)
             {
-                _image.sprite = IconManager.Instance.MilkSprite;
-                _key.text = "M";
-                _text.text = "for Milk";
+                SetIngredientInstructionKeyAndText(order, 3, "M", "for Milk");
                 _listenForKey = KeyCode.M;
             }
             else if (_instructionIndex == 3)
             {
-                _image.sprite = IconManager.Instance.SugarSprite;
-                _key.text = "S";
-                _text.text = "for Sugar";
+                SetIngredientInstructionKeyAndText(order, 4, "S", "for Sugar");
                 _listenForKey = KeyCode.S;
             }
             else if (_instructionIndex == 4)
             {
-                _image.sprite = IconManager.Instance.RegularTeaSprite;
-                _key.text = "T";
-                _text.text = "for Tea";
+                SetIngredientInstructionKeyAndText(order, 5, "T", "for Tea");
                 _listenForKey = KeyCode.T;
             }
             else if (_instructionIndex == 5)
             {
-                _image.sprite = IconManager.Instance.Blank;
-                _key.text = string.Empty; //TODO: find an enter key in the font
-                _text.text = "Enter";
+                SetIngredientInstructionKeyAndText(order, 6, "", "Enter");
                 _listenForKey = KeyCode.Return;
             }
             else if (_instructionIndex > 5)
@@ -99,13 +85,54 @@ public class IngredientsInstructions : MonoBehaviour
             }
         }
     }
-    
+
+    static void SetIngredientInstructionKeyAndText(OrderMB order, int index, string key, string text)
+    {
+        order.Instruction1.SetActive(false);
+        order.Instruction2.SetActive(false);
+        order.Instruction3.SetActive(false);
+        order.Instruction4.SetActive(false);
+        order.Instruction5.SetActive(false);
+        order.Instruction6.SetActive(false);
+
+        GameObject instruction = null;
+
+        switch (index)
+        {
+            case 1:
+                instruction = order.Instruction1;
+                break;
+            case 2:
+                instruction = order.Instruction2;
+                break;
+            case 3:
+                instruction = order.Instruction3;
+                break;
+            case 4:
+                instruction = order.Instruction4;
+                break;
+            case 5:
+                instruction = order.Instruction5;
+                break;
+            case 6:
+                instruction = order.Instruction6;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(index), index, null);
+        }
+
+        instruction.SetActive(true);
+
+        instruction.transform.Find("Key").gameObject.GetComponent<TMP_Text>().text = key;
+        instruction.transform.Find("Text").gameObject.GetComponent<TMP_Text>().text = text;
+    }
+
     public void OnFadeInComplete()
     {
         _animator.StopPlayback();
         _animator.enabled = false;
     }
-    
+
     public void Reset()
     {
         _listenForKey = KeyCode.None;

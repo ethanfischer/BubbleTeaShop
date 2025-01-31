@@ -77,7 +77,7 @@ public class OrderSystem : MonoBehaviour
         _timer = 0f;
     }
 
-    void Update()
+    public void Tick()
     {
         if(_isGameOver) return;
         if (TutorialState.IsTutorialActive) return;

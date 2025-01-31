@@ -7,7 +7,7 @@ public class TutorialState : MonoBehaviour, IState
 {
     [SerializeField]
     IngredientsInstructions _ingredientsInstructions;
-    public static bool IsTutorialActive { get; private set; } = true;
+    public static bool IsTutorialActive { get; private set; } = false;
 
     private Level _level;
     private Level Level

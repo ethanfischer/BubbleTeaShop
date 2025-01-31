@@ -11,6 +11,8 @@ public class DefaultState : IState
 
     public void Update()
     {
+        OrderSystem.Instance.Tick();
+        
         //Boba
         if (Input.GetKeyDown(KeyCode.B))
         {

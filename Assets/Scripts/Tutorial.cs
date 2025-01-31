@@ -47,6 +47,7 @@ public class Tutorial : MonoBehaviour
     public bool[] CompletedTutorials { get; private set; } =
     {
         false,
+        false,
         true, //Level 2 doesn't need a tutorial
         false,
         false,

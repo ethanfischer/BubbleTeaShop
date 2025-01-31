@@ -101,10 +101,10 @@ public class IngredientsInstructions : MonoBehaviour
     void Level2(OrderMB order)
     {
         DidCompleteTutorial = true;
-            SetIngredientInstructionKeyAndText(order, -1, "", "");
+        SetIngredientInstructionKeyAndText(order, -1, "", "");
         Reset();
     }
-    
+
     void Level3(OrderMB order)
     {
         if (_instructionIndex == 0)
@@ -124,7 +124,7 @@ public class IngredientsInstructions : MonoBehaviour
             Reset();
         }
     }
-    
+
     void Level4(OrderMB order)
     {
         if (_instructionIndex == 0)
@@ -134,28 +134,33 @@ public class IngredientsInstructions : MonoBehaviour
         }
         else if (_instructionIndex == 1)
         {
+            SetIngredientInstructionKeyAndText(order, 6, "S", "for Strawberry"); //TODO: show all the flavors in the order
+            _listenForKey = KeyCode.S;
+        }
+        else if (_instructionIndex == 2)
+        {
             SetIngredientInstructionKeyAndText(order, 6, "X", "");
             _listenForKey = KeyCode.X;
         }
-        else if (_instructionIndex > 1)
+        else if (_instructionIndex > 2)
         {
             SetIngredientInstructionKeyAndText(order, -1, "", "");
             DidCompleteTutorial = true;
             Reset();
         }
     }
-    
+
     void Level5(OrderMB order)
     {
         if (_instructionIndex == 0)
         {
-            SetIngredientInstructionKeyAndText(order, 1, "B", "for Boba Flavors");
-            _listenForKey = KeyCode.B;
+            SetIngredientInstructionKeyAndText(order, 1, "T", "for Tea Flavors");
+            _listenForKey = KeyCode.T;
         }
         else if (_instructionIndex == 1)
         {
-            SetIngredientInstructionKeyAndText(order, 6, "X", "");
-            _listenForKey = KeyCode.X;
+            SetIngredientInstructionKeyAndText(order, 6, "M", "for Matcha"); //TODO: show all the flavors in the order
+            _listenForKey = KeyCode.M;
         }
         else if (_instructionIndex > 1)
         {
@@ -179,6 +184,8 @@ public class IngredientsInstructions : MonoBehaviour
         order.Instruction6.GetComponent<IngredientInstruction>().Hide();
 
         GameObject instruction = null;
+        
+        if (index == -1) return;
 
         switch (index)
         {
@@ -207,7 +214,6 @@ public class IngredientsInstructions : MonoBehaviour
         instruction.transform.Find("Key").gameObject.GetComponent<TMP_Text>().text = key;
         instruction.transform.Find("Text").gameObject.GetComponent<TMP_Text>().text = text;
 
-        if (index == -1) return;
         instruction.GetComponent<IngredientInstruction>().FadeIn(); //TODO: just serialize ingredient instruction instead of gameobject and then looking itn up
 
     }

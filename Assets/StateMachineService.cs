@@ -30,12 +30,18 @@ public class StateMachineService : MonoBehaviour
     void Start()
     {
         _stateMachine = new StateMachine();
-        SetState(_difficultyMenuState);
+        SetDifficultyMenuState();
     }
 
     void Update()
     {
         _stateMachine.Update();
+    }
+    
+    void SetDifficultyMenuState()
+    {
+        _stateMachine.SetState(_difficultyMenuState);
+        _currentStateName = _difficultyMenuState.GetType().ToString();
     }
 
     public void SetTutorialState()
@@ -44,10 +50,31 @@ public class StateMachineService : MonoBehaviour
         _currentStateName = _tutorialState.GetType().ToString();
     }
     
-    public void SetState(IState newState)
+    public void SetDefaultState()
     {
-        Debug.Log("Setting state to " + newState.GetType());
-        _stateMachine.SetState(newState);
-        _currentStateName = newState.GetType().ToString();
+        var defaultState = new DefaultState();
+        _stateMachine.SetState(defaultState);
+        _currentStateName = defaultState.GetType().ToString();
     }
+    
+    public void SetAddingTeaState(ActiveTea activeTea)
+    {
+        var addingTeaState = new AddingTeaState(activeTea);
+        _stateMachine.SetState(addingTeaState);
+        _currentStateName = addingTeaState.GetType().ToString();
+    }
+    
+    public void SetAddingBobaState(ActiveTea activeTea)
+    {
+        var addingBobaState = new AddingBobaState(activeTea);
+        _stateMachine.SetState(addingBobaState);
+        _currentStateName = addingBobaState.GetType().ToString();
+    }
+    
+    // public void SetState(IState newState)
+    // {
+    //     Debug.Log("Setting state to " + newState.GetType());
+    //     _stateMachine.SetState(newState);
+    //     _currentStateName = newState.GetType().ToString();
+    // }
 }

@@ -272,7 +272,7 @@ public class OrderMB : MonoBehaviour
     {
         StopAnimation();
         
-        if (OrderSystem.Instance.IsFirstOrderOfLevel)
+        if (!TutorialState.CompletedTutorials[Level.Instance.LevelIndex])
         {
             StateMachineService.Instance.SetTutorialState();
         }

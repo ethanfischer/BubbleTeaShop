@@ -26,19 +26,19 @@ public class DifficultyMenuState : MonoBehaviour, IState
         if (Input.GetKeyDown(KeyCode.E))
         {
             GameDifficulty.Difficulty = (int)GameDifficultyEnum.Easy;
-            StateMachineService.Instance.SetState(new DefaultState());
+            StateMachineService.Instance.SetDefaultState();
             Level.Instance.NextLevel();
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
             GameDifficulty.Difficulty = (int)GameDifficultyEnum.Medium;
-            StateMachineService.Instance.SetState(new DefaultState());
+            StateMachineService.Instance.SetDefaultState();
             Level.Instance.NextLevel();
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
             GameDifficulty.Difficulty = (int)GameDifficultyEnum.Hard;
-            StateMachineService.Instance.SetState(new DefaultState());
+            StateMachineService.Instance.SetDefaultState();
             Level.Instance.NextLevel();
         }
     }

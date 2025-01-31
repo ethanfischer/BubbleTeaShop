@@ -47,8 +47,6 @@ public class OrderSystem : MonoBehaviour
     float _nextOrderTime;
     bool _isGameOver;
     
-    public bool IsFirstOrderOfLevel { get; private set; } = true;
-
     float GetNextOrderTime()
     {
         var upperLimit = GameDifficulty.Difficulty switch
@@ -119,12 +117,11 @@ public class OrderSystem : MonoBehaviour
 
     public void RecordFullfilledOrder(decimal earnings)
     {
-        IsFirstOrderOfLevel = false;
         OrdersFullfilled++;
         Cash += earnings;
         _cashText.text = $"${Cash}";
 
-        if (OrdersFullfilled >= 10)
+        if (OrdersFullfilled >= 2)
         {
             Level.Instance.NextLevel();
             Reset();
@@ -173,6 +170,5 @@ public class OrderSystem : MonoBehaviour
         ClearOrders();
         Orders.Clear();
         OrdersFullfilled = 0;
-        IsFirstOrderOfLevel = true;
     }
 }

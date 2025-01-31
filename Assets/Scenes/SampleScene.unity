@@ -3577,6 +3577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tutorialState: {fileID: 1964440159}
   _difficultyMenuState: {fileID: 220970744}
+  _currentStateName: 
 --- !u!4 &1450749211
 Transform:
   m_ObjectHideFlags: 0
@@ -5659,6 +5660,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6544768553147764400, guid: 1a79ae32724dc43068f0af803fc6d464, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a1c599d4e03224e5896bed51c18a0773, type: 2}
     - target: {fileID: 6808714977365289009, guid: 1a79ae32724dc43068f0af803fc6d464, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5747,7 +5752,9 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3793644835744661045, guid: 1a79ae32724dc43068f0af803fc6d464, type: 3}
+    - {fileID: 6544768553147764400, guid: 1a79ae32724dc43068f0af803fc6d464, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

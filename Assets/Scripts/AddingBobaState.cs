@@ -19,22 +19,22 @@ public class AddingBobaState : IState
         if (Input.GetKeyDown(KeyCode.R))
         {
             _activeTea.AddRegularBoba();
-            StateMachineService.Instance.SetState(new DefaultState());
+            StateMachineService.Instance.SetDefaultState();
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
             _activeTea.AddMangoBoba();
-            StateMachineService.Instance.SetState(new DefaultState());
+            StateMachineService.Instance.SetDefaultState();
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
             _activeTea.AddStrawberryBoba();
-            StateMachineService.Instance.SetState(new DefaultState());
+            StateMachineService.Instance.SetDefaultState();
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
             _activeTea.AddBlueberryBoba();
-            StateMachineService.Instance.SetState(new DefaultState());
+            StateMachineService.Instance.SetDefaultState();
         }
     }
 

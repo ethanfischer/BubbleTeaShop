@@ -28,7 +28,7 @@ public class DefaultState : IState
                 }
                 else
                 {
-                    StateMachineService.Instance.SetState(new AddingBobaState(_activeTea)); //TODO: refactor so all these conditions live in the boba state
+                    StateMachineService.Instance.SetAddingBobaState(_activeTea); //TODO: refactor so all these conditions live in the boba state
                 }
             }
         }
@@ -70,7 +70,7 @@ public class DefaultState : IState
                 }
                 else
                 {
-                    StateMachineService.Instance.SetState(new AddingTeaState(_activeTea)); //TODO: refactor so all these conditions live in the boba state
+                    StateMachineService.Instance.SetAddingTeaState(_activeTea); //TODO: refactor so all these conditions live in the boba state
                 }
             }
         }

@@ -7,8 +7,6 @@ public class TutorialState : MonoBehaviour, IState
 {
     [SerializeField]
     IngredientsInstructions _ingredientsInstructions;
-    public static bool IsTutorialActive { get; private set; } = false;
-
     private Level _level;
     private Level Level
     { get
@@ -32,24 +30,20 @@ public class TutorialState : MonoBehaviour, IState
 
     public void Enter()
     {
-        IsTutorialActive = true;
         Debug.Log("Showing tutorial");
     }
 
     void IState.Update()
     {
-        if (!IsTutorialActive) return;
-
-        ShowIngredientToKeyInstructions(Level.LevelIndex);
-
         if (_ingredientsInstructions.DidCompleteTutorial)
         {
-            IsTutorialActive = false;
             CompletedTutorials[Level.LevelIndex] = true;
             StateMachineService.Instance.SetState(new DefaultState());
         }
+
+        ShowIngredientToKeyInstructions(Level.LevelIndex);
     }
-    
+
     public void Exit()
     {
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -87,14 +88,14 @@ public class IngredientsInstructions : MonoBehaviour
         }
         else if (_instructionIndex == 5)
         {
-            SetIngredientInstructionKeyAndText(order, 6, "", "Enter");
+            SetIngredientInstructionKeyAndText(order, 6, "", "Enter to submit");
             _listenForKey = KeyCode.Return;
         }
         else if (_instructionIndex > 5)
         {
-            SetIngredientInstructionKeyAndText(order, -1, "", "");
             DidCompleteTutorial = true;
             Reset();
+            order.Complete();
         }
     }
 
@@ -184,7 +185,7 @@ public class IngredientsInstructions : MonoBehaviour
         order.Instruction6.GetComponent<IngredientInstruction>().Hide();
 
         GameObject instruction = null;
-        
+
         if (index == -1) return;
 
         switch (index)

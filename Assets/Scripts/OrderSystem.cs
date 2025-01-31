@@ -80,7 +80,11 @@ public class OrderSystem : MonoBehaviour
     public void Tick()
     {
         if(_isGameOver) return;
-        if (TutorialState.IsTutorialActive) return;
+        
+        foreach (var order in Orders)
+        {
+            order.Tick();
+        }
 
         if (_timer > _nextOrderTime)
         {

@@ -58,6 +58,6 @@ public class DifficultyMenuState : MonoBehaviour, IState
 
     public void OnAnimationFinished()
     {
-        Destroy(gameObject);
+        _animator.enabled = false;
     }
 }

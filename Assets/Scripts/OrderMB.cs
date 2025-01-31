@@ -179,11 +179,6 @@ public class OrderMB : MonoBehaviour
     {
         if (Tutorial.Instance.IsTutorialActive) return;
 
-        if (OrderSystem.Instance.IsFirstOrderOfLevel)
-        {
-            Tutorial.Instance.ShowTutorial();
-        }
-
         TimeRemaining -= Time.deltaTime;
         if (TimeRemaining <= _expirationAnimationTime && !_didStartFirstExpiringAnimation)
         {
@@ -267,6 +262,11 @@ public class OrderMB : MonoBehaviour
     void OnOrderArrivedAnimationComplete()
     {
         StopAnimation();
+        
+        if (OrderSystem.Instance.IsFirstOrderOfLevel)
+        {
+            Tutorial.Instance.ShowTutorial();
+        }
     }
 
     void StopAnimation()

@@ -25,12 +25,16 @@ public class PopupText : MonoBehaviour
     TMP_Text _text;
     bool _isGameOver;
 
-    public void ShowPopup(string text, float f = 2f)
+    public void ShowPopup(string text, float f = 2f, string key = "")
     {
         if (_isGameOver) return;
         
         _text.text = text;
         _timer = f;
+
+        transform.Find("Key").GetComponent<TextMeshProUGUI>().text = key != ""
+            ? key
+            : string.Empty;
     }
 
     public string GetCashColorHexCode()

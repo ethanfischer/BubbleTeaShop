@@ -9,7 +9,7 @@ public class TutorialState : MonoBehaviour, IState
     TMP_Text _text;
     KeyCode _listenForKey;
     int _instructionIndex;
-    static bool _didSetIngredientInstructionKeyAndText;
+    static bool _didSetKeyAndText;
     private Level _level;
     OrderMB _order;
     ActiveTea _activeTea;
@@ -54,6 +54,8 @@ public class TutorialState : MonoBehaviour, IState
 
     private void CompleteTutorial()
     {
+        SetPopupKeyAndText(-1, string.Empty, string.Empty, KeyCode.None);
+        SetIngredientInstructionKeyAndText(-1, string.Empty, string.Empty, KeyCode.None);
         _order.Complete();
         CompletedTutorials[Level.LevelIndex] = true;
         StateMachineService.Instance.SetDefaultState();
@@ -67,7 +69,7 @@ public class TutorialState : MonoBehaviour, IState
     void NextInstruction()
     {
         _instructionIndex++;
-        _didSetIngredientInstructionKeyAndText = false;
+        _didSetKeyAndText = false;
     }
 
     void ShowIngredientToKeyInstructions(int i)
@@ -114,10 +116,10 @@ public class TutorialState : MonoBehaviour, IState
                 SetIngredientInstructionKeyAndText(5, "T", "for Tea", KeyCode.T, () => _activeTea.AddRegularTea());
                 break;
             case 5:
-                SetIngredientInstructionKeyAndText(6, "",  "<color=green>Enter</color> to submit", KeyCode.Return, () => _activeTea.SubmitTeaForTutorial());
+                SetPopupKeyAndText(6, "",  "<color=green>Enter</color> to submit", KeyCode.Return, () => _activeTea.SubmitTeaForTutorial());
                 break;
             case 6:
-                SetIngredientInstructionKeyAndText(6, "<color=red>X</color>", "to trash", KeyCode.X, () => _activeTea.TrashTeaForTutorial());
+                SetPopupKeyAndText(6, "<color=red>X</color>", "to trash", KeyCode.X, () => _activeTea.TrashTeaForTutorial());
                 break;
             case > 6:
                 CompleteTutorial();
@@ -177,11 +179,11 @@ public class TutorialState : MonoBehaviour, IState
 
     void SetIngredientInstructionKeyAndText(int index, string key, string text, KeyCode listenForKey, Action onComplete = null)
     {
-        if (_didSetIngredientInstructionKeyAndText) return;
+        if (_didSetKeyAndText) return;
 
         _listenForKey = listenForKey;
         _listenForKeyAction = onComplete;
-        _didSetIngredientInstructionKeyAndText = true;
+        _didSetKeyAndText = true;
 
         _order.Instruction1.GetComponent<IngredientInstruction>().Hide(); //TODO: just serialize ingredient instruction instead of gameobject and then looking itn up
         _order.Instruction2.GetComponent<IngredientInstruction>().Hide();
@@ -224,11 +226,29 @@ public class TutorialState : MonoBehaviour, IState
         instruction.GetComponent<IngredientInstruction>().FadeIn(); //TODO: just serialize ingredient instruction instead of gameobject and then looking itn up
 
     }
+    
+    void SetPopupKeyAndText(int index, string key, string text, KeyCode listenForKey, Action onComplete = null)
+    {
+        if (_didSetKeyAndText) return;
+
+        _listenForKey = listenForKey;
+        _listenForKeyAction = onComplete;
+        _didSetKeyAndText = true;
+
+        _order.Instruction1.GetComponent<IngredientInstruction>().Hide(); //TODO: just serialize ingredient instruction instead of gameobject and then looking itn up
+        _order.Instruction2.GetComponent<IngredientInstruction>().Hide();
+        _order.Instruction3.GetComponent<IngredientInstruction>().Hide();
+        _order.Instruction4.GetComponent<IngredientInstruction>().Hide();
+        _order.Instruction5.GetComponent<IngredientInstruction>().Hide();
+        _order.Instruction6.GetComponent<IngredientInstruction>().Hide();
+        
+        PopupText.Instance.ShowPopup(text, float.MaxValue, key);
+    }
 
     public void Reset()
     {
         _listenForKey = KeyCode.None;
         _instructionIndex = 0;
-        _didSetIngredientInstructionKeyAndText = false;
+        _didSetKeyAndText = false;
     }
 }

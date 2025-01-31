@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class IngredientInstruction : MonoBehaviour
 {
-    Animator _animator;
+    // Animator _animator;
 
     void Start()
     {
-        _animator = GetComponent<Animator>();
-        _animator.enabled = true;
+        // _animator = GetComponent<Animator>();
+    }
+    
+    public void FadeIn()
+    {
+        // _animator.enabled = true;
+        // _animator.Play("IngredientInstructionFadeIn");
+        GetComponent<CanvasGroup>().alpha = 1f;
     }
 
     public void OnFadeInComplete()
     {
-        _animator.enabled = false;
+        // _animator.enabled = false;
+    }
+    
+    public void Hide()
+    {
+        GetComponent<CanvasGroup>().alpha = 0f;
     }
 }

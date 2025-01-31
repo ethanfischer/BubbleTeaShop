@@ -79,12 +79,12 @@ public class IngredientsInstructions : MonoBehaviour
 
     static void SetIngredientInstructionKeyAndText(OrderMB order, int index, string key, string text)
     {
-        order.Instruction1.SetActive(false);
-        order.Instruction2.SetActive(false);
-        order.Instruction3.SetActive(false);
-        order.Instruction4.SetActive(false);
-        order.Instruction5.SetActive(false);
-        order.Instruction6.SetActive(false);
+        order.Instruction1.GetComponent<IngredientInstruction>().Hide();//TODO: just serialize ingredient instruction instead of gameobject and then looking itn up
+        order.Instruction2.GetComponent<IngredientInstruction>().Hide();
+        order.Instruction3.GetComponent<IngredientInstruction>().Hide();
+        order.Instruction4.GetComponent<IngredientInstruction>().Hide();
+        order.Instruction5.GetComponent<IngredientInstruction>().Hide();
+        order.Instruction6.GetComponent<IngredientInstruction>().Hide();
 
         GameObject instruction = null;
 
@@ -112,7 +112,7 @@ public class IngredientsInstructions : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(index), index, null);
         }
 
-        instruction.SetActive(true);
+        instruction.GetComponent<IngredientInstruction>().FadeIn(); //TODO: just serialize ingredient instruction instead of gameobject and then looking itn up
 
         instruction.transform.Find("Key").gameObject.GetComponent<TMP_Text>().text = key;
         instruction.transform.Find("Text").gameObject.GetComponent<TMP_Text>().text = text;

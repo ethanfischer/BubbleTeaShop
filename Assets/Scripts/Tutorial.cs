@@ -43,8 +43,15 @@ public class Tutorial : MonoBehaviour
         }
         return _level;
     } }
-    
-    public bool[] CompletedTutorials { get; private set; } = new bool[20];
+
+    public bool[] CompletedTutorials { get; private set; } =
+    {
+        false,
+        true, //Level 2 doesn't need a tutorial
+        false,
+        false,
+        false
+    };
 
     public void ShowTutorial()
     {
@@ -56,18 +63,18 @@ public class Tutorial : MonoBehaviour
     {
         if (!IsTutorialActive) return;
 
-        if (Level.LevelIndex == 0)
+        if (GameDifficulty.Difficulty == (int)GameDifficultyEnum.None)
         {
             DifficultyMenu();
         }
-        else if (Level.LevelIndex == 1)
+        else 
         {
-            Level1();
-            
-            if(_ingredientsInstructions.DidCompleteTutorial)
+            ShowIngredientToKeyInstructions(Level.LevelIndex);
+
+            if (_ingredientsInstructions.DidCompleteTutorial)
             {
                 IsTutorialActive = false;
-                CompletedTutorials[1] = true;
+                CompletedTutorials[Level.LevelIndex] = true;
             }
         }
     }
@@ -95,14 +102,13 @@ public class Tutorial : MonoBehaviour
         }
     }
 
-
-    void Level1()
+    void ShowIngredientToKeyInstructions(int i)
     {
-        Debug.Log("Showing Level 1 tutorial");
         var order = OrderSystem.Instance.Orders.First();
-        _ingredientsInstructions.ShowIngredientToKeyInstructions(order);
+        _ingredientsInstructions.ShowIngredientToKeyInstructions(order, i);
     }
-    
+
+
     void CloseDifficultyMenu()
     {
         _image.color = _fadeColor;

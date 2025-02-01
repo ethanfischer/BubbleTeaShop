@@ -107,10 +107,9 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetPopupKeyAndText(1, "C", "for Cup", KeyCode.C, () => _activeTea.AddCup(CupSize.Cup));
+                SetPopupKeyAndText(1, "C", "for <u>C</u>up", KeyCode.C, () => _activeTea.AddCup(CupSize.Cup));
                 break;
             case 1:
-                PopupText.Instance.ShowPopup(string.Empty, 0);
                 SetIngredientInstructionKeyAndText(1, "B", "for Boba", KeyCode.B, () => _activeTea.AddRegularBoba());
                 break;
             case 2:
@@ -147,12 +146,25 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetIngredientInstructionKeyAndText(1, "J", "for Jelly", KeyCode.J);
+                SetPopupKeyAndText(1, "C", "for <u>C</u>ups", KeyCode.C, () => CupSelection.Instance.ShowCupSelection());
                 break;
             case 1:
-                SetIngredientInstructionKeyAndText(6, "C", "for Cheese Foam", KeyCode.C);
+                SetPopupKeyAndText(1, "C", "reg <u>C</u>up", KeyCode.C);
                 break;
-            case > 1:
+            case 2:
+                SetPopupKeyAndText(1, "L", "<u>L</u>arge cup", KeyCode.L, () =>
+                {
+                    CupSelection.Instance.HideCupSelection();
+                    _activeTea.AddCup(CupSize.LargeCup);
+                });
+                break;
+            case 3:
+                SetIngredientInstructionKeyAndText(1, "J", "for Jelly", KeyCode.J);
+                break;
+            case 4:
+                SetIngredientInstructionKeyAndText(6, "F", "for Cheese Foam", KeyCode.F);
+                break;
+            case > 4:
                 CompleteTutorial();
                 break;
         }
@@ -209,6 +221,7 @@ public class TutorialState : MonoBehaviour, IState
     {
         if (_didSetKeyAndText) return;
 
+        PopupText.Instance.ShowPopup(string.Empty, 0); //Clear out any previous popups
         _listenForKey = listenForKey;
         _listenForKeyAction = onComplete;
         _didSetKeyAndText = true;

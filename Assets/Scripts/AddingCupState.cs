@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AddingCupState : IState
 {
+    const int LEVEL_INDEX = 3;
     private ActiveTea _activeTea;
 
     public AddingCupState(ActiveTea activeTea)
@@ -11,27 +12,42 @@ public class AddingCupState : IState
 
     public void Enter()
     {
-        CupSelection.Instance.ShowCupSelection();
+        if (Level.Instance.LevelIndex >= LEVEL_INDEX)
+        {
+            CupSelection.Instance.ShowCupSelection();
+        }
     }
 
     public void Update()
     {
         OrderSystem.Instance.Tick();
-        if (Input.GetKeyDown(KeyCode.C))
+
+        if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
             _activeTea.AddCup(CupSize.Cup);
             StateMachineService.Instance.SetDefaultState();
         }
-        if (Input.GetKeyDown(KeyCode.L))
+        else
         {
-            _activeTea.AddCup(CupSize.LargeCup);
-            StateMachineService.Instance.SetDefaultState();
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                _activeTea.AddCup(CupSize.Cup);
+                StateMachineService.Instance.SetDefaultState();
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                _activeTea.AddCup(CupSize.LargeCup);
+                StateMachineService.Instance.SetDefaultState();
+            }
         }
     }
 
     public void Exit()
     {
-        CupSelection.Instance.HideCupSelection();
+        if (Level.Instance.LevelIndex >= LEVEL_INDEX)
+        {
+            CupSelection.Instance.HideCupSelection();
+        }
     }
 }
 

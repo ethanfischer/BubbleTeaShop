@@ -187,7 +187,6 @@ public class TutorialState : MonoBehaviour, IState
                 SetPopupKeyAndText(1, "L", "<u>L</u>arge cup", KeyCode.L, () =>
                 {
                     CupSelection.Instance.HideCupSelection();
-                    _activeTea.AddCup(CupSize.LargeCup);
                 });
                 break;
             case > 2:

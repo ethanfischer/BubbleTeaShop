@@ -12,7 +12,7 @@ public class DefaultState : IState
     public void Update()
     {
         OrderSystem.Instance.Tick();
-        
+
         //Cup
         if (!_activeTea.HasCup && Input.GetKeyDown(KeyCode.C))
         {
@@ -20,26 +20,14 @@ public class DefaultState : IState
         }
 
         if (!_activeTea.HasCup) return;
-        
+
         //Boba
         if (Input.GetKeyDown(KeyCode.B))
         {
-            if (Level.Instance.LevelIndex < 4)
-            {
-                _activeTea.AddRegularBoba();
-            }
-            else
-            {
-                if (_activeTea.DidSelectBoba)
-                {
-                    PopupText.Instance.ShowPopup("Boba already selected", 1f);
-                }
-                else
-                {
-                    StateMachineService.Instance.SetAddingBobaState(_activeTea); //TODO: refactor so all these conditions live in the boba state
-                }
-            }
+            StateMachineService.Instance.SetAddingBobaState(_activeTea);
         }
+        
+        //Jelly
         if (Input.GetKeyDown(KeyCode.J))
         {
             _activeTea.AddJelly();

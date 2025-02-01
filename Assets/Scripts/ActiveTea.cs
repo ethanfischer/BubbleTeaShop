@@ -233,7 +233,13 @@ public class ActiveTea : MonoBehaviour
             CupSize.Cup => Vector3.one * 5f,
             _ => transform.localScale
         };
-        Debug.Log("Regular Cup added");
+        _cup = size switch
+        {
+            CupSize.LargeCup => 1,
+            CupSize.Cup => 0,
+            _ => 0
+        };
+        Debug.Log($"Cup size {_cup } added");
     }
 
     public void AddMangoBoba()

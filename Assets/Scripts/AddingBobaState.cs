@@ -3,6 +3,7 @@ using UnityEngine;
 public class AddingBobaState : IState
 {
     private ActiveTea _activeTea;
+    const int LEVEL_INDEX = 5;
 
     public AddingBobaState(ActiveTea activeTea)
     {
@@ -17,6 +18,26 @@ public class AddingBobaState : IState
     public void Update()
     {
         OrderSystem.Instance.Tick();
+
+        if (Level.Instance.LevelIndex < LEVEL_INDEX)
+        {
+            _activeTea.AddRegularBoba();
+        }
+        else
+        {
+            if (_activeTea.DidSelectBoba)
+            {
+                PopupText.Instance.ShowPopup("Boba already selected", 1f);
+            }
+            else
+            {
+                BobaSelection();
+            }
+        }
+    }
+    
+    void BobaSelection()
+    {
         if (Input.GetKeyDown(KeyCode.B))
         {
             _activeTea.AddRegularBoba();

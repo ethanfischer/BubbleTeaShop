@@ -12,6 +12,7 @@ public class AddingCupState : IState
 
     public void Enter()
     {
+        CameraManager.Instance.ActivateCupPose();
         if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
             CupSelection.Instance.ShowCupSelection(CupSize.Cup);
@@ -51,6 +52,7 @@ public class AddingCupState : IState
 
     public void Exit()
     {
+        CameraManager.Instance.ActivateDefaultPose();
         CupSelection.Instance.HideCupSelection();
     }
 }

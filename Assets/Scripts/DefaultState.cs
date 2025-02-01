@@ -14,9 +14,9 @@ public class DefaultState : IState
         OrderSystem.Instance.Tick();
         
         //Cup
-        if (Input.GetKeyDown(KeyCode.C))
+        if (!_activeTea.HasCup && Input.GetKeyDown(KeyCode.C))
         {
-            _activeTea.AddCup();
+            StateMachineService.Instance.SetAddingCupState(_activeTea);
         }
 
         if (!_activeTea.HasCup) return;

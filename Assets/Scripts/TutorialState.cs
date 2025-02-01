@@ -107,7 +107,7 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetPopupKeyAndText(1, "C", "for Cup", KeyCode.C, () => _activeTea.AddCup());
+                SetPopupKeyAndText(1, "C", "for Cup", KeyCode.C, () => _activeTea.AddCup(CupSize.Cup));
                 break;
             case 1:
                 PopupText.Instance.ShowPopup(string.Empty, 0);

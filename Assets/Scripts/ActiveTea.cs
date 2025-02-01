@@ -216,7 +216,7 @@ public class ActiveTea : MonoBehaviour
     }
     
     
-    public void AddCup(int size = 0)
+    public void AddCup(CupSize size)
     {
         HasCup = true;
         // _audioSource.clip = _jellySound;
@@ -225,6 +225,13 @@ public class ActiveTea : MonoBehaviour
         _animator.enabled = true;
         var cup = _root.Find("cup");
         cup.gameObject.SetActive(true);
+
+        transform.localScale = size switch
+        {
+            CupSize.LargeCup => new Vector3(5f, 5.5f, 5f),
+            CupSize.Cup => Vector3.one * 5f,
+            _ => transform.localScale
+        };
         Debug.Log("Regular Cup added");
     }
 

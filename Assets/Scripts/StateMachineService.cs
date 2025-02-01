@@ -71,6 +71,13 @@ public class StateMachineService : MonoBehaviour
         _currentStateName = addingBobaState.GetType().ToString();
     }
     
+    public void SetAddingCupState(ActiveTea activeTea)
+    {
+        var addingCupState = new AddingCupState(activeTea);
+        _stateMachine.SetState(addingCupState);
+        _currentStateName = addingCupState.GetType().ToString();
+    }
+    
     // public void SetState(IState newState)
     // {
     //     Debug.Log("Setting state to " + newState.GetType());

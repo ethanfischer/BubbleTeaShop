@@ -42,10 +42,10 @@ public class OrderMB : MonoBehaviour
 
     float TimeToCompleteOrder => GameDifficulty.Difficulty switch
     {
-        (int)GameDifficultyEnum.Easy => 45f,
-        (int)GameDifficultyEnum.Medium => 30f,
-        (int)GameDifficultyEnum.Hard => 15f,
-        (int)GameDifficultyEnum.Testing => 5f,
+        (int)GameDifficultyEnum.Easy => 60f,
+        (int)GameDifficultyEnum.Medium => 45f,
+        (int)GameDifficultyEnum.Hard => 30f,
+        (int)GameDifficultyEnum.Testing => 9999f,
         _ => 0f
     };
 

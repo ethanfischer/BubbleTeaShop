@@ -26,7 +26,7 @@ public class DefaultState : IState
         {
             StateMachineService.Instance.SetAddingBobaState(_activeTea);
         }
-
+        
         //Jelly
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -54,7 +54,21 @@ public class DefaultState : IState
         //Tea
         if (Input.GetKeyDown(KeyCode.T))
         {
-            StateMachineService.Instance.SetAddingTeaState();
+            if (Level.Instance.LevelIndex < 5)
+            {
+                _activeTea.AddRegularTea();
+            }
+            else
+            {
+                if (_activeTea.DidSelectTea)
+                {
+                    PopupText.Instance.ShowPopup("Tea already selected", 1f);
+                }
+                else
+                {
+                    StateMachineService.Instance.SetAddingTeaState(_activeTea); //TODO: refactor so all these conditions live in the boba state
+                }
+            }
         }
 
         //Toppings

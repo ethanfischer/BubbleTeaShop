@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AddingCupState : IState
 {
-    const int LEVEL_INDEX = 3;
+    const int LEVEL_INDEX = 4;
     private ActiveTea _activeTea;
 
     public AddingCupState(ActiveTea activeTea)

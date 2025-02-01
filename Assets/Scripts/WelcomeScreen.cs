@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WelcomeScreen : MonoBehaviour
 {
+    [SerializeField]
+    private int fadeTime = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,7 +14,7 @@ public class WelcomeScreen : MonoBehaviour
     
     IEnumerator FadeOut()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(fadeTime);
         this.gameObject.SetActive(false);
     }
 }

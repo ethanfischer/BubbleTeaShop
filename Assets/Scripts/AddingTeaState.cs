@@ -17,12 +17,12 @@ public class AddingTeaState : IState
     public void Update()
     {
         OrderSystem.Instance.Tick();
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             _activeTea.AddRegularTea();
             StateMachineService.Instance.SetDefaultState();
         }
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             _activeTea.AddTaroTea();
             StateMachineService.Instance.SetDefaultState();

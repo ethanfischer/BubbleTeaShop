@@ -17,7 +17,7 @@ public class AddingBobaState : IState
     public void Update()
     {
         OrderSystem.Instance.Tick();
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             _activeTea.AddRegularBoba();
             StateMachineService.Instance.SetDefaultState();
@@ -32,7 +32,7 @@ public class AddingBobaState : IState
             _activeTea.AddStrawberryBoba();
             StateMachineService.Instance.SetDefaultState();
         }
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             _activeTea.AddBlueberryBoba();
             StateMachineService.Instance.SetDefaultState();

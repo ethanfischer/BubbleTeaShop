@@ -162,16 +162,16 @@ public class TutorialState : MonoBehaviour, IState
                 SetIngredientInstructionKeyAndText(1, "B", "for Boba Flavors", KeyCode.B, () => CameraManager.Instance.ActivateBobaPose());
                 break;
             case 1:
-                SetPopupKeyAndText(6, "S", "trawberry", KeyCode.S); 
+                SetPopupKeyAndText(6, "S", "Strawberry", KeyCode.S); 
                 break;
             case 2:
-                SetPopupKeyAndText(6, "M", "ango", KeyCode.M); 
+                SetPopupKeyAndText(6, "M", "Mango", KeyCode.M); 
                 break;
             case 3:
-                SetPopupKeyAndText(6, "B", "lueberry", KeyCode.B); 
+                SetPopupKeyAndText(6, "L", "bLueberry", KeyCode.L); 
                 break;
             case 4:
-                SetPopupKeyAndText(6, "R", "egular", KeyCode.R, () => CameraManager.Instance.ActivateDefaultPose()); 
+                SetPopupKeyAndText(6, "B", "Boba", KeyCode.B, () => CameraManager.Instance.ActivateDefaultPose()); 
                 break;
             case > 4:
                 CompleteTutorial();
@@ -187,13 +187,13 @@ public class TutorialState : MonoBehaviour, IState
                 SetIngredientInstructionKeyAndText(5, "T", "for Tea Flavors", KeyCode.T, () => CameraManager.Instance.ActivateTeaPose());
                 break;
             case 1:
-                SetPopupKeyAndText(6, "M", "atcha", KeyCode.M);
+                SetPopupKeyAndText(6, "M", "matcha", KeyCode.M);
                 break;
             case 2:
-                SetPopupKeyAndText(6, "T", "aro", KeyCode.T);
+                SetPopupKeyAndText(6, "R", "taRo", KeyCode.R);
                 break;
             case 3:
-                SetPopupKeyAndText(6, "R", "egular", KeyCode.R, () => CameraManager.Instance.ActivateDefaultPose());
+                SetPopupKeyAndText(6, "T", "Tea", KeyCode.T, () => CameraManager.Instance.ActivateDefaultPose());
                 break;
             case > 1:
                 CompleteTutorial();

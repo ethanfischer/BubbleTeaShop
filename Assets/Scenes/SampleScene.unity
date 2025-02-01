@@ -2950,7 +2950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb4f928385d84d97a50b69b9ad0eb24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelIndex: 4
+  LevelIndex: 0
 --- !u!4 &1019618217
 Transform:
   m_ObjectHideFlags: 0
@@ -5381,7 +5381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005333773651271991, guid: 1a79ae32724dc43068f0af803fc6d464, type: 3}
       propertyPath: fadeTime
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

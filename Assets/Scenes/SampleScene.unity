@@ -1567,8 +1567,8 @@ MonoBehaviour:
     position: {x: -9.51, y: 1.87999, z: -1.5199}
     rotation: {x: 0.2588, y: 0, z: 0, w: 0.9659}
   _teaPose:
-    position: {x: 7.9299, y: 0.03099, z: -6.155}
-    rotation: {x: 0.1736, y: 0, z: 0, w: 0.9848}
+    position: {x: 7.9299, y: 1.29999, z: -1.5399}
+    rotation: {x: 0.1987, y: 0, z: 0, w: 0.98}
   _cupPose:
     position: {x: 0, y: -0.1199, z: -0.97}
     rotation: {x: 0.01562, y: 0, z: 0, w: 0.9998}

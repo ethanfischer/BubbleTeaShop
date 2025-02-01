@@ -159,12 +159,21 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetIngredientInstructionKeyAndText(1, "B", "for Boba Flavors", KeyCode.B);
+                SetIngredientInstructionKeyAndText(1, "B", "for Boba Flavors", KeyCode.B, () => CameraManager.Instance.ActivateBobaPose());
                 break;
             case 1:
-                SetIngredientInstructionKeyAndText(6, "S", "for Strawberry", KeyCode.S); //TODO: show all the flavors in the order
+                SetPopupKeyAndText(6, "S", "trawberry", KeyCode.S); 
                 break;
-            case > 1:
+            case 2:
+                SetPopupKeyAndText(6, "M", "ango", KeyCode.M); 
+                break;
+            case 3:
+                SetPopupKeyAndText(6, "B", "lueberry", KeyCode.B); 
+                break;
+            case 4:
+                SetPopupKeyAndText(6, "R", "egular", KeyCode.R, () => CameraManager.Instance.ActivateDefaultPose()); 
+                break;
+            case > 4:
                 CompleteTutorial();
                 break;
         }

@@ -271,7 +271,7 @@ public class ActiveTea : MonoBehaviour
         {
             _root.Find("Tea").gameObject.SetActive(true);
             teaObject.gameObject.SetActive(true);
-            // teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaRegularTexture;
+            teaObject.GetComponent<MeshRenderer>().material = _teaMaterial;
         }
 
         HandleIceSubmerged();

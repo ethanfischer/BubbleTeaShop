@@ -27,6 +27,7 @@ public class IngredientInstruction : MonoBehaviour
     
     public void Hide()
     {
+        OnFadeInComplete();
         GetComponent<CanvasGroup>().alpha = 0f;
     }
 }

@@ -70,6 +70,12 @@ public class TutorialState : MonoBehaviour, IState
     {
         _instructionIndex++;
         _didSetKeyAndText = false;
+        _order.Instruction1.GetComponent<IngredientInstruction>().Hide(); //TODO: just serialize ingredient instruction instead of gameobject and then looking itn up
+        _order.Instruction2.GetComponent<IngredientInstruction>().Hide();
+        _order.Instruction3.GetComponent<IngredientInstruction>().Hide();
+        _order.Instruction4.GetComponent<IngredientInstruction>().Hide();
+        _order.Instruction5.GetComponent<IngredientInstruction>().Hide();
+        _order.Instruction6.GetComponent<IngredientInstruction>().Hide();
     }
 
     void ShowIngredientToKeyInstructions(int i)
@@ -116,7 +122,7 @@ public class TutorialState : MonoBehaviour, IState
                 SetIngredientInstructionKeyAndText(5, "T", "for Tea", KeyCode.T, () => _activeTea.AddRegularTea());
                 break;
             case 5:
-                SetPopupKeyAndText(6, "",  "<color=green>Enter</color> to submit", KeyCode.Return, () => _activeTea.SubmitTeaForTutorial());
+                SetPopupKeyAndText(6, "", "<color=green>Enter</color> to submit", KeyCode.Return, () => _activeTea.SubmitTeaForTutorial());
                 break;
             case 6:
                 SetPopupKeyAndText(6, "<color=red>X</color>", "to trash", KeyCode.X, () => _activeTea.TrashTeaForTutorial());
@@ -229,7 +235,7 @@ public class TutorialState : MonoBehaviour, IState
         instruction.GetComponent<IngredientInstruction>().FadeIn(); //TODO: just serialize ingredient instruction instead of gameobject and then looking itn up
 
     }
-    
+
     void SetPopupKeyAndText(int index, string key, string text, KeyCode listenForKey, Action onComplete = null)
     {
         if (_didSetKeyAndText) return;
@@ -238,13 +244,6 @@ public class TutorialState : MonoBehaviour, IState
         _listenForKeyAction = onComplete;
         _didSetKeyAndText = true;
 
-        _order.Instruction1.GetComponent<IngredientInstruction>().Hide(); //TODO: just serialize ingredient instruction instead of gameobject and then looking itn up
-        _order.Instruction2.GetComponent<IngredientInstruction>().Hide();
-        _order.Instruction3.GetComponent<IngredientInstruction>().Hide();
-        _order.Instruction4.GetComponent<IngredientInstruction>().Hide();
-        _order.Instruction5.GetComponent<IngredientInstruction>().Hide();
-        _order.Instruction6.GetComponent<IngredientInstruction>().Hide();
-        
         PopupText.Instance.ShowPopup(text, float.MaxValue, key);
     }
 

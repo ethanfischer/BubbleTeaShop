@@ -2950,7 +2950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb4f928385d84d97a50b69b9ad0eb24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelIndex: 0
+  LevelIndex: 3
 --- !u!4 &1019618217
 Transform:
   m_ObjectHideFlags: 0
@@ -5278,6 +5278,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7250727243795860637, guid: 1a79ae32724dc43068f0af803fc6d464, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a882739e84c254cd0a3866e97ebec2bc, type: 3}
     - target: {fileID: 7553165559740164065, guid: 1a79ae32724dc43068f0af803fc6d464, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

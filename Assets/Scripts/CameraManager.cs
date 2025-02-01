@@ -7,6 +7,8 @@ public class CameraManager : MonoBehaviour
     Pose _bobaPose;
     [SerializeField]
     Pose _teaPose;
+    [SerializeField]
+    Pose _cupPose;
     
     //singleton unity pattern
     static CameraManager _instance;
@@ -48,5 +50,11 @@ public class CameraManager : MonoBehaviour
     {
         transform.position = _defaultPose.position;
         transform.rotation = _defaultPose.rotation;
+    }
+    
+    public void ActivateCupPose()
+    {
+        transform.position = _cupPose.position;
+        transform.rotation = _cupPose.rotation;
     }
 }

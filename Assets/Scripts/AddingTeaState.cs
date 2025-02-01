@@ -16,6 +16,7 @@ public class AddingTeaState : IState
 
     public void Update()
     {
+        OrderSystem.Instance.Tick();
         if (Input.GetKeyDown(KeyCode.R))
         {
             _activeTea.AddRegularTea();

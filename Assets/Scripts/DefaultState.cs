@@ -13,6 +13,14 @@ public class DefaultState : IState
     {
         OrderSystem.Instance.Tick();
         
+        //Cup
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            _activeTea.AddCup();
+        }
+
+        if (!_activeTea.HasCup) return;
+        
         //Boba
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -76,7 +84,7 @@ public class DefaultState : IState
         }
 
         //Toppings
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.F)) //TODO: F for cheese foam?
         {
             _activeTea.AddCheeseFoam();
         }

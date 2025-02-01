@@ -40,14 +40,21 @@ public class ActiveTea : MonoBehaviour
     [SerializeField]
     AudioSource _secondAudioSource;
 
-    [SerializeField]
-    Texture _teaRegularTexture;
-    [SerializeField]
-    Texture _teaTaroTexture;
-    [SerializeField]
-    Texture _teaMatchaTexture;
+    // [SerializeField]
+    // Texture _teaRegularTexture;
+    // [SerializeField]
+    // Texture _teaTaroTexture;
+    // [SerializeField]
+    // Texture _teaMatchaTexture;
     [SerializeField]
     Transform _root;
+
+    [SerializeField]
+    Material _teaAndMilkMaterial;
+    [SerializeField]
+    Material _teaAndMilkMaterialMatcha;
+    [SerializeField]
+    Material _teaAndMilkMaterialTaro;
 
     bool _hasMilk;
     bool _hasTea;
@@ -204,7 +211,7 @@ public class ActiveTea : MonoBehaviour
 
         _audioSource.clip = _jellySound;
         _audioSource.Play();
-        var bobaGameObject = _root.Find("Boba" );
+        var bobaGameObject = _root.Find("Boba");
         bobaGameObject.gameObject.SetActive(true);
         bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.black;
         DidSelectBoba = true;
@@ -258,7 +265,9 @@ public class ActiveTea : MonoBehaviour
         var teaObject = _root.Find("Tea");
         if (_hasMilk)
         {
-            _root.Find("MilkAndTea").gameObject.SetActive(true);
+            var milkAndTeaObject = _root.Find("MilkAndTea").gameObject;
+            milkAndTeaObject.SetActive(true);
+            milkAndTeaObject.GetComponent<MeshRenderer>().material = _teaAndMilkMaterial;
             teaObject.gameObject.SetActive(false);
             _root.Find("Milk").gameObject.SetActive(false);
         }
@@ -266,7 +275,7 @@ public class ActiveTea : MonoBehaviour
         {
             _root.Find("Tea").gameObject.SetActive(true);
             teaObject.gameObject.SetActive(true);
-            teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaRegularTexture;
+            // teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaRegularTexture;
         }
 
         HandleIceSubmerged();
@@ -276,7 +285,7 @@ public class ActiveTea : MonoBehaviour
 
         Debug.Log("Tea added");
     }
-    
+
     public void AddTaroTea()
     {
         _tea = (int)TeaEnum.Taro;
@@ -285,11 +294,23 @@ public class ActiveTea : MonoBehaviour
         _audioSource.clip = _pourSound;
         _audioSource.Play();
         var teaObject = _root.Find("Tea");
-        teaObject.gameObject.SetActive(true);
-        teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaTaroTexture;
+        if (_hasMilk)
+        {
+            var milkAndTeaObject = _root.Find("MilkAndTea").gameObject;
+            milkAndTeaObject.SetActive(true);
+            milkAndTeaObject.GetComponent<MeshRenderer>().material = _teaAndMilkMaterialTaro;
+            teaObject.gameObject.SetActive(false);
+            _root.Find("Milk").gameObject.SetActive(false);
+        }
+        else
+        {
+            _root.Find("Tea").gameObject.SetActive(true);
+            teaObject.gameObject.SetActive(true);
+            teaObject.GetComponent<MeshRenderer>().material = _teaAndMilkMaterialTaro;//TODO: we need a different material for taro tea without milk
+        }
         Debug.Log("Taro Tea added");
     }
-    
+
     public void AddMatchaTea()
     {
         _tea = (int)TeaEnum.Matcha;
@@ -298,11 +319,23 @@ public class ActiveTea : MonoBehaviour
         _audioSource.clip = _pourSound;
         _audioSource.Play();
         var teaObject = _root.Find("Tea");
-        teaObject.gameObject.SetActive(true);
-        teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaMatchaTexture;
+        if (_hasMilk)
+        {
+            var milkAndTeaObject = _root.Find("MilkAndTea").gameObject;
+            milkAndTeaObject.SetActive(true);
+            milkAndTeaObject.GetComponent<MeshRenderer>().material = _teaAndMilkMaterialMatcha;
+            teaObject.gameObject.SetActive(false);
+            _root.Find("Milk").gameObject.SetActive(false);
+        }
+        else
+        {
+            _root.Find("Tea").gameObject.SetActive(true);
+            teaObject.gameObject.SetActive(true);
+            teaObject.GetComponent<MeshRenderer>().material = _teaAndMilkMaterialMatcha; //TODO: we need a different material for matcha tea without milk
+        }
         Debug.Log("Matcha Tea added");
     }
-    
+
 
     void AddIngredientTextToUI(string text)
     {
@@ -448,7 +481,7 @@ public class ActiveTea : MonoBehaviour
             OrderSystem.Instance.GameOver("<color=red>-$2.50\nYou ran out of money</color>");
         }
     }
-    
+
     public void TrashTeaForTutorial()
     {
         _animator.Play("TrashBobaAnimation");

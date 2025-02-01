@@ -4891,6 +4891,18 @@ PrefabInstance:
       propertyPath: _orderSystem
       value: 
       objectReference: {fileID: 3628064184844977014}
+    - target: {fileID: 445166615710261994, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
+      propertyPath: _teaAndMilkMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: a523d49774011460284e04a13789a24d, type: 2}
+    - target: {fileID: 445166615710261994, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
+      propertyPath: _teaAndMilkMaterialTaro
+      value: 
+      objectReference: {fileID: 2100000, guid: 791158c146cb34cba89d639ff59f68b5, type: 2}
+    - target: {fileID: 445166615710261994, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
+      propertyPath: _teaAndMilkMaterialMatcha
+      value: 
+      objectReference: {fileID: 2100000, guid: 9384e674422f046e8873d94f93d49d2a, type: 2}
     - target: {fileID: 3267077244659472400, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

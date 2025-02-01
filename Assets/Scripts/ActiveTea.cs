@@ -213,6 +213,18 @@ public class ActiveTea : MonoBehaviour
         DidSelectBoba = true;
         Debug.Log("Regular Boba added");
     }
+    
+    
+    public void AddCup(int size = 0)
+    {
+        // _audioSource.clip = _jellySound;
+        // _audioSource.Play();
+        _animator.Play("AddCup");
+        _animator.enabled = true;
+        var cup = _root.Find("cup");
+        cup.gameObject.SetActive(true);
+        Debug.Log("Regular Cup added");
+    }
 
     public void AddMangoBoba()
     {

@@ -3805,6 +3805,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4131651242542818591, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4724088191447786281, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
       propertyPath: m_Name
       value: BobaTeaCup

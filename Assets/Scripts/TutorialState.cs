@@ -110,11 +110,16 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetPopupKeyAndText(1, "C", "view cups", KeyCode.C, () => CupSelection.Instance.ShowCupSelection(CupSize.Cup));
+                SetPopupKeyAndText(1, "C", "view cups", KeyCode.C, () =>
+                {
+                    CameraManager.Instance.ActivateCupPose();
+                    CupSelection.Instance.ShowCupSelection(CupSize.Cup);
+                });
                 break;
             case 1:
                 SetPopupKeyAndText(1, "C", "add cup", KeyCode.C, () =>
                 {
+                    CameraManager.Instance.ActivateDefaultPose();
                     CupSelection.Instance.HideCupSelection();
                     _activeTea.AddCup(CupSize.Cup);
                 });

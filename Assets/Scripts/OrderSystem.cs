@@ -61,8 +61,8 @@ public class OrderSystem : MonoBehaviour
         };
         var upperLimit = GameDifficulty.Difficulty switch
         {
-            (int)GameDifficultyEnum.Easy => 30f,
-            (int)GameDifficultyEnum.Medium => 15f,
+            (int)GameDifficultyEnum.Easy => 20f,
+            (int)GameDifficultyEnum.Medium => 10f,
             (int)GameDifficultyEnum.Hard => 10f,
             (int)GameDifficultyEnum.Testing => 1f,
             _ => 0f

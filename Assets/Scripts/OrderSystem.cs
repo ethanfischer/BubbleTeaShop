@@ -51,6 +51,14 @@ public class OrderSystem : MonoBehaviour
 
     float GetNextOrderTime()
     {
+        var lowerLimit = GameDifficulty.Difficulty switch
+        {
+            (int)GameDifficultyEnum.Easy => 3f,
+            (int)GameDifficultyEnum.Medium => 2f,
+            (int)GameDifficultyEnum.Hard => 1f,
+            (int)GameDifficultyEnum.Testing => 100f,
+            _ => 0f
+        };
         var upperLimit = GameDifficulty.Difficulty switch
         {
             (int)GameDifficultyEnum.Easy => 30f,
@@ -66,14 +74,14 @@ public class OrderSystem : MonoBehaviour
             upperLimit = 1;
         }
 
-        var result = Random.Range(0f, upperLimit);
+        var result = Random.Range(lowerLimit, upperLimit);
 
         return result;
     }
 
     void Start()
     {
-        _nextOrderTime = 4.5f;
+        _nextOrderTime = 2f;
         _timer = 0f;
     }
 

@@ -196,47 +196,6 @@ public class ActiveTea : MonoBehaviour
         Debug.Log("Cheese Foam added");
     }
 
-    IEnumerator TeaCoroutine()
-    {
-        CameraManager.Instance.ActivateTeaPose();
-        while (!DidSelectTea)
-        {
-            yield return null;
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                DidSelectTea = true;
-                _tea = (int)TeaEnum.Regular;
-                AddRegularTea();
-            }
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                DidSelectTea = true;
-                _tea = (int)TeaEnum.Taro;
-                AddIngredientTextToUI("Taro");
-                _audioSource.clip = _pourSound;
-                _audioSource.Play();
-                var teaObject = _root.Find("Tea");
-                teaObject.gameObject.SetActive(true);
-                teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaTaroTexture;
-                _hasTea = true;
-            }
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                DidSelectTea = true;
-                _tea = (int)TeaEnum.Matcha;
-                AddIngredientTextToUI("Matcha");
-                _audioSource.clip = _pourSound;
-                _audioSource.Play();
-                var teaObject = _root.Find("Tea");
-                teaObject.gameObject.SetActive(true);
-                teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaMatchaTexture;
-                _hasTea = true;
-            }
-        }
-
-        CameraManager.Instance.ActivateDefaultPose();
-    }
 
     public void AddRegularBoba()
     {
@@ -293,6 +252,7 @@ public class ActiveTea : MonoBehaviour
 
     public void AddRegularTea()
     {
+        _tea = (int)TeaEnum.Regular;
         _hasTea = true;
         AddIngredientTextToUI("Tea");
         var teaObject = _root.Find("Tea");
@@ -316,6 +276,33 @@ public class ActiveTea : MonoBehaviour
 
         Debug.Log("Tea added");
     }
+    
+    public void AddTaroTea()
+    {
+        _tea = (int)TeaEnum.Taro;
+        _hasTea = true;
+        AddIngredientTextToUI("Taro");
+        _audioSource.clip = _pourSound;
+        _audioSource.Play();
+        var teaObject = _root.Find("Tea");
+        teaObject.gameObject.SetActive(true);
+        teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaTaroTexture;
+        Debug.Log("Taro Tea added");
+    }
+    
+    public void AddMatchaTea()
+    {
+        _tea = (int)TeaEnum.Matcha;
+        _hasTea = true;
+        AddIngredientTextToUI("Matcha");
+        _audioSource.clip = _pourSound;
+        _audioSource.Play();
+        var teaObject = _root.Find("Tea");
+        teaObject.gameObject.SetActive(true);
+        teaObject.GetComponent<MeshRenderer>().material.mainTexture = _teaMatchaTexture;
+        Debug.Log("Matcha Tea added");
+    }
+    
 
     void AddIngredientTextToUI(string text)
     {

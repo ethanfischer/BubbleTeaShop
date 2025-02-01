@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class AddingTeaState : IState
 {
     private ActiveTea _activeTea;
@@ -9,8 +11,29 @@ public class AddingTeaState : IState
 
     public void Enter()
     {
+        CameraManager.Instance.ActivateTeaPose();
     }
 
-    public void Update() { }  // No update logic needed
-    public void Exit() { }
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            _activeTea.AddRegularTea();
+            StateMachineService.Instance.SetDefaultState();
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            _activeTea.AddTaroTea();
+            StateMachineService.Instance.SetDefaultState();
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            _activeTea.AddMatchaTea();
+            StateMachineService.Instance.SetDefaultState();
+        }
+    }
+    public void Exit()
+    {
+        CameraManager.Instance.ActivateDefaultPose();
+    }
 }

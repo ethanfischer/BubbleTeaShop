@@ -184,10 +184,16 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetIngredientInstructionKeyAndText(1, "T", "for Tea Flavors", KeyCode.T);
+                SetIngredientInstructionKeyAndText(5, "T", "for Tea Flavors", KeyCode.T, () => CameraManager.Instance.ActivateTeaPose());
                 break;
             case 1:
-                SetIngredientInstructionKeyAndText(6, "M", "for Matcha", KeyCode.M); //TODO: show all the flavors in the order
+                SetPopupKeyAndText(6, "M", "atcha", KeyCode.M);
+                break;
+            case 2:
+                SetPopupKeyAndText(6, "T", "aro", KeyCode.T);
+                break;
+            case 3:
+                SetPopupKeyAndText(6, "R", "egular", KeyCode.R, () => CameraManager.Instance.ActivateDefaultPose());
                 break;
             case > 1:
                 CompleteTutorial();

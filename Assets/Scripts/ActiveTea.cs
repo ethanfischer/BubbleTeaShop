@@ -40,12 +40,6 @@ public class ActiveTea : MonoBehaviour
     [SerializeField]
     AudioSource _secondAudioSource;
 
-    // [SerializeField]
-    // Texture _teaRegularTexture;
-    // [SerializeField]
-    // Texture _teaTaroTexture;
-    // [SerializeField]
-    // Texture _teaMatchaTexture;
     [SerializeField]
     Transform _root;
 
@@ -55,6 +49,8 @@ public class ActiveTea : MonoBehaviour
     Material _teaAndMilkMaterialMatcha;
     [SerializeField]
     Material _teaAndMilkMaterialTaro;
+    [SerializeField]
+    Material _teaMaterial;
 
     bool _hasMilk;
     bool _hasTea;
@@ -306,7 +302,7 @@ public class ActiveTea : MonoBehaviour
         {
             _root.Find("Tea").gameObject.SetActive(true);
             teaObject.gameObject.SetActive(true);
-            teaObject.GetComponent<MeshRenderer>().material = _teaAndMilkMaterialTaro;//TODO: we need a different material for taro tea without milk
+            teaObject.GetComponent<MeshRenderer>().material = _teaAndMilkMaterialTaro; //TODO: we need a different material for taro tea without milk
         }
         Debug.Log("Taro Tea added");
     }
@@ -374,7 +370,19 @@ public class ActiveTea : MonoBehaviour
 
         if (_hasTea)
         {
-            _root.Find("MilkAndTea").gameObject.SetActive(true);
+            _root.Find("MilkAndTea").gameObject.SetActive(true); //TODO: change material for taro and matcha here
+            if (_tea == (int)TeaEnum.Matcha)
+            {
+                _root.Find("MilkAndTea").GetComponent<MeshRenderer>().material = _teaAndMilkMaterialMatcha;
+            }
+            else if (_tea == (int)TeaEnum.Taro)
+            {
+                _root.Find("MilkAndTea").GetComponent<MeshRenderer>().material = _teaAndMilkMaterialTaro;
+            }
+            else if (_tea == (int)TeaEnum.Regular)
+            {
+                _root.Find("MilkAndTea").GetComponent<MeshRenderer>().material = _teaAndMilkMaterial;
+            }
             _root.Find("Tea").gameObject.SetActive(false);
             _root.Find("Milk").gameObject.SetActive(false);
         }

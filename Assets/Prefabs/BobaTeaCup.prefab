@@ -484,7 +484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4724088191447786281}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.85994136, z: -0, w: 0.5103929}
+  m_LocalRotation: {x: 0, y: -0.85994136, z: 0, w: 0.5103929}
   m_LocalPosition: {x: 0, y: -1.155, z: -4.752}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
@@ -518,10 +518,11 @@ MonoBehaviour:
   _splatSound: {fileID: 8300000, guid: edaaa5b558ff541709ebecc6b17c8b0d, type: 3}
   _audioSource: {fileID: 3594505299646169522}
   _secondAudioSource: {fileID: 5107396047267000858}
-  _teaRegularTexture: {fileID: 2800000, guid: eaab5f1ffef5d447a920912f0212355d, type: 3}
-  _teaTaroTexture: {fileID: 2800000, guid: b1a81434b06804312a2a2832f4c75e8b, type: 3}
-  _teaMatchaTexture: {fileID: 2800000, guid: c388bc620877f492b9f20794528d522b, type: 3}
   _root: {fileID: 7589366354913288943}
+  _teaAndMilkMaterial: {fileID: 2100000, guid: a523d49774011460284e04a13789a24d, type: 2}
+  _teaAndMilkMaterialMatcha: {fileID: 2100000, guid: 9384e674422f046e8873d94f93d49d2a, type: 2}
+  _teaAndMilkMaterialTaro: {fileID: 2100000, guid: 791158c146cb34cba89d639ff59f68b5, type: 2}
+  _teaMaterial: {fileID: 2100000, guid: 3969654200c774d18b936cbc7c75c9b1, type: 2}
   _spinSpeed: 0
   _shouldLoseIfOutOfMoney: 0
   _defaultIceColor: {r: 0.5215685, g: 0.84705883, b: 0.9686274, a: 0.53333336}

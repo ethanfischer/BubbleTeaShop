@@ -3826,18 +3826,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3628064184844977014}
     - target: {fileID: 3267077244659472400, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3267077244659472400, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3267077244659472400, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3267077244659472400, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3877,21 +3865,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4131651242542818591, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4724088191447786281, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
       propertyPath: m_Name
       value: BobaTeaCup
-      objectReference: {fileID: 0}
-    - target: {fileID: 7589366354913288943, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.000010371208
-      objectReference: {fileID: 0}
-    - target: {fileID: 7589366354913288943, guid: 72c75a40023514752ba4ff627a29aa8f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.000005364418
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

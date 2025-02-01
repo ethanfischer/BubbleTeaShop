@@ -62,7 +62,7 @@ namespace DefaultNamespace
                 case 2:
                     return new Order(1, 2, 2, 0, 0);
                 case 3:
-                    return new Order(1, 2, 2, 0, 1);
+                    return new Order(2, 2, 2, 0, 1);
                 case 4:
                     return new Order(3, 2, 2, 0, 1);
                 case 5:

@@ -137,9 +137,12 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
+                SetIngredientInstructionKeyAndText(1, "J", "for Jelly", KeyCode.J);
+                break;
+            case 1:
                 SetIngredientInstructionKeyAndText(6, "C", "for Cheese Foam", KeyCode.C);
                 break;
-            case > 0:
+            case > 1:
                 CompleteTutorial();
                 break;
         }

@@ -94,6 +94,6 @@ public class DefaultState : IState
 
     public void Exit()
     {
-        Debug.Log("Exiting IdleState.");
+        Debug.Log("Exiting DefaultState.");
     }
 }

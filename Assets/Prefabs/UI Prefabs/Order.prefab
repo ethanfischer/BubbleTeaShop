@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01818a3d1a9a747119be0e6824a8121b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sizeText: {fileID: 7079354238706209469}
   BobaImage: {fileID: 2655015022082280522}
   IceImage: {fileID: 356221929016482566}
   SugarImage: {fileID: 4094816948184431999}
@@ -258,7 +259,7 @@ GameObject:
   - component: {fileID: 5136361614373479929}
   - component: {fileID: 7079354238706209469}
   m_Layer: 5
-  m_Name: Size
+  m_Name: SizeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

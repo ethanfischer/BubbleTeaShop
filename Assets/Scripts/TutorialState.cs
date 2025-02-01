@@ -97,6 +97,9 @@ public class TutorialState : MonoBehaviour, IState
             case 5:
                 Level5();
                 break;
+            case 6:
+                Level6();
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(i), i, null);
         }
@@ -175,6 +178,30 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
+                SetPopupKeyAndText(1, "C", "for <u>C</u>ups", KeyCode.C, () => CupSelection.Instance.ShowCupSelection());
+                break;
+            case 1:
+                SetPopupKeyAndText(1, "C", "reg <u>C</u>up", KeyCode.C);
+                break;
+            case 2:
+                SetPopupKeyAndText(1, "L", "<u>L</u>arge cup", KeyCode.L, () =>
+                {
+                    CupSelection.Instance.HideCupSelection();
+                    _activeTea.AddCup(CupSize.LargeCup);
+                });
+                break;
+            case > 2:
+                CompleteTutorial();
+                break;
+        }
+    }
+    
+    
+    void Level5()
+    {
+        switch (_instructionIndex)
+        {
+            case 0:
                 SetIngredientInstructionKeyAndText(1, "B", "for Boba Flavors", KeyCode.B, () => CameraManager.Instance.ActivateBobaPose());
                 break;
             case 1:
@@ -195,7 +222,7 @@ public class TutorialState : MonoBehaviour, IState
         }
     }
 
-    void Level5()
+    void Level6()
     {
         switch (_instructionIndex)
         {

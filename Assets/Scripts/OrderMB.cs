@@ -1,5 +1,6 @@
 using System.Collections;
 using DefaultNamespace;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -7,6 +8,8 @@ using Color = UnityEngine.Color;
 
 public class OrderMB : MonoBehaviour
 {
+    [SerializeField]
+    TMP_Text _sizeText;
     [FormerlySerializedAs("BobaText")]
     public Image BobaImage;
     [FormerlySerializedAs("IceText")]
@@ -93,6 +96,17 @@ public class OrderMB : MonoBehaviour
         IceImage.GetComponent<Image>().enabled = true;
         SugarImage.GetComponent<Image>().enabled = true;
         ExtraToppingImage.GetComponent<Image>().enabled = true;
+        
+        //Cup
+        
+        if (Order.Cup == 0)
+        {
+            _sizeText.text = "";
+        }
+        else if (Order.Cup == 1)
+        {
+            _sizeText.text = "Large";
+        }
 
         //Boba
         if (bobaSpriteName == "Strawberry Boba")

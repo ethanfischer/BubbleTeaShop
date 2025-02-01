@@ -55,6 +55,7 @@ public class ActiveTea : MonoBehaviour
     public bool HasCup { get; private set; }
     bool _hasMilk;
     bool _hasTea;
+    int _cup;
     int _boba;
     int _ice;
     int _sugar;
@@ -432,7 +433,7 @@ public class ActiveTea : MonoBehaviour
             _animator.enabled = true;
             return;
         }
-        var order = new Order(_boba, _ice, _sugar, _tea, _extraTopping);
+        var order = new Order(_cup, _boba, _ice, _sugar, _tea, _extraTopping);
         if (_orderSystem.TryGetMatchingOrder(order, out var matchingOrder))
         {
             HandleCorrectOrder(matchingOrder);

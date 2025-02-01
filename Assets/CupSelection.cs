@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CupSelection : MonoBehaviour
 {
     [SerializeField]
     GameObject _smallCup;
+    [FormerlySerializedAs("_cupRegular")]
+    [FormerlySerializedAs("_mediumCup")]
     [SerializeField]
-    GameObject _mediumCup;
+    GameObject _regularCup;
     [SerializeField]
     GameObject _bigCup;
 
@@ -24,15 +27,23 @@ public class CupSelection : MonoBehaviour
         return _instance;
     } }
 
-    public void ShowCupSelection()
+    public void ShowCupSelection(CupSize size)
     {
-        _mediumCup.SetActive(true);
-        _bigCup.SetActive(true);
+        if (size == CupSize.Cup)
+        {
+            _regularCup.SetActive(true);
+            _bigCup.SetActive(false);
+        }
+        else if (size == CupSize.LargeCup)
+        {
+            _regularCup.SetActive(true);
+            _bigCup.SetActive(true);
+        }
     }
 
     public void HideCupSelection()
     {
-        _mediumCup.SetActive(false);
+        _regularCup.SetActive(false);
         _bigCup.SetActive(false);
     }
 }

@@ -12,9 +12,13 @@ public class AddingCupState : IState
 
     public void Enter()
     {
-        if (Level.Instance.LevelIndex >= LEVEL_INDEX)
+        if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
-            CupSelection.Instance.ShowCupSelection();
+            CupSelection.Instance.ShowCupSelection(CupSize.Cup);
+        }
+        else
+        {
+            CupSelection.Instance.ShowCupSelection(CupSize.LargeCup);
         }
     }
 
@@ -24,8 +28,11 @@ public class AddingCupState : IState
 
         if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
-            _activeTea.AddCup(CupSize.Cup);
-            StateMachineService.Instance.SetDefaultState();
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                _activeTea.AddCup(CupSize.Cup);
+                StateMachineService.Instance.SetDefaultState();
+            }
         }
         else
         {
@@ -44,10 +51,7 @@ public class AddingCupState : IState
 
     public void Exit()
     {
-        if (Level.Instance.LevelIndex >= LEVEL_INDEX)
-        {
-            CupSelection.Instance.HideCupSelection();
-        }
+        CupSelection.Instance.HideCupSelection();
     }
 }
 

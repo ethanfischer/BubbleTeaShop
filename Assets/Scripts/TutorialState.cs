@@ -110,30 +110,37 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetPopupKeyAndText(1, "C", "for <u>C</u>up", KeyCode.C, () => _activeTea.AddCup(CupSize.Cup));
+                SetPopupKeyAndText(1, "C", "for <u>C</u>ups", KeyCode.C, () => CupSelection.Instance.ShowCupSelection(CupSize.Cup));
                 break;
             case 1:
-                SetIngredientInstructionKeyAndText(1, "B", "for Boba", KeyCode.B, () => _activeTea.AddRegularBoba());
+                SetPopupKeyAndText(1, "C", "for <u>C</u>up", KeyCode.C, () =>
+                {
+                    CupSelection.Instance.HideCupSelection();
+                    _activeTea.AddCup(CupSize.Cup);
+                });
                 break;
             case 2:
-                SetIngredientInstructionKeyAndText(2, "I", "for Ice", KeyCode.I, () => _activeTea.AddIce());
+                SetIngredientInstructionKeyAndText(1, "B", "for Boba", KeyCode.B, () => _activeTea.AddRegularBoba());
                 break;
             case 3:
-                SetIngredientInstructionKeyAndText(3, "M", "for Milk", KeyCode.M, () => _activeTea.AddMilk());
+                SetIngredientInstructionKeyAndText(2, "I", "for Ice", KeyCode.I, () => _activeTea.AddIce());
                 break;
             case 4:
-                SetIngredientInstructionKeyAndText(4, "S", "for Sugar", KeyCode.S, () => _activeTea.AddSugar());
+                SetIngredientInstructionKeyAndText(3, "M", "for Milk", KeyCode.M, () => _activeTea.AddMilk());
                 break;
             case 5:
-                SetIngredientInstructionKeyAndText(5, "T", "for Tea", KeyCode.T, () => _activeTea.AddRegularTea());
+                SetIngredientInstructionKeyAndText(4, "S", "for Sugar", KeyCode.S, () => _activeTea.AddSugar());
                 break;
             case 6:
-                SetPopupKeyAndText(6, "", "<color=green>Enter</color> to submit", KeyCode.Return, () => _activeTea.SubmitTeaForTutorial());
+                SetIngredientInstructionKeyAndText(5, "T", "for Tea", KeyCode.T, () => _activeTea.AddRegularTea());
                 break;
             case 7:
+                SetPopupKeyAndText(6, "", "<color=green>Enter</color> to submit", KeyCode.Return, () => _activeTea.SubmitTeaForTutorial());
+                break;
+            case 8:
                 SetPopupKeyAndText(6, "<color=red>X</color>", "to trash", KeyCode.X, () => _activeTea.TrashTeaForTutorial());
                 break;
-            case > 7:
+            case > 8:
                 CompleteTutorial();
                 break;
         }
@@ -149,25 +156,12 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetPopupKeyAndText(1, "C", "for <u>C</u>ups", KeyCode.C, () => CupSelection.Instance.ShowCupSelection());
-                break;
-            case 1:
-                SetPopupKeyAndText(1, "C", "reg <u>C</u>up", KeyCode.C);
-                break;
-            case 2:
-                SetPopupKeyAndText(1, "L", "<u>L</u>arge cup", KeyCode.L, () =>
-                {
-                    CupSelection.Instance.HideCupSelection();
-                    _activeTea.AddCup(CupSize.LargeCup);
-                });
-                break;
-            case 3:
                 SetIngredientInstructionKeyAndText(1, "J", "for Jelly", KeyCode.J);
                 break;
-            case 4:
+            case 1:
                 SetIngredientInstructionKeyAndText(6, "F", "for Cheese Foam", KeyCode.F);
                 break;
-            case > 4:
+            case > 1:
                 CompleteTutorial();
                 break;
         }
@@ -178,7 +172,7 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetPopupKeyAndText(1, "C", "for <u>C</u>ups", KeyCode.C, () => CupSelection.Instance.ShowCupSelection());
+                SetPopupKeyAndText(1, "C", "for <u>C</u>ups", KeyCode.C, () => CupSelection.Instance.ShowCupSelection(CupSize.LargeCup));
                 break;
             case 1:
                 SetPopupKeyAndText(1, "C", "reg <u>C</u>up", KeyCode.C);
@@ -194,8 +188,8 @@ public class TutorialState : MonoBehaviour, IState
                 break;
         }
     }
-    
-    
+
+
     void Level5()
     {
         switch (_instructionIndex)

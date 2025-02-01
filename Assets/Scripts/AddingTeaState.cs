@@ -1,38 +1,74 @@
 using UnityEngine;
 
-public class AddingTeaState : IState
+public class AddingTeaState : MonoBehaviour, IState
 {
-    private ActiveTea _activeTea;
+    ActiveTea _activeTea;
+    const int LEVEL_INDEX = 6;
+    [SerializeField]
+    GameObject _taroTeaBowl;
+    [SerializeField]
+    GameObject _matchaTeaBowl;
 
-    public AddingTeaState(ActiveTea activeTea)
+    void Start()
     {
-        _activeTea = activeTea;
+        _activeTea = GameObject.FindObjectOfType<ActiveTea>();
     }
 
     public void Enter()
     {
         CameraManager.Instance.ActivateTeaPose();
+
+        if (Level.Instance.LevelIndex < LEVEL_INDEX)
+        {
+            _matchaTeaBowl.SetActive(false);
+            _taroTeaBowl.SetActive(false);
+        }
+        else
+        {
+            _matchaTeaBowl.SetActive(false);
+            _taroTeaBowl.SetActive(false);
+        }
     }
 
     public void Update()
     {
         OrderSystem.Instance.Tick();
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
-            _activeTea.AddRegularTea();
-            StateMachineService.Instance.SetDefaultState();
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                _activeTea.AddRegularTea();
+                StateMachineService.Instance.SetDefaultState();
+            }
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        else
         {
-            _activeTea.AddTaroTea();
-            StateMachineService.Instance.SetDefaultState();
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            _activeTea.AddMatchaTea();
-            StateMachineService.Instance.SetDefaultState();
+            if (_activeTea.DidSelectTea)
+            {
+                PopupText.Instance.ShowPopup("Tea already selected", 1f);
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.T))
+                {
+                    _activeTea.AddRegularTea();
+                    StateMachineService.Instance.SetDefaultState();
+                }
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    _activeTea.AddTaroTea();
+                    StateMachineService.Instance.SetDefaultState();
+                }
+                if (Input.GetKeyDown(KeyCode.M))
+                {
+                    _activeTea.AddMatchaTea();
+                    StateMachineService.Instance.SetDefaultState();
+                }
+            }
         }
     }
+
+
     public void Exit()
     {
         CameraManager.Instance.ActivateDefaultPose();

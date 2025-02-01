@@ -461,13 +461,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec10fb4ee9c245bbb6639d12f7e2495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &284697052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4892631761992256126, guid: 622032fd2d1ba4fd4bdfe91ba5873b40, type: 3}
+  m_PrefabInstance: {fileID: 394715645}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &306734814
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 693148166}
+    m_TransformParent: {fileID: 980497843}
     m_Modifications:
     - target: {fileID: 3219797442669190765, guid: 622032fd2d1ba4fd4bdfe91ba5873b40, type: 3}
       propertyPath: m_Sprite
@@ -551,7 +556,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 693148166}
+    m_TransformParent: {fileID: 980497843}
     m_Modifications:
     - target: {fileID: 3219797442669190765, guid: 622032fd2d1ba4fd4bdfe91ba5873b40, type: 3}
       propertyPath: m_Sprite
@@ -875,10 +880,8 @@ Transform:
   - {fileID: 1600812347}
   - {fileID: 40919615}
   - {fileID: 782628376}
-  - {fileID: 2086379029}
-  - {fileID: 394715646}
-  - {fileID: 306734815}
   - {fileID: 548454177}
+  - {fileID: 980497843}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
@@ -1572,6 +1575,55 @@ MonoBehaviour:
   _cupPose:
     position: {x: 0, y: -0.1199, z: -0.97}
     rotation: {x: 0.01562, y: 0, z: 0, w: 0.9998}
+--- !u!1 &980497842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 980497843}
+  - component: {fileID: 980497844}
+  m_Layer: 0
+  m_Name: TeaBowls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &980497843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980497842}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2086379029}
+  - {fileID: 394715646}
+  - {fileID: 306734815}
+  m_Father: {fileID: 693148166}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &980497844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980497842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afeae7ffb2104b898ea8e766e909b6ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _taroTeaBowl: {fileID: 284697052}
+  _matchaTeaBowl: {fileID: 1992124289}
 --- !u!1001 &984796149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2529,6 +2581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tutorialState: {fileID: 1964440159}
   _difficultyMenuState: {fileID: 220970744}
+  _addingTeaState: {fileID: 980497844}
   _currentStateName: 
 --- !u!4 &1450749211
 Transform:
@@ -3400,6 +3453,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7427920561138735043, guid: b58bb52dd9ea7084ca8f04b7fc7cc8a2, type: 3}
   m_PrefabInstance: {fileID: 1970670786}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1992124289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4892631761992256126, guid: 622032fd2d1ba4fd4bdfe91ba5873b40, type: 3}
+  m_PrefabInstance: {fileID: 2813709134543100819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2029246082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3880,7 +3938,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 693148166}
+    m_TransformParent: {fileID: 980497843}
     m_Modifications:
     - target: {fileID: 4892631761992256126, guid: 622032fd2d1ba4fd4bdfe91ba5873b40, type: 3}
       propertyPath: m_Name

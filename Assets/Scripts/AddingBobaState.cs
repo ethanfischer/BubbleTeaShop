@@ -12,7 +12,10 @@ public class AddingBobaState : IState
 
     public void Enter()
     {
-        CameraManager.Instance.ActivateBobaPose();
+        if (Level.Instance.LevelIndex >= LEVEL_INDEX)
+        {
+            CameraManager.Instance.ActivateBobaPose();
+        }
     }
 
     public void Update()
@@ -22,6 +25,7 @@ public class AddingBobaState : IState
         if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
             _activeTea.AddRegularBoba();
+            StateMachineService.Instance.SetDefaultState();
         }
         else
         {
@@ -35,7 +39,7 @@ public class AddingBobaState : IState
             }
         }
     }
-    
+
     void BobaSelection()
     {
         if (Input.GetKeyDown(KeyCode.B))
@@ -62,7 +66,10 @@ public class AddingBobaState : IState
 
     public void Exit()
     {
-        CameraManager.Instance.ActivateDefaultPose();
+        if (Level.Instance.LevelIndex >= LEVEL_INDEX)
+        {
+            CameraManager.Instance.ActivateDefaultPose();
+        }
         Debug.Log("Finished Adding Boba.");
     }
 }

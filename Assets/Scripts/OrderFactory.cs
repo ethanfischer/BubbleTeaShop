@@ -14,12 +14,19 @@ namespace DefaultNamespace
                 return HandleTutorialOrder();
             }
             
+            // return new Order(
+            //     _ingredients.BobaOptions.ElementAt(Random.Range(0, _ingredients.BobaOptions.Count)).Key,
+            //     _ingredients.IceOptions.ElementAt(Random.Range(0, _ingredients.IceOptions.Count)).Key,
+            //     _ingredients.SugarOptions.ElementAt(Random.Range(0, _ingredients.SugarOptions.Count)).Key,
+            //     _ingredients.TeaOptions.ElementAt(Random.Range(0, _ingredients.TeaOptions.Count)).Key,
+            //     _ingredients.ExtraToppingOptions.ElementAt(Random.Range(0, _ingredients.ExtraToppingOptions.Count)).Key);
+            
             return new Order(
-                _ingredients.BobaOptions.ElementAt(Random.Range(0, _ingredients.BobaOptions.Count)).Key,
-                _ingredients.IceOptions.ElementAt(Random.Range(0, _ingredients.IceOptions.Count)).Key,
-                _ingredients.SugarOptions.ElementAt(Random.Range(0, _ingredients.SugarOptions.Count)).Key,
-                _ingredients.TeaOptions.ElementAt(Random.Range(0, _ingredients.TeaOptions.Count)).Key,
-                _ingredients.ExtraToppingOptions.ElementAt(Random.Range(0, _ingredients.ExtraToppingOptions.Count)).Key);
+                _ingredients.BobaOptions.ElementAt(1).Key,
+                _ingredients.IceOptions.ElementAt(1).Key,
+                _ingredients.SugarOptions.ElementAt(1).Key,
+                _ingredients.TeaOptions.ElementAt(0).Key,
+                _ingredients.ExtraToppingOptions.ElementAt(0).Key);
         }
         static bool NeedsTutorialOrder()
         {

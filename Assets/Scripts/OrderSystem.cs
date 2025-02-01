@@ -46,7 +46,9 @@ public class OrderSystem : MonoBehaviour
 
     float _nextOrderTime;
     bool _isGameOver;
-    
+
+    const int NEXT_LEVEL_THRESHOLD = 10;
+
     float GetNextOrderTime()
     {
         var upperLimit = GameDifficulty.Difficulty switch
@@ -77,8 +79,8 @@ public class OrderSystem : MonoBehaviour
 
     public void Tick()
     {
-        if(_isGameOver) return;
-        
+        if (_isGameOver) return;
+
         foreach (var order in Orders)
         {
             order.Tick();
@@ -121,7 +123,7 @@ public class OrderSystem : MonoBehaviour
         Cash += earnings;
         _cashText.text = $"${Cash}";
 
-        if (OrdersFullfilled >= 2)
+        if (OrdersFullfilled >= NEXT_LEVEL_THRESHOLD)
         {
             Level.Instance.NextLevel();
             Reset();
@@ -162,6 +164,7 @@ public class OrderSystem : MonoBehaviour
     IEnumerator RestartGame()
     {
         yield return new WaitForSeconds(5f);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

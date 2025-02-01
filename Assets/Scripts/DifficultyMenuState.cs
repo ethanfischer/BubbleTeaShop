@@ -7,6 +7,7 @@ public class DifficultyMenuState : MonoBehaviour, IState
 {
     [SerializeField]
     Animator _animator;
+    [SerializeField]
     CanvasGroup _canvasGroup;
     [SerializeField]
     Image _image;
@@ -17,7 +18,7 @@ public class DifficultyMenuState : MonoBehaviour, IState
 
     public void Enter()
     {
-        _canvasGroup = GetComponent<CanvasGroup>();
+        _canvasGroup.alpha = 1f; //Show
     }
     
     void IState.Update()

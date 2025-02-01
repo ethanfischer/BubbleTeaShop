@@ -265,6 +265,7 @@ public class OrderMB : MonoBehaviour
 
     void OnOrderAnimationAnimationComplete()
     {
+        OrderSystem.Instance.RemoveOrderFromList(this);
         Destroy(gameObject);
     }
 

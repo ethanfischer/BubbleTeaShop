@@ -214,10 +214,10 @@ public class TutorialState : MonoBehaviour, IState
                 SetPopupKeyAndText(6, "M", "Mango", KeyCode.M);
                 break;
             case 3:
-                SetPopupKeyAndText(6, "L", "bLueberry", KeyCode.L);
+                SetPopupKeyAndText(6, "L", "b<u>L</u>ueberry", KeyCode.L);
                 break;
             case 4:
-                SetPopupKeyAndText(6, "B", "Boba", KeyCode.B, () => CameraManager.Instance.ActivateDefaultPose());
+                SetPopupKeyAndText(6, "B", "<u>B</u>oba", KeyCode.B, () => CameraManager.Instance.ActivateDefaultPose());
                 break;
             case > 4:
                 CompleteTutorial();

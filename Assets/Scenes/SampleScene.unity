@@ -1564,7 +1564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bobaPose:
-    position: {x: -9.609, y: 0.46, z: -6.13}
+    position: {x: -9.51, y: 1.87999, z: -1.5199}
     rotation: {x: 0.2588, y: 0, z: 0, w: 0.9659}
   _teaPose:
     position: {x: 7.9299, y: 0.03099, z: -6.155}
@@ -1747,7 +1747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb4f928385d84d97a50b69b9ad0eb24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelIndex: 3
+  LevelIndex: 4
 --- !u!4 &1019618217
 Transform:
   m_ObjectHideFlags: 0

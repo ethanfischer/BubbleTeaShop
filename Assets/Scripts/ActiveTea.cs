@@ -229,8 +229,8 @@ public class ActiveTea : MonoBehaviour
 
         transform.localScale = size switch
         {
-            CupSize.LargeCup => new Vector3(5f, 5.5f, 5f),
-            CupSize.Cup => Vector3.one * 5f,
+            CupSize.LargeCup => new Vector3(1f, 1.1f, 1f),
+            CupSize.Cup => Vector3.one,
             _ => transform.localScale
         };
         _cup = size switch

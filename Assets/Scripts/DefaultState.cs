@@ -9,29 +9,25 @@ public class DefaultState : IState
         _activeTea = GameObject.FindObjectOfType<ActiveTea>();
     }
 
-    public void Update()
+    public void Tick()
     {
         OrderSystem.Instance.Tick();
-        
+
+        //Cup
+        if (!_activeTea.HasCup && Input.GetKeyDown(KeyCode.C))
+        {
+            StateMachineService.Instance.SetAddingCupState(_activeTea);
+        }
+
+        if (!_activeTea.HasCup) return;
+
         //Boba
         if (Input.GetKeyDown(KeyCode.B))
         {
-            if (Level.Instance.LevelIndex < 4)
-            {
-                _activeTea.AddRegularBoba();
-            }
-            else
-            {
-                if (_activeTea.DidSelectBoba)
-                {
-                    PopupText.Instance.ShowPopup("Boba already selected", 1f);
-                }
-                else
-                {
-                    StateMachineService.Instance.SetAddingBobaState(_activeTea); //TODO: refactor so all these conditions live in the boba state
-                }
-            }
+            StateMachineService.Instance.SetAddingBobaState();
         }
+
+        //Jelly
         if (Input.GetKeyDown(KeyCode.J))
         {
             _activeTea.AddJelly();
@@ -58,25 +54,11 @@ public class DefaultState : IState
         //Tea
         if (Input.GetKeyDown(KeyCode.T))
         {
-            if (Level.Instance.LevelIndex < 5)
-            {
-                _activeTea.AddRegularTea();
-            }
-            else
-            {
-                if (_activeTea.DidSelectTea)
-                {
-                    PopupText.Instance.ShowPopup("Tea already selected", 1f);
-                }
-                else
-                {
-                    StateMachineService.Instance.SetAddingTeaState(_activeTea); //TODO: refactor so all these conditions live in the boba state
-                }
-            }
+            StateMachineService.Instance.SetAddingTeaState();
         }
 
         //Toppings
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.F)) //TODO: F for cheese foam?
         {
             _activeTea.AddCheeseFoam();
         }

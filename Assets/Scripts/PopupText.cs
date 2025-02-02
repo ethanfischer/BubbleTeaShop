@@ -9,6 +9,10 @@ public class PopupText : MonoBehaviour
     [SerializeField]
     Color _earnedCashColor;
     float _timer = 0f;
+    
+    [SerializeField]
+    Animator _animator;
+    
     //singleton unity pattern
     private static PopupText _instance;
     public static PopupText Instance
@@ -28,6 +32,9 @@ public class PopupText : MonoBehaviour
     public void ShowPopup(string text, float f = 2f, string key = "")
     {
         if (_isGameOver) return;
+        
+        _animator.enabled = true;
+        _animator.Play("PopupFadeIn");
         
         _text.text = text;
         _timer = f;
@@ -61,5 +68,11 @@ public class PopupText : MonoBehaviour
        {
            ClearText();
        }
+    }
+    
+    public void OnAnimationEnd()
+    {
+        _animator.StopPlayback();
+        _animator.enabled = false;
     }
 }

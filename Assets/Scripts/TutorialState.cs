@@ -14,6 +14,8 @@ public class TutorialState : MonoBehaviour, IState
     OrderMB _order;
     ActiveTea _activeTea;
     Action _listenForKeyAction;
+    [SerializeField]
+    GameObject _activeTeaUI;
     private Level Level
     { get
     {
@@ -41,7 +43,7 @@ public class TutorialState : MonoBehaviour, IState
         _activeTea = FindObjectOfType<ActiveTea>();
     }
 
-    void IState.Update()
+    void IState.Tick()
     {
         if (Input.GetKeyDown(_listenForKey))
         {
@@ -97,6 +99,9 @@ public class TutorialState : MonoBehaviour, IState
             case 5:
                 Level5();
                 break;
+            case 6:
+                Level6();
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(i), i, null);
         }
@@ -107,27 +112,62 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetIngredientInstructionKeyAndText(1, "B", "for Boba", KeyCode.B, () => _activeTea.AddRegularBoba());
+                SetPopupKeyAndText(1, "C", "view cups", KeyCode.C, () =>
+                {
+                    CameraManager.Instance.ActivateCupPose();
+                    CupSelection.Instance.ShowCupSelection(CupSize.Cup);
+                });
                 break;
             case 1:
-                SetIngredientInstructionKeyAndText(2, "I", "for Ice", KeyCode.I, () => _activeTea.AddIce());
+                SetPopupKeyAndText(1, "C", "add cup", KeyCode.C, () =>
+                {
+                    CameraManager.Instance.ActivateDefaultPose();
+                    CupSelection.Instance.HideCupSelection();
+                    _activeTea.AddCup(CupSize.Cup);
+                });
                 break;
             case 2:
-                SetIngredientInstructionKeyAndText(3, "M", "for Milk", KeyCode.M, () => _activeTea.AddMilk());
+                SetIngredientInstructionKeyAndText(1, "B", "Boba", KeyCode.B, () =>
+                {
+                    CameraManager.Instance.ActivateBobaPose();
+                });
                 break;
             case 3:
-                SetIngredientInstructionKeyAndText(4, "S", "for Sugar", KeyCode.S, () => _activeTea.AddSugar());
+                SetPopupKeyAndText(1, "B", "add boba", KeyCode.B, () =>
+                {
+                    _activeTea.AddRegularBoba();
+                    CameraManager.Instance.ActivateDefaultPose();
+                });
                 break;
             case 4:
-                SetIngredientInstructionKeyAndText(5, "T", "for Tea", KeyCode.T, () => _activeTea.AddRegularTea());
+                SetIngredientInstructionKeyAndText(2, "I", "Ice", KeyCode.I, () => _activeTea.AddIce());
                 break;
             case 5:
-                SetPopupKeyAndText(6, "", "<color=green>Enter</color> to submit", KeyCode.Return, () => _activeTea.SubmitTeaForTutorial());
+                SetIngredientInstructionKeyAndText(3, "M", "Milk", KeyCode.M, () => _activeTea.AddMilk());
                 break;
             case 6:
+                SetIngredientInstructionKeyAndText(4, "S", "Sugar", KeyCode.S, () => _activeTea.AddSugar());
+                break;
+            case 7:
+                SetIngredientInstructionKeyAndText(5, "T", "Tea", KeyCode.T, () =>
+                {
+                    CameraManager.Instance.ActivateTeaPose();
+                });
+                break;
+            case 8:
+                SetPopupKeyAndText(1, "T", "add tea", KeyCode.T, () =>
+                {
+                    _activeTea.AddRegularTea();
+                    CameraManager.Instance.ActivateDefaultPose();
+                });
+                break;
+            case 9:
+                SetPopupKeyAndText(6, "", "<color=green>Enter</color> to submit", KeyCode.Return, () => _activeTea.SubmitTeaForTutorial());
+                break;
+            case 10:
                 SetPopupKeyAndText(6, "<color=red>X</color>", "to trash", KeyCode.X, () => _activeTea.TrashTeaForTutorial());
                 break;
-            case > 6:
+            case > 10:
                 CompleteTutorial();
                 break;
         }
@@ -146,7 +186,7 @@ public class TutorialState : MonoBehaviour, IState
                 SetIngredientInstructionKeyAndText(1, "J", "for Jelly", KeyCode.J);
                 break;
             case 1:
-                SetIngredientInstructionKeyAndText(6, "C", "for Cheese Foam", KeyCode.C);
+                SetIngredientInstructionKeyAndText(6, "F", "for Cheese Foam", KeyCode.F);
                 break;
             case > 1:
                 CompleteTutorial();
@@ -159,19 +199,47 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
+                SetIngredientInstructionKeyAndText(6, "C", "for cups", KeyCode.C, () =>
+                {
+                    CameraManager.Instance.ActivateCupPose();
+                    CupSelection.Instance.ShowCupSelection(CupSize.LargeCup);
+                });
+                break;
+            case 1:
+                SetPopupKeyAndText(1, "C", "for cup", KeyCode.C);
+                break;
+            case 2:
+                SetPopupKeyAndText(1, "L", "for large cup", KeyCode.L, () =>
+                {
+                    CameraManager.Instance.ActivateDefaultPose();
+                    CupSelection.Instance.HideCupSelection();
+                });
+                break;
+            case > 2:
+                CompleteTutorial();
+                break;
+        }
+    }
+
+
+    void Level5()
+    {
+        switch (_instructionIndex)
+        {
+            case 0:
                 SetIngredientInstructionKeyAndText(1, "B", "for Boba Flavors", KeyCode.B, () => CameraManager.Instance.ActivateBobaPose());
                 break;
             case 1:
-                SetPopupKeyAndText(6, "S", "Strawberry", KeyCode.S); 
+                SetPopupKeyAndText(6, "S", "Strawberry", KeyCode.S);
                 break;
             case 2:
-                SetPopupKeyAndText(6, "M", "Mango", KeyCode.M); 
+                SetPopupKeyAndText(6, "M", "Mango", KeyCode.M);
                 break;
             case 3:
-                SetPopupKeyAndText(6, "L", "bLueberry", KeyCode.L); 
+                SetPopupKeyAndText(6, "L", "b<u>L</u>ueberry", KeyCode.L);
                 break;
             case 4:
-                SetPopupKeyAndText(6, "B", "Boba", KeyCode.B, () => CameraManager.Instance.ActivateDefaultPose()); 
+                SetPopupKeyAndText(6, "B", "Boba", KeyCode.B, () => CameraManager.Instance.ActivateDefaultPose());
                 break;
             case > 4:
                 CompleteTutorial();
@@ -179,7 +247,7 @@ public class TutorialState : MonoBehaviour, IState
         }
     }
 
-    void Level5()
+    void Level6()
     {
         switch (_instructionIndex)
         {
@@ -205,6 +273,7 @@ public class TutorialState : MonoBehaviour, IState
     {
         if (_didSetKeyAndText) return;
 
+        PopupText.Instance.ShowPopup(string.Empty, 0); //Clear out any previous popups
         _listenForKey = listenForKey;
         _listenForKeyAction = onComplete;
         _didSetKeyAndText = true;

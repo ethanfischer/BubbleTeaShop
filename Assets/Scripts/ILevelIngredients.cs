@@ -3,6 +3,7 @@ namespace DefaultNamespace
 {
     public interface ILevelIngredients
     {
+        Dictionary<int, string> CupOptions { get; }
         Dictionary<int, string> BobaOptions { get; }
         Dictionary<int, string> IceOptions { get; }
         Dictionary<int, string> SugarOptions { get; }

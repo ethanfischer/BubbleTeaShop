@@ -1,22 +1,71 @@
 using UnityEngine;
 
-public class AddingBobaState : IState
+public class AddingBobaState : MonoBehaviour, IState
 {
-    private ActiveTea _activeTea;
+    [SerializeField]
+    GameObject _strawberryBowl;
+    [SerializeField]
+    GameObject _blueberryBowl;
+    [SerializeField]
+    GameObject _mangoBowl;
+    [SerializeField]
+    GameObject _regularBowl;
 
-    public AddingBobaState(ActiveTea activeTea)
+    private ActiveTea _activeTea;
+    const int LEVEL_INDEX = 5;
+
+    void Start()
     {
-        _activeTea = activeTea;
+        _activeTea = FindObjectOfType<ActiveTea>();
     }
 
     public void Enter()
     {
+        if (Level.Instance.LevelIndex < LEVEL_INDEX)
+        {
+            _strawberryBowl.SetActive(false);
+            _blueberryBowl.SetActive(false);
+            _mangoBowl.SetActive(false);
+            _regularBowl.SetActive(true);
+        }
+        else
+        {
+            _strawberryBowl.SetActive(true);
+            _blueberryBowl.SetActive(true);
+            _mangoBowl.SetActive(true);
+            _regularBowl.SetActive(true);
+        }
+
         CameraManager.Instance.ActivateBobaPose();
     }
 
-    public void Update()
+    public void Tick()
     {
         OrderSystem.Instance.Tick();
+
+        if (Level.Instance.LevelIndex < LEVEL_INDEX)
+        {
+            if(Input.GetKeyDown(KeyCode.B))
+            {
+                _activeTea.AddRegularBoba();
+                StateMachineService.Instance.SetDefaultState();
+            }
+        }
+        else
+        {
+            if (_activeTea.DidSelectBoba)
+            {
+                PopupText.Instance.ShowPopup("Boba already selected", 1f);
+            }
+            else
+            {
+                BobaSelection();
+            }
+        }
+    }
+
+    void BobaSelection()
+    {
         if (Input.GetKeyDown(KeyCode.B))
         {
             _activeTea.AddRegularBoba();

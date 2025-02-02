@@ -21,7 +21,7 @@ public class DifficultyMenuState : MonoBehaviour, IState
         _canvasGroup.alpha = 1f; //Show
     }
     
-    void IState.Update()
+    void IState.Tick()
     {
         _canvasGroup.alpha = 1f;
         if (Input.GetKeyDown(KeyCode.E))

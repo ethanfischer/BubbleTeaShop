@@ -52,8 +52,10 @@ public class ActiveTea : MonoBehaviour
     [SerializeField]
     Material _teaMaterial;
 
+    public bool HasCup { get; private set; }
     bool _hasMilk;
     bool _hasTea;
+    int _cup;
     int _boba;
     int _ice;
     int _sugar;
@@ -212,6 +214,32 @@ public class ActiveTea : MonoBehaviour
         bobaGameObject.GetComponent<MeshRenderer>().material.color = Color.black;
         DidSelectBoba = true;
         Debug.Log("Regular Boba added");
+    }
+    
+    
+    public void AddCup(CupSize size)
+    {
+        HasCup = true;
+        // _audioSource.clip = _jellySound;
+        // _audioSource.Play();
+        _animator.Play("AddCup");
+        _animator.enabled = true;
+        var cup = _root.Find("cup");
+        cup.gameObject.SetActive(true);
+
+        transform.localScale = size switch
+        {
+            CupSize.LargeCup => new Vector3(1f, 1.1f, 1f),
+            CupSize.Cup => Vector3.one,
+            _ => transform.localScale
+        };
+        _cup = size switch
+        {
+            CupSize.LargeCup => 1,
+            CupSize.Cup => 0,
+            _ => 0
+        };
+        Debug.Log($"Cup size {_cup } added");
     }
 
     public void AddMangoBoba()
@@ -411,7 +439,7 @@ public class ActiveTea : MonoBehaviour
             _animator.enabled = true;
             return;
         }
-        var order = new Order(_boba, _ice, _sugar, _tea, _extraTopping);
+        var order = new Order(_cup, _boba, _ice, _sugar, _tea, _extraTopping);
         if (_orderSystem.TryGetMatchingOrder(order, out var matchingOrder))
         {
             HandleCorrectOrder(matchingOrder);
@@ -424,8 +452,8 @@ public class ActiveTea : MonoBehaviour
 
     public void SubmitTeaForTutorial()
     {
-        _animator.Play("OrderSubmitBubbleTeaCupAnimation");
-        _animator.enabled = true;
+        // _animator.Play("OrderSubmitBubbleTeaCupAnimation");
+        // _animator.enabled = true;
         _audioSource.clip = _correctOrderSound;
         _audioSource.Play();
         ClearIngredientUIText();
@@ -443,8 +471,7 @@ public class ActiveTea : MonoBehaviour
     void HandleCorrectOrder(OrderMB matchingOrder)
     {
         Debug.Log("Tea submitted and matched order");
-        _animator.Play("OrderSubmitBubbleTeaCupAnimation");
-        _animator.enabled = true;
+        _root.gameObject.SetActive(false);
         ScreenShake.Instance.TriggerShake(0.1f, 5f);
         OrderSystem.Instance.RemoveOrderFromList(matchingOrder);
         matchingOrder.Complete();
@@ -502,6 +529,7 @@ public class ActiveTea : MonoBehaviour
 
     void Reset()
     {
+        HasCup = false;
         _hasTea = false;
         _hasMilk = false;
         _boba = 0;

@@ -9,6 +9,10 @@ public class StateMachineService : MonoBehaviour
     TutorialState _tutorialState;
     [SerializeField]
     DifficultyMenuState _difficultyMenuState;
+    [SerializeField]
+    AddingTeaState _addingTeaState;
+    [SerializeField]
+    AddingBobaState _addingBobaState;
     
     [SerializeField]
     string _currentStateName;
@@ -57,18 +61,23 @@ public class StateMachineService : MonoBehaviour
         _currentStateName = defaultState.GetType().ToString();
     }
     
-    public void SetAddingTeaState(ActiveTea activeTea)
+    public void SetAddingTeaState()
     {
-        var addingTeaState = new AddingTeaState(activeTea);
-        _stateMachine.SetState(addingTeaState);
-        _currentStateName = addingTeaState.GetType().ToString();
+        _stateMachine.SetState(_addingTeaState); 
+        _currentStateName = _addingTeaState.GetType().ToString();
     }
     
-    public void SetAddingBobaState(ActiveTea activeTea)
+    public void SetAddingBobaState()
     {
-        var addingBobaState = new AddingBobaState(activeTea);
-        _stateMachine.SetState(addingBobaState);
-        _currentStateName = addingBobaState.GetType().ToString();
+        _stateMachine.SetState(_addingBobaState);
+        _currentStateName = _addingBobaState.GetType().ToString();
+    }
+    
+    public void SetAddingCupState(ActiveTea activeTea)
+    {
+        var addingCupState = new AddingCupState(activeTea);
+        _stateMachine.SetState(addingCupState);
+        _currentStateName = addingCupState.GetType().ToString();
     }
     
     // public void SetState(IState newState)

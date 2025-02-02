@@ -3,11 +3,16 @@ namespace DefaultNamespace
 {
     public class Level3Ingredients : ILevelIngredients
     {
+        public Dictionary<int, string> CupOptions => new()
+        {
+            { 0, "Cup" },
+        };
+        
         public Dictionary<int, string> BobaOptions => new()
         {
             { 0, "-" },
             { 1, "Regular Boba" },
-            { 2, "Grass Jelly" }
+            { 2, "Grass Jelly" } //new
         };
         
         public Dictionary<int, string> IceOptions => new()
@@ -34,7 +39,7 @@ namespace DefaultNamespace
         public Dictionary<int, string> ExtraToppingOptions => new()
         {
             { 0, "-" },
-            { 1, "Cheese Foam" }
+            { 1, "Cheese Foam" } //new
         };
     }
 }

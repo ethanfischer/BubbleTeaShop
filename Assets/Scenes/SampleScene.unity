@@ -1587,7 +1587,7 @@ MonoBehaviour:
     position: {x: 7.9299, y: 1.29999, z: -1.5399}
     rotation: {x: 0.1987, y: 0, z: 0, w: 0.98}
   _cupPose:
-    position: {x: 0, y: -0.1199, z: -0.97}
+    position: {x: 0, y: 0.065, z: -0.97}
     rotation: {x: 0.01562, y: 0, z: 0, w: 0.9998}
 --- !u!1001 &984796149
 PrefabInstance:
@@ -2160,7 +2160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1252566432
 Transform:
   m_ObjectHideFlags: 0
@@ -3717,7 +3717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2066756315
 Transform:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ namespace DefaultNamespace
         {
             Time.timeScale = 0;
             _pauseMenu.SetActive(true);
+            Music.Instance.PauseMusic();
         }
         public void Tick()
         {
@@ -26,6 +27,7 @@ namespace DefaultNamespace
         {
             Time.timeScale = 1;
             _pauseMenu.SetActive(false);
+            Music.Instance.PlayMusic();
         }
     }
 }

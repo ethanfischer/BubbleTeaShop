@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 public class StateMachineService : MonoBehaviour
@@ -13,6 +14,8 @@ public class StateMachineService : MonoBehaviour
     AddingTeaState _addingTeaState;
     [SerializeField]
     AddingBobaState _addingBobaState;
+    [SerializeField]
+    GameObject _pauseMenu;
     
     [SerializeField]
     string _currentStateName;
@@ -86,4 +89,10 @@ public class StateMachineService : MonoBehaviour
     //     _stateMachine.SetState(newState);
     //     _currentStateName = newState.GetType().ToString();
     // }
+    public void SetPauseState()
+    {
+        var addingCupState = new PauseState(_pauseMenu);
+        _stateMachine.SetState(addingCupState);
+        _currentStateName = addingCupState.GetType().ToString();
+    }
 }

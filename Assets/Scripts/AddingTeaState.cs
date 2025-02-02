@@ -33,6 +33,10 @@ public class AddingTeaState : MonoBehaviour, IState
 
     public void Tick()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            StateMachineService.Instance.SetPauseState();
+        }
         OrderSystem.Instance.Tick();
         
         if (Level.Instance.LevelIndex < LEVEL_INDEX)

@@ -23,7 +23,7 @@ public class AddingCupState : IState
         }
     }
 
-    public void Update()
+    public void Tick()
     {
         OrderSystem.Instance.Tick();
 

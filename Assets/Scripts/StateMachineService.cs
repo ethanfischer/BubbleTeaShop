@@ -10,7 +10,7 @@ public class StateMachineService : MonoBehaviour
     [SerializeField]
     DifficultyMenuState _difficultyMenuState;
     [SerializeField]
-    DifficultyMenuState _addingTeaState;
+    AddingTeaState _addingTeaState;
     
     [SerializeField]
     string _currentStateName;

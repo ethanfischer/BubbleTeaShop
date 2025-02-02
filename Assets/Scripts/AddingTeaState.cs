@@ -31,9 +31,10 @@ public class AddingTeaState : MonoBehaviour, IState
         }
     }
 
-    public void Update()
+    public void Tick()
     {
         OrderSystem.Instance.Tick();
+        
         if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
             if (Input.GetKeyDown(KeyCode.T))
@@ -68,6 +69,7 @@ public class AddingTeaState : MonoBehaviour, IState
             }
         }
     }
+    
     public void Exit()
     {
         CameraManager.Instance.ActivateDefaultPose();

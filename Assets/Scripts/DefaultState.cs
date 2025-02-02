@@ -9,7 +9,7 @@ public class DefaultState : IState
         _activeTea = GameObject.FindObjectOfType<ActiveTea>();
     }
 
-    public void Update()
+    public void Tick()
     {
         OrderSystem.Instance.Tick();
 

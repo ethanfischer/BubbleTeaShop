@@ -41,7 +41,7 @@ public class TutorialState : MonoBehaviour, IState
         _activeTea = FindObjectOfType<ActiveTea>();
     }
 
-    void IState.Update()
+    void IState.Tick()
     {
         if (Input.GetKeyDown(_listenForKey))
         {

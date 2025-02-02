@@ -18,7 +18,7 @@ public class AddingBobaState : IState
         }
     }
 
-    public void Update()
+    public void Tick()
     {
         OrderSystem.Instance.Tick();
 

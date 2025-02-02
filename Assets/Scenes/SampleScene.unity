@@ -1589,6 +1589,7 @@ MonoBehaviour:
   _cupPose:
     position: {x: 0, y: 0.065, z: -0.97}
     rotation: {x: 0.01562, y: 0, z: 0, w: 0.9998}
+  _ingredientsUI: {fileID: 365213075}
 --- !u!1001 &984796149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4300,6 +4301,10 @@ PrefabInstance:
     - target: {fileID: 3458441935632499352, guid: 1a79ae32724dc43068f0af803fc6d464, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532683484353531375, guid: 1a79ae32724dc43068f0af803fc6d464, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4195600064610223621, guid: 1a79ae32724dc43068f0af803fc6d464, type: 3}
       propertyPath: m_AnchorMax.y

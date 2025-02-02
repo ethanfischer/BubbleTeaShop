@@ -9,6 +9,8 @@ public class StateMachineService : MonoBehaviour
     TutorialState _tutorialState;
     [SerializeField]
     DifficultyMenuState _difficultyMenuState;
+    [SerializeField]
+    DifficultyMenuState _addingTeaState;
     
     [SerializeField]
     string _currentStateName;
@@ -57,11 +59,10 @@ public class StateMachineService : MonoBehaviour
         _currentStateName = defaultState.GetType().ToString();
     }
     
-    public void SetAddingTeaState(ActiveTea activeTea)
+    public void SetAddingTeaState()
     {
-        var addingTeaState = new AddingTeaState(activeTea);
-        _stateMachine.SetState(addingTeaState);
-        _currentStateName = addingTeaState.GetType().ToString();
+        _stateMachine.SetState(_addingTeaState); 
+        _currentStateName = _addingTeaState.GetType().ToString();
     }
     
     public void SetAddingBobaState(ActiveTea activeTea)

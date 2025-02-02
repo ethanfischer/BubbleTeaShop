@@ -467,7 +467,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 693148166}
+    m_TransformParent: {fileID: 1556314997}
     m_Modifications:
     - target: {fileID: 3219797442669190765, guid: 622032fd2d1ba4fd4bdfe91ba5873b40, type: 3}
       propertyPath: m_Sprite
@@ -551,7 +551,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 693148166}
+    m_TransformParent: {fileID: 1556314997}
     m_Modifications:
     - target: {fileID: 3219797442669190765, guid: 622032fd2d1ba4fd4bdfe91ba5873b40, type: 3}
       propertyPath: m_Sprite
@@ -622,6 +622,11 @@ PrefabInstance:
 --- !u!4 &394715646 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5237068470438842564, guid: 622032fd2d1ba4fd4bdfe91ba5873b40, type: 3}
+  m_PrefabInstance: {fileID: 394715645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &538472700 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4892631761992256126, guid: 622032fd2d1ba4fd4bdfe91ba5873b40, type: 3}
   m_PrefabInstance: {fileID: 394715645}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &548454176
@@ -875,10 +880,8 @@ Transform:
   - {fileID: 1600812347}
   - {fileID: 40919615}
   - {fileID: 782628376}
-  - {fileID: 2086379029}
-  - {fileID: 394715646}
-  - {fileID: 306734815}
   - {fileID: 548454177}
+  - {fileID: 1556314997}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
@@ -2529,6 +2532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tutorialState: {fileID: 1964440159}
   _difficultyMenuState: {fileID: 220970744}
+  _addingTeaState: {fileID: 0}
   _currentStateName: 
 --- !u!4 &1450749211
 Transform:
@@ -2728,6 +2732,55 @@ PrefabInstance:
       addedObject: {fileID: 2090204750}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 566606c5b9b20404abac5cb40182e62d, type: 3}
+--- !u!1 &1556314996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556314997}
+  - component: {fileID: 1556314998}
+  m_Layer: 0
+  m_Name: TeaBowls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1556314997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556314996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2086379029}
+  - {fileID: 394715646}
+  - {fileID: 306734815}
+  m_Father: {fileID: 693148166}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1556314998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556314996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afeae7ffb2104b898ea8e766e909b6ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _taroTeaBowl: {fileID: 538472700}
+  _matchaTeaBowl: {fileID: 2012095686}
 --- !u!1001 &1568533056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3400,6 +3453,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7427920561138735043, guid: b58bb52dd9ea7084ca8f04b7fc7cc8a2, type: 3}
   m_PrefabInstance: {fileID: 1970670786}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2012095686 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4892631761992256126, guid: 622032fd2d1ba4fd4bdfe91ba5873b40, type: 3}
+  m_PrefabInstance: {fileID: 2813709134543100819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2029246082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3884,7 +3942,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 693148166}
+    m_TransformParent: {fileID: 1556314997}
     m_Modifications:
     - target: {fileID: 4892631761992256126, guid: 622032fd2d1ba4fd4bdfe91ba5873b40, type: 3}
       propertyPath: m_Name

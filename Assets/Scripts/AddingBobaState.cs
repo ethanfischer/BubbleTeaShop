@@ -1,21 +1,42 @@
 using UnityEngine;
 
-public class AddingBobaState : IState
+public class AddingBobaState : MonoBehaviour, IState
 {
+    [SerializeField]
+    GameObject _strawberryBowl;
+    [SerializeField]
+    GameObject _blueberryBowl;
+    [SerializeField]
+    GameObject _mangoBowl;
+    [SerializeField]
+    GameObject _regularBowl;
+
     private ActiveTea _activeTea;
     const int LEVEL_INDEX = 5;
 
-    public AddingBobaState(ActiveTea activeTea)
+    void Start()
     {
-        _activeTea = activeTea;
+        _activeTea = FindObjectOfType<ActiveTea>();
     }
 
     public void Enter()
     {
-        if (Level.Instance.LevelIndex >= LEVEL_INDEX)
+        if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
-            CameraManager.Instance.ActivateBobaPose();
+            _strawberryBowl.SetActive(false);
+            _blueberryBowl.SetActive(false);
+            _mangoBowl.SetActive(false);
+            _regularBowl.SetActive(true);
         }
+        else
+        {
+            _strawberryBowl.SetActive(true);
+            _blueberryBowl.SetActive(true);
+            _mangoBowl.SetActive(true);
+            _regularBowl.SetActive(true);
+        }
+
+        CameraManager.Instance.ActivateBobaPose();
     }
 
     public void Tick()
@@ -24,8 +45,11 @@ public class AddingBobaState : IState
 
         if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
-            _activeTea.AddRegularBoba();
-            StateMachineService.Instance.SetDefaultState();
+            if(Input.GetKeyDown(KeyCode.B))
+            {
+                _activeTea.AddRegularBoba();
+                StateMachineService.Instance.SetDefaultState();
+            }
         }
         else
         {
@@ -66,10 +90,7 @@ public class AddingBobaState : IState
 
     public void Exit()
     {
-        if (Level.Instance.LevelIndex >= LEVEL_INDEX)
-        {
-            CameraManager.Instance.ActivateDefaultPose();
-        }
+        CameraManager.Instance.ActivateDefaultPose();
         Debug.Log("Finished Adding Boba.");
     }
 }

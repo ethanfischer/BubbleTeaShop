@@ -452,8 +452,8 @@ public class ActiveTea : MonoBehaviour
 
     public void SubmitTeaForTutorial()
     {
-        _animator.Play("OrderSubmitBubbleTeaCupAnimation");
-        _animator.enabled = true;
+        // _animator.Play("OrderSubmitBubbleTeaCupAnimation");
+        // _animator.enabled = true;
         _audioSource.clip = _correctOrderSound;
         _audioSource.Play();
         ClearIngredientUIText();

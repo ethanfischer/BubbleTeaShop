@@ -24,7 +24,7 @@ public class DefaultState : IState
         //Boba
         if (Input.GetKeyDown(KeyCode.B))
         {
-            StateMachineService.Instance.SetAddingBobaState(_activeTea);
+            StateMachineService.Instance.SetAddingBobaState();
         }
 
         //Jelly

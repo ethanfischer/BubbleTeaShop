@@ -125,27 +125,47 @@ public class TutorialState : MonoBehaviour, IState
                 });
                 break;
             case 2:
-                SetIngredientInstructionKeyAndText(1, "B", "for Boba", KeyCode.B, () => _activeTea.AddRegularBoba());
+                SetIngredientInstructionKeyAndText(1, "B", "Boba", KeyCode.B, () =>
+                {
+                    CameraManager.Instance.ActivateBobaPose();
+                });
                 break;
             case 3:
-                SetIngredientInstructionKeyAndText(2, "I", "for Ice", KeyCode.I, () => _activeTea.AddIce());
+                SetPopupKeyAndText(1, "B", "add boba", KeyCode.B, () =>
+                {
+                    _activeTea.AddRegularBoba();
+                    CameraManager.Instance.ActivateDefaultPose();
+                });
                 break;
             case 4:
-                SetIngredientInstructionKeyAndText(3, "M", "for Milk", KeyCode.M, () => _activeTea.AddMilk());
+                SetIngredientInstructionKeyAndText(2, "I", "Ice", KeyCode.I, () => _activeTea.AddIce());
                 break;
             case 5:
-                SetIngredientInstructionKeyAndText(4, "S", "for Sugar", KeyCode.S, () => _activeTea.AddSugar());
+                SetIngredientInstructionKeyAndText(3, "M", "Milk", KeyCode.M, () => _activeTea.AddMilk());
                 break;
             case 6:
-                SetIngredientInstructionKeyAndText(5, "T", "for Tea", KeyCode.T, () => _activeTea.AddRegularTea());
+                SetIngredientInstructionKeyAndText(4, "S", "Sugar", KeyCode.S, () => _activeTea.AddSugar());
                 break;
             case 7:
-                SetPopupKeyAndText(6, "", "<color=green>Enter</color> to submit", KeyCode.Return, () => _activeTea.SubmitTeaForTutorial());
+                SetIngredientInstructionKeyAndText(5, "T", "Tea", KeyCode.T, () =>
+                {
+                    CameraManager.Instance.ActivateTeaPose();
+                });
                 break;
             case 8:
+                SetPopupKeyAndText(1, "T", "add tea", KeyCode.T, () =>
+                {
+                    _activeTea.AddRegularTea();
+                    CameraManager.Instance.ActivateDefaultPose();
+                });
+                break;
+            case 9:
+                SetPopupKeyAndText(6, "", "<color=green>Enter</color> to submit", KeyCode.Return, () => _activeTea.SubmitTeaForTutorial());
+                break;
+            case 10:
                 SetPopupKeyAndText(6, "<color=red>X</color>", "to trash", KeyCode.X, () => _activeTea.TrashTeaForTutorial());
                 break;
-            case > 8:
+            case > 10:
                 CompleteTutorial();
                 break;
         }
@@ -217,7 +237,7 @@ public class TutorialState : MonoBehaviour, IState
                 SetPopupKeyAndText(6, "L", "b<u>L</u>ueberry", KeyCode.L);
                 break;
             case 4:
-                SetPopupKeyAndText(6, "B", "<u>B</u>oba", KeyCode.B, () => CameraManager.Instance.ActivateDefaultPose());
+                SetPopupKeyAndText(6, "B", "Boba", KeyCode.B, () => CameraManager.Instance.ActivateDefaultPose());
                 break;
             case > 4:
                 CompleteTutorial();

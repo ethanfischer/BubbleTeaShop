@@ -214,7 +214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 621766245892177450, guid: d357af765737d6142a8a81445bf4520d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2695306366632706251, guid: d357af765737d6142a8a81445bf4520d, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1152,7 +1152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8685001601430244242, guid: 00cc324153566464ea58ee41aa31dbba, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1851,7 +1851,7 @@ MonoBehaviour:
   _mangoBobaBowl: {fileID: 772202375}
   _blueberryBobaBowl: {fileID: 1566585098}
   _strawberryBobaBowl: {fileID: 1141685389}
-  LevelIndex: 4
+  LevelIndex: 0
 --- !u!4 &1019618217
 Transform:
   m_ObjectHideFlags: 0
@@ -2814,7 +2814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6338798565318854611, guid: 566606c5b9b20404abac5cb40182e62d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7491583904969996599, guid: 566606c5b9b20404abac5cb40182e62d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2879,9 +2879,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 40919615}
   - {fileID: 2134700376}
   - {fileID: 1600812347}
-  - {fileID: 40919615}
   - {fileID: 782628376}
   m_Father: {fileID: 693148166}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

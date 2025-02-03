@@ -108,6 +108,7 @@ public class TutorialState : MonoBehaviour, IState
                 Level6();
                 break;
             default:
+                PopupText.Instance.ShowPopup("You won", float.MaxValue);
                 throw new ArgumentOutOfRangeException(nameof(i), i, null);
         }
     }

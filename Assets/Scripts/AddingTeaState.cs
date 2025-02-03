@@ -18,17 +18,6 @@ public class AddingTeaState : MonoBehaviour, IState
     public void Enter()
     {
         CameraManager.Instance.ActivateTeaPose();
-
-        if (Level.Instance.LevelIndex < LEVEL_INDEX)
-        {
-            _matchaTeaBowl.SetActive(false);
-            _taroTeaBowl.SetActive(false);
-        }
-        else
-        {
-            _matchaTeaBowl.SetActive(true);
-            _taroTeaBowl.SetActive(true);
-        }
     }
 
     public void Tick()

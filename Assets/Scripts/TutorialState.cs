@@ -28,9 +28,14 @@ public class TutorialState : MonoBehaviour, IState
 
     public static bool[] CompletedTutorials { get; private set; } =
     {
+        false,//0
+        false,//1
+        true, //2 doesn't need a tutorial
+        false,//3
+        false,//4
+        false,//5
+        false,//6
         false,
-        false,
-        true, //Level 2 doesn't need a tutorial
         false,
         false,
         false
@@ -227,19 +232,19 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetIngredientInstructionKeyAndText(1, "B", "for Boba Flavors", KeyCode.B, () => CameraManager.Instance.ActivateBobaPose());
+                SetIngredientInstructionKeyAndText(1, "B", "for Boba Flavors", KeyCode.B, () => CameraManager.Instance.ActivateBobaPose2());
                 break;
             case 1:
-                SetPopupKeyAndText(6, "S", "Strawberry", KeyCode.S);
+                SetPopupKeyAndText(6, "B", "Boba", KeyCode.B);
                 break;
             case 2:
-                SetPopupKeyAndText(6, "M", "Mango", KeyCode.M);
-                break;
-            case 3:
                 SetPopupKeyAndText(6, "L", "b<u>L</u>ueberry", KeyCode.L);
                 break;
+            case 3:
+                SetPopupKeyAndText(6, "M", "Mango", KeyCode.M);
+                break;
             case 4:
-                SetPopupKeyAndText(6, "B", "Boba", KeyCode.B, () => CameraManager.Instance.ActivateDefaultPose());
+                SetPopupKeyAndText(6, "S", "Strawberry", KeyCode.S, () => CameraManager.Instance.ActivateDefaultPose());
                 break;
             case > 4:
                 CompleteTutorial();

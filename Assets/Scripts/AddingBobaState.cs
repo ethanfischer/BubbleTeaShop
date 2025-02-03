@@ -23,25 +23,17 @@ public class AddingBobaState : MonoBehaviour, IState
     {
         if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
-            _strawberryBowl.SetActive(false);
-            _blueberryBowl.SetActive(false);
-            _mangoBowl.SetActive(false);
-            _regularBowl.SetActive(true);
+            CameraManager.Instance.ActivateBobaPose();
         }
         else
         {
-            _strawberryBowl.SetActive(true);
-            _blueberryBowl.SetActive(true);
-            _mangoBowl.SetActive(true);
-            _regularBowl.SetActive(true);
+            CameraManager.Instance.ActivateBobaPose2();
         }
-
-        CameraManager.Instance.ActivateBobaPose();
     }
 
     public void Tick()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             StateMachineService.Instance.SetPauseState();
         }
@@ -49,7 +41,7 @@ public class AddingBobaState : MonoBehaviour, IState
 
         if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
-            if(Input.GetKeyDown(KeyCode.B))
+            if (Input.GetKeyDown(KeyCode.B))
             {
                 _activeTea.AddRegularBoba();
                 StateMachineService.Instance.SetDefaultState();

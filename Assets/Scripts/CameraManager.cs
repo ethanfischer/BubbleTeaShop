@@ -6,6 +6,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     Pose _bobaPose;
     [SerializeField]
+    Pose _bobaPose2;
+    [SerializeField]
     Pose _teaPose;
     [SerializeField]
     Pose _cupPose;
@@ -41,6 +43,13 @@ public class CameraManager : MonoBehaviour
         _ingredientsUI.GetComponent<CanvasGroup>().alpha = 0f;
         transform.position = _bobaPose.position;
         transform.rotation = _bobaPose.rotation;
+    }
+    
+    public void ActivateBobaPose2()
+    {
+        _ingredientsUI.GetComponent<CanvasGroup>().alpha = 0f;
+        transform.position = _bobaPose2.position;
+        transform.rotation = _bobaPose2.rotation;
     }
     
     public void ActivateTeaPose()

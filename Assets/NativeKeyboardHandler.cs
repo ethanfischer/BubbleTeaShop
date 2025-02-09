@@ -5,6 +5,8 @@ public class NativeKeyboardHandler : MonoBehaviour
     TouchScreenKeyboard _keyboard;
     string _typedText = "";
     string _previousText = "";
+    private float _debounceTime = 0.1f; // Time delay between detections
+    private float _nextDetectionTime = 0f; // Tracks when the next key can be detected
     public static KeyCode KeyCode { get; private set; }
 
     void Start()
@@ -31,70 +33,32 @@ public class NativeKeyboardHandler : MonoBehaviour
                 return;
             }
 
-            // Detect new characters
-            if (_typedText.Length > _previousText.Length)
+            // Detect new characters only when debounce period has passed
+            if (Time.time >= _nextDetectionTime && _typedText.Length > _previousText.Length)
             {
                 var lastChar = _typedText[_typedText.Length - 1];
 
-                switch (lastChar)
+                KeyCode = lastChar switch
                 {
-                    case 'J':
-                    case 'j':
-                        KeyCode = KeyCode.J;
-                        break;
-                    case 'E':
-                    case 'e':
-                        KeyCode = KeyCode.E;
-                        break;
-                    case 'B':
-                    case 'b':
-                        KeyCode = KeyCode.B;
-                        break;
-                    case 'C':
-                    case 'c':
-                        KeyCode = KeyCode.C;
-                        break;
-                    case 'M':
-                    case 'm':
-                        KeyCode = KeyCode.M;
-                        break;
-                    case 'S':
-                    case 's':
-                        KeyCode = KeyCode.S;
-                        break;
-                    case 'I':
-                    case 'i':
-                        KeyCode = KeyCode.I;
-                        break;
-                    case 'F':
-                    case 'f':
-                        KeyCode = KeyCode.F;
-                        break;
-                    case 'H':
-                    case 'h':
-                        KeyCode = KeyCode.H;
-                        break;
-                    case 'T':
-                    case 't':
-                        KeyCode = KeyCode.T;
-                        break;
-                    case 'X':
-                    case 'x':
-                        KeyCode = KeyCode.X;
-                        break;
-                    case 'P':
-                    case 'p':
-                        KeyCode = KeyCode.P;
-                        break;
-                    case ' ':
-                        KeyCode = KeyCode.Space;
-                        break;
-                    default:
-                        KeyCode = KeyCode.None;
-                        break;
-                }
+                    'J' or 'j' => KeyCode.J,
+                    'E' or 'e' => KeyCode.E,
+                    'B' or 'b' => KeyCode.B,
+                    'C' or 'c' => KeyCode.C,
+                    'M' or 'm' => KeyCode.M,
+                    'S' or 's' => KeyCode.S,
+                    'I' or 'i' => KeyCode.I,
+                    'F' or 'f' => KeyCode.F,
+                    'H' or 'h' => KeyCode.H,
+                    'T' or 't' => KeyCode.T,
+                    'X' or 'x' => KeyCode.X,
+                    'P' or 'p' => KeyCode.P,
+                    ' ' => KeyCode.Space,
+                    _ => KeyCode.None
+                };
 
+                // Update the previous text and set the debounce time
                 _previousText = _typedText;
+                _nextDetectionTime = Time.time + _debounceTime; // Prevent re-detection for debounce duration
             }
         }
     }

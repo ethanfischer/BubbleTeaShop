@@ -17,6 +17,40 @@ public class NativeKeyboardHandler : MonoBehaviour
 
     void Update()
     {
+        if (Application.isEditor)
+        {
+            HandleDesktop();
+        }
+        else
+        {
+            HandleMobile();
+        }
+
+        Debug.Log($"KeyCode: {KeyCode}");
+    }
+
+    void HandleDesktop()
+    {
+        // Check for specific key presses
+        if (Input.GetKeyDown(KeyCode.J)) KeyCode = KeyCode.J;
+        else if (Input.GetKeyDown(KeyCode.E)) KeyCode = KeyCode.E;
+        else if (Input.GetKeyDown(KeyCode.B)) KeyCode = KeyCode.B;
+        else if (Input.GetKeyDown(KeyCode.C)) KeyCode = KeyCode.C;
+        else if (Input.GetKeyDown(KeyCode.M)) KeyCode = KeyCode.M;
+        else if (Input.GetKeyDown(KeyCode.S)) KeyCode = KeyCode.S;
+        else if (Input.GetKeyDown(KeyCode.I)) KeyCode = KeyCode.I;
+        else if (Input.GetKeyDown(KeyCode.F)) KeyCode = KeyCode.F;
+        else if (Input.GetKeyDown(KeyCode.H)) KeyCode = KeyCode.H;
+        else if (Input.GetKeyDown(KeyCode.T)) KeyCode = KeyCode.T;
+        else if (Input.GetKeyDown(KeyCode.X)) KeyCode = KeyCode.X;
+        else if (Input.GetKeyDown(KeyCode.P)) KeyCode = KeyCode.P;
+        else if (Input.GetKeyDown(KeyCode.Space)) KeyCode = KeyCode.Space;
+        else KeyCode = KeyCode.None; // No relevant key detected
+    }
+
+    void HandleMobile()
+    {
+
         if (_keyboard != null)
         {
             if (_keyboard.status != TouchScreenKeyboard.Status.Visible)

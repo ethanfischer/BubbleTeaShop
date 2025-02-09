@@ -2311,6 +2311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1104753594}
   - component: {fileID: 1104753595}
+  - component: {fileID: 1104753596}
   m_Layer: 0
   m_Name: MobileKeyboardHelper
   m_TagString: Untagged
@@ -2344,6 +2345,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f996b12127d3c4e229ccdc68f20275a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1104753596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104753592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94e1145f6ce364a8281dbc22c7d89054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1121304462

@@ -24,19 +24,19 @@ public class DifficultyMenuState : MonoBehaviour, IState
     void IState.Tick()
     {
         _canvasGroup.alpha = 1f;
-        if (Input.GetKeyDown(KeyCode.E))
+        if (DidPressKey(KeyCode.E))
         {
             GameDifficulty.Difficulty = (int)GameDifficultyEnum.Easy;
             StateMachineService.Instance.SetDefaultState();
             Level.Instance.NextLevel();
         }
-        if (Input.GetKeyDown(KeyCode.M))
+        if (DidPressKey(KeyCode.M))
         {
             GameDifficulty.Difficulty = (int)GameDifficultyEnum.Medium;
             StateMachineService.Instance.SetDefaultState();
             Level.Instance.NextLevel();
         }
-        if (Input.GetKeyDown(KeyCode.H))
+        if (DidPressKey(KeyCode.H))
         {
             GameDifficulty.Difficulty = (int)GameDifficultyEnum.Hard;
             StateMachineService.Instance.SetDefaultState();
@@ -61,4 +61,6 @@ public class DifficultyMenuState : MonoBehaviour, IState
     {
         _animator.enabled = false;
     }
+    
+    bool DidPressKey(KeyCode keyCode) => NativeKeyboardHandler.KeyCode == keyCode;
 }

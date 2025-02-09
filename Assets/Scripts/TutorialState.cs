@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using Input = NativeKeyboardHandler;
 
 public class TutorialState : MonoBehaviour, IState
 {
@@ -168,7 +169,7 @@ public class TutorialState : MonoBehaviour, IState
                 });
                 break;
             case 9:
-                SetPopupKeyAndText(6, "", "<color=green>Enter</color> to submit", KeyCode.Return, () => _activeTea.SubmitTeaForTutorial());
+                SetPopupKeyAndText(6, "", "<color=green>Enter</color> to submit", KeyCode.P, () => _activeTea.SubmitTeaForTutorial());
                 break;
             case 10:
                 SetPopupKeyAndText(6, "<color=red>X</color>", "to trash", KeyCode.X, () => _activeTea.TrashTeaForTutorial());

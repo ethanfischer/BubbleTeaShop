@@ -1,4 +1,6 @@
 using UnityEngine;
+using Input = NativeKeyboardHandler;
+
 namespace DefaultNamespace
 {
     public class PauseState : IState

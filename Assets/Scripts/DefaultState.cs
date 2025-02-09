@@ -1,4 +1,5 @@
 using UnityEngine;
+using Input = NativeKeyboardHandler;
 
 public class DefaultState : IState
 {
@@ -11,14 +12,14 @@ public class DefaultState : IState
 
     public void Tick()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(DidPressKey(KeyCode.Escape)) //TODO: figure out on mobile
         {
             StateMachineService.Instance.SetPauseState();
         }
         OrderSystem.Instance.Tick();
 
         //Cup
-        if (!_activeTea.HasCup && Input.GetKeyDown(KeyCode.C))
+        if (!_activeTea.HasCup && DidPressKey(KeyCode.C))
         {
             StateMachineService.Instance.SetAddingCupState(_activeTea);
         }
@@ -26,53 +27,53 @@ public class DefaultState : IState
         if (!_activeTea.HasCup) return;
 
         //Boba
-        if (Input.GetKeyDown(KeyCode.B))
+        if (DidPressKey(KeyCode.B))
         {
             StateMachineService.Instance.SetAddingBobaState();
         }
 
         //Jelly
-        if (Input.GetKeyDown(KeyCode.J))
+        if (DidPressKey(KeyCode.J))
         {
             _activeTea.AddJelly();
         }
 
         //Ice
-        if (Input.GetKeyDown(KeyCode.I))
+        if (DidPressKey(KeyCode.I))
         {
             _activeTea.AddIce();
         }
 
         //Milk
-        if (Input.GetKeyDown(KeyCode.M))
+        if (DidPressKey(KeyCode.M))
         {
             _activeTea.AddMilk();
         }
 
         //Sugar
-        if (Input.GetKeyDown(KeyCode.S))
+        if (DidPressKey(KeyCode.S))
         {
             _activeTea.AddSugar();
         }
 
         //Tea
-        if (Input.GetKeyDown(KeyCode.T))
+        if (DidPressKey(KeyCode.T))
         {
             StateMachineService.Instance.SetAddingTeaState();
         }
 
         //Toppings
-        if (Input.GetKeyDown(KeyCode.F)) //TODO: F for cheese foam?
+        if (DidPressKey(KeyCode.F))
         {
             _activeTea.AddCheeseFoam();
         }
 
         //Submit
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+        if (DidPressKey(KeyCode.Space) || DidPressKey(KeyCode.Return) || DidPressKey(KeyCode.P))
         {
             _activeTea.SubmitTea();
         }
-        if (Input.GetKeyDown(KeyCode.X))
+        if (DidPressKey(KeyCode.X))
         {
             _activeTea.TrashTea();
         }
@@ -82,4 +83,6 @@ public class DefaultState : IState
     {
         Debug.Log("Exiting DefaultState.");
     }
+    
+    bool DidPressKey(KeyCode keyCode) => Input.GetKeyDown(keyCode);
 }

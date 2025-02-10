@@ -108,17 +108,19 @@ public class OrderSystem : MonoBehaviour
     void HandleNextOrder()
     {
         _timer = 0f;
+        OrderMB orderMb;
         if (Orders.Count == 0)
         {
-            var orderMb = Instantiate(_orderMbPrefab, this.transform);
-            Orders.Add(orderMb);
+            orderMb = Instantiate(_orderMbPrefab, this.transform);
             orderMb.transform.SetSiblingIndex(0);
         }
         else
         {
-            var orderMb = Instantiate(_orderMbPrefab, _secondaryOrders);
+            orderMb = Instantiate(_orderMbPrefab, _secondaryOrders);
             orderMb.transform.localScale = Vector3.one * 0.5f;
         }
+
+        Orders.Add(orderMb);
         _nextOrderTime = GetNextOrderTime();
         _orderAudioSource.clip = _orderSound;
         _orderAudioSource.Play();
@@ -167,9 +169,17 @@ public class OrderSystem : MonoBehaviour
         }
     }
 
-    public void RemoveOrderFromList(OrderMB order)
+    public void CompleteOrder(OrderMB order)
     {
         Orders.Remove(order);
+        Destroy(order.gameObject);
+        if (Orders.Count > 0)
+        {
+            var newPrimaryOrder = _secondaryOrders.transform.GetChild(0);
+            newPrimaryOrder.parent = this.transform;
+            newPrimaryOrder.localScale = Vector3.one;
+            newPrimaryOrder.SetSiblingIndex(0);
+        }
     }
 
     public void GameOver(string text = "GAME OVER")

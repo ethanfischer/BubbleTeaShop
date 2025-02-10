@@ -13,6 +13,12 @@ public class PopupText : MonoBehaviour
     [SerializeField]
     Animator _animator;
     
+    [SerializeField]
+    CanvasGroup _canvasGroup;
+
+    [SerializeField]
+    TextMeshProUGUI _key;
+    
     //singleton unity pattern
     private static PopupText _instance;
     public static PopupText Instance
@@ -33,13 +39,15 @@ public class PopupText : MonoBehaviour
     {
         if (_isGameOver) return;
         
-        _animator.enabled = true;
-        _animator.Play("PopupFadeIn");
+        // _animator.enabled = true;
+        // _animator.Play("PopupFadeIn");
+        
+        _canvasGroup.alpha = 1f;
         
         _text.text = text;
         _timer = f;
 
-        transform.Find("Key").GetComponent<TextMeshProUGUI>().text = key != ""
+        _key.text = key != ""
             ? key
             : string.Empty;
     }
@@ -59,6 +67,7 @@ public class PopupText : MonoBehaviour
     public void ClearText()
     {
         _text.text = "";
+        _canvasGroup.alpha = 0f;
     }
     
     void Update()

@@ -49,6 +49,9 @@ public class OrderSystem : MonoBehaviour
 
     const int NEXT_LEVEL_THRESHOLD = 10;
 
+    [SerializeField]
+    Transform _secondaryOrders;
+
     float GetNextOrderTime()
     {
         var lowerLimit = GameDifficulty.Difficulty switch
@@ -105,7 +108,17 @@ public class OrderSystem : MonoBehaviour
     void HandleNextOrder()
     {
         _timer = 0f;
-        Orders.Add(Instantiate(_orderMbPrefab, this.transform));
+        if (Orders.Count == 0)
+        {
+            var orderMb = Instantiate(_orderMbPrefab, this.transform);
+            Orders.Add(orderMb);
+            orderMb.transform.SetSiblingIndex(0);
+        }
+        else
+        {
+            var orderMb = Instantiate(_orderMbPrefab, _secondaryOrders);
+            orderMb.transform.localScale = Vector3.one * 0.5f;
+        }
         _nextOrderTime = GetNextOrderTime();
         _orderAudioSource.clip = _orderSound;
         _orderAudioSource.Play();

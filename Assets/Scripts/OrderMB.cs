@@ -66,6 +66,11 @@ public class OrderMB : MonoBehaviour
     [SerializeField]
     int _expirationAnimationTime;
     bool _isComplete;
+    Vector2 _originalPosition;
+    Vector2 _largeCellSize = new Vector2(400, 1450);
+    Vector2 _largeOrderOffset = new Vector2(0, 0);
+    Vector2 _normalCellSize = new Vector2(400/2, 1450/2);
+    GridLayoutGroup _gridLayoutGroup;
 
     void Start()
     {
@@ -73,12 +78,14 @@ public class OrderMB : MonoBehaviour
         _orderAnimations.OnOrderArrivedAnimationCompleteEvent += OnOrderArrivedAnimationComplete;
         PlayNewOrderAnimation();
         _rectTransform = this.GetComponent<RectTransform>();
+        _gridLayoutGroup = this.GetComponent<GridLayoutGroup>();
         TimeRemaining = TimeToCompleteOrder;
         Order = OrderFactory.CreateOrder();
         SetIngredientImages();
         _initialBarHeight = _timeBar.sizeDelta.y;
         _timeBarImage = _timeBar.GetComponent<Image>();
         _timeBarColor = _timeBarImage.color;
+        _originalPosition = _rectTransform.anchoredPosition;
     }
 
     void SetIngredientImages()

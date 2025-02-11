@@ -169,7 +169,7 @@ public class TutorialState : MonoBehaviour, IState
                 });
                 break;
             case 9:
-                SetPopupKeyAndText(6, "", "<color=green>Enter</color> to submit", KeyCode.P, () => _activeTea.SubmitTeaForTutorial());
+                SetPopupKeyAndText(6, "", "<color=green>Space</color>\nto submit", KeyCode.Space, () => _activeTea.SubmitTeaForTutorial());
                 break;
             case 10:
                 SetPopupKeyAndText(6, "<color=red>X</color>", "to trash", KeyCode.X, () => _activeTea.TrashTeaForTutorial());

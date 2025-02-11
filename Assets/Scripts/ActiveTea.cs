@@ -473,7 +473,6 @@ public class ActiveTea : MonoBehaviour
 
     void HandleCorrectOrder(OrderMB matchingOrder)
     {
-        Handheld.Vibrate();
         Debug.Log("Tea submitted and matched order");
         _root.gameObject.SetActive(false);
         ScreenShake.Instance.TriggerShake(0.1f, 5f);

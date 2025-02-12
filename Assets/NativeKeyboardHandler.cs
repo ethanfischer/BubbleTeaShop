@@ -44,6 +44,8 @@ public class NativeKeyboardHandler : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.T)) KeyCode = KeyCode.T;
         else if (Input.GetKeyDown(KeyCode.X)) KeyCode = KeyCode.X;
         else if (Input.GetKeyDown(KeyCode.P)) KeyCode = KeyCode.P;
+        else if (Input.GetKeyDown(KeyCode.L)) KeyCode = KeyCode.L;
+        else if (Input.GetKeyDown(KeyCode.R)) KeyCode = KeyCode.R;
         else if (Input.GetKeyDown(KeyCode.Space)) KeyCode = KeyCode.Space;
         else KeyCode = KeyCode.None; // No relevant key detected
     }
@@ -86,6 +88,8 @@ public class NativeKeyboardHandler : MonoBehaviour
                     'T' or 't' => KeyCode.T,
                     'X' or 'x' => KeyCode.X,
                     'P' or 'p' => KeyCode.P,
+                    'L' or 'l' => KeyCode.L,
+                    'R' or 'r' => KeyCode.R,
                     ' ' => KeyCode.Space,
                     _ => KeyCode.None
                 };

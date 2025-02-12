@@ -168,10 +168,10 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetIngredientInstructionKeyAndText(1, "J", "for Jelly", KeyCode.J);
+                SetIngredientInstructionKeyAndText(1, "j", "for Jelly", KeyCode.J);
                 break;
             case 1:
-                SetIngredientInstructionKeyAndText(6, "F", "for Cheese Foam", KeyCode.F);
+                SetIngredientInstructionKeyAndText(6, "f", "for cheese Foam", KeyCode.F);
                 break;
             case > 1:
                 CompleteTutorial();
@@ -184,17 +184,17 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetIngredientInstructionKeyAndText(6, "C", "for cups", KeyCode.C, () =>
+                SetIngredientInstructionKeyAndText(6, "c", "for Cups", KeyCode.C, () =>
                 {
                     CameraManager.Instance.ActivateCupPose();
                     CupSelection.Instance.ShowCupSelection(CupSize.LargeCup);
                 });
                 break;
             case 1:
-                SetPopupKeyAndText(1, "C", "for cup", KeyCode.C);
+                SetPopupKeyAndText(1, "c", "for Cup", KeyCode.C);
                 break;
             case 2:
-                SetPopupKeyAndText(1, "L", "for large cup", KeyCode.L, () =>
+                SetPopupKeyAndText(1, "l", "for Large cup", KeyCode.L, () =>
                 {
                     CameraManager.Instance.ActivateDefaultPose();
                     CupSelection.Instance.HideCupSelection();

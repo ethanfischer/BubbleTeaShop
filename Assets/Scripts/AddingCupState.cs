@@ -13,20 +13,21 @@ public class AddingCupState : IState
 
     public void Enter()
     {
-        CameraManager.Instance.ActivateCupPose();
         if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
-            CupSelection.Instance.ShowCupSelection(CupSize.Cup);
+            _activeTea.AddCup(CupSize.Cup);
+            StateMachineService.Instance.SetDefaultState();
         }
         else
         {
+            CameraManager.Instance.ActivateCupPose();
             CupSelection.Instance.ShowCupSelection(CupSize.LargeCup);
         }
     }
 
     public void Tick()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             StateMachineService.Instance.SetPauseState();
         }
@@ -34,11 +35,8 @@ public class AddingCupState : IState
 
         if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                _activeTea.AddCup(CupSize.Cup);
-                StateMachineService.Instance.SetDefaultState();
-            }
+            _activeTea.AddCup(CupSize.Cup);
+            StateMachineService.Instance.SetDefaultState();
         }
         else
         {

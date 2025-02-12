@@ -24,7 +24,6 @@ public class AddingBobaState : MonoBehaviour, IState
     {
         if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
-            CameraManager.Instance.ActivateBobaPose();
         }
         else
         {
@@ -42,11 +41,8 @@ public class AddingBobaState : MonoBehaviour, IState
 
         if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                _activeTea.AddRegularBoba();
-                StateMachineService.Instance.SetDefaultState();
-            }
+            _activeTea.AddRegularBoba();
+            StateMachineService.Instance.SetDefaultState();
         }
         else
         {

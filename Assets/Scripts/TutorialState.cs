@@ -8,10 +8,10 @@ public class TutorialState : MonoBehaviour, IState
 {
     TMP_Text _key;
     TMP_Text _text;
-    KeyCode _listenForKey;
+    KeyCode _listenForKey = KeyCode.ScrollLock;
     int _instructionIndex;
     static bool _didSetKeyAndText;
-    private Level _level;
+    Level _level;
     OrderMB _order;
     ActiveTea _activeTea;
     Action _listenForKeyAction;
@@ -119,62 +119,40 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetPopupKeyAndText(1, "C", "Cups", KeyCode.C, () =>
+                SetPopupKeyAndText(1, "C", "for Cup", KeyCode.C, () =>
                 {
-                    CameraManager.Instance.ActivateCupPose();
-                    CupSelection.Instance.ShowCupSelection(CupSize.Cup);
+                    _activeTea.AddCup(CupSize.Cup);
+                    Debug.Log("Added cup");
                 });
                 break;
             case 1:
-                SetPopupKeyAndText(1, "C", "Add cup", KeyCode.C, () =>
+                SetIngredientInstructionKeyAndText(1, "B", "for Boba", KeyCode.B, () =>
                 {
-                    CameraManager.Instance.ActivateDefaultPose();
-                    CupSelection.Instance.HideCupSelection();
-                    _activeTea.AddCup(CupSize.Cup);
+                    _activeTea.AddRegularBoba();
                 });
                 break;
             case 2:
-                SetIngredientInstructionKeyAndText(1, "B", "Boba", KeyCode.B, () =>
-                {
-                    CameraManager.Instance.ActivateBobaPose();
-                });
+                SetIngredientInstructionKeyAndText(1, "I", "for Ice", KeyCode.I, () => _activeTea.AddIce());
                 break;
             case 3:
-                SetPopupKeyAndText(1, "B", "Add boba", KeyCode.B, () =>
-                {
-                    _activeTea.AddRegularBoba();
-                    CameraManager.Instance.ActivateDefaultPose();
-                });
+                SetIngredientInstructionKeyAndText(2, "M", "for Milk", KeyCode.M, () => _activeTea.AddMilk());
                 break;
             case 4:
-                SetIngredientInstructionKeyAndText(2, "I", "Ice", KeyCode.I, () => _activeTea.AddIce());
+                SetIngredientInstructionKeyAndText(3, "S", "for Sugar", KeyCode.S, () => _activeTea.AddSugar());
                 break;
             case 5:
-                SetIngredientInstructionKeyAndText(3, "M", "Milk", KeyCode.M, () => _activeTea.AddMilk());
-                break;
-            case 6:
-                SetIngredientInstructionKeyAndText(4, "S", "Sugar", KeyCode.S, () => _activeTea.AddSugar());
-                break;
-            case 7:
-                SetIngredientInstructionKeyAndText(5, "T", "Tea", KeyCode.T, () =>
-                {
-                    CameraManager.Instance.ActivateTeaPose();
-                });
-                break;
-            case 8:
-                SetPopupKeyAndText(1, "T", "Add tea", KeyCode.T, () =>
+                SetIngredientInstructionKeyAndText(4, "T", "for Tea", KeyCode.T, () =>
                 {
                     _activeTea.AddRegularTea();
-                    CameraManager.Instance.ActivateDefaultPose();
                 });
                 break;
-            case 9:
-                SetPopupKeyAndText(6, "", "<color=green>Space</color>\nto submit", KeyCode.Space, () => _activeTea.SubmitTeaForTutorial());
+            case 6:
+                SetPopupKeyAndText(5, "", "<color=green>Space</color>\nto submit", KeyCode.Space, () => _activeTea.SubmitTeaForTutorial());
                 break;
-            case 10:
-                SetPopupKeyAndText(6, "<color=red>X</color>", "to trash", KeyCode.X, () => _activeTea.TrashTeaForTutorial());
+            case 7:
+                SetPopupKeyAndText(5, "<color=red>X</color>", "to trash", KeyCode.X, () => _activeTea.TrashTeaForTutorial());
                 break;
-            case > 10:
+            case > 7:
                 CompleteTutorial();
                 break;
         }
@@ -340,7 +318,7 @@ public class TutorialState : MonoBehaviour, IState
 
     public void Reset()
     {
-        _listenForKey = KeyCode.None;
+        _listenForKey = KeyCode.ScrollLock;
         _instructionIndex = 0;
         _didSetKeyAndText = false;
     }

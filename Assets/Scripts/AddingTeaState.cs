@@ -18,17 +18,25 @@ public class AddingTeaState : MonoBehaviour, IState
 
     public void Enter()
     {
-        CameraManager.Instance.ActivateTeaPose();
+        if (Level.Instance.LevelIndex < LEVEL_INDEX)
+        {
+            _activeTea.AddRegularTea();
+            StateMachineService.Instance.SetDefaultState();
+        }
+        else
+        {
+            CameraManager.Instance.ActivateTeaPose();
+        }
     }
 
     public void Tick()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             StateMachineService.Instance.SetPauseState();
         }
         OrderSystem.Instance.Tick();
-        
+
         if (Level.Instance.LevelIndex < LEVEL_INDEX)
         {
             if (Input.GetKeyDown(KeyCode.T))
@@ -63,7 +71,7 @@ public class AddingTeaState : MonoBehaviour, IState
             }
         }
     }
-    
+
     public void Exit()
     {
         CameraManager.Instance.ActivateDefaultPose();

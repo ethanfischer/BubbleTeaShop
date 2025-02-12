@@ -21,6 +21,8 @@ public class PopupText : MonoBehaviour
     TextMeshProUGUI _keyText;
     [SerializeField]
     Transform _key;
+    [SerializeField]
+    RectTransform _keyPanel;
     
     //singleton unity pattern
     private static PopupText _instance;
@@ -54,6 +56,10 @@ public class PopupText : MonoBehaviour
             ? key
             : string.Empty;
         _key.gameObject.SetActive(key != "");
+
+        _keyPanel.localScale = key == "space"
+            ? new Vector3(4f, 1f, 1f)
+            : Vector3.one;
     }
 
     public string GetCashColorHexCode()

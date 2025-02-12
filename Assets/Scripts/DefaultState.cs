@@ -24,7 +24,15 @@ public class DefaultState : IState
             StateMachineService.Instance.SetAddingCupState(_activeTea);
         }
 
-        if (!_activeTea.HasCup) return;
+        if (!_activeTea.HasCup)
+        {
+            if (Input.KeyCode != KeyCode.None)
+            {
+                PopupText.Instance.ShowPopup("for Cup", 1f, "c");
+            }
+            
+            return;
+        }
 
         //Boba
         if (DidPressKey(KeyCode.B))

@@ -119,38 +119,38 @@ public class TutorialState : MonoBehaviour, IState
         switch (_instructionIndex)
         {
             case 0:
-                SetPopupKeyAndText(1, "C", "for Cup", KeyCode.C, () =>
+                SetPopupKeyAndText(1, "c", "for Cup", KeyCode.C, () =>
                 {
                     _activeTea.AddCup(CupSize.Cup);
                     Debug.Log("Added cup");
                 });
                 break;
             case 1:
-                SetIngredientInstructionKeyAndText(1, "B", "for Boba", KeyCode.B, () =>
+                SetIngredientInstructionKeyAndText(1, "b", "for Boba", KeyCode.B, () =>
                 {
                     _activeTea.AddRegularBoba();
                 });
                 break;
             case 2:
-                SetIngredientInstructionKeyAndText(1, "I", "for Ice", KeyCode.I, () => _activeTea.AddIce());
+                SetIngredientInstructionKeyAndText(2, "i", "for Ice", KeyCode.I, () => _activeTea.AddIce());
                 break;
             case 3:
-                SetIngredientInstructionKeyAndText(2, "M", "for Milk", KeyCode.M, () => _activeTea.AddMilk());
+                SetIngredientInstructionKeyAndText(3, "m", "for Milk", KeyCode.M, () => _activeTea.AddMilk());
                 break;
             case 4:
-                SetIngredientInstructionKeyAndText(3, "S", "for Sugar", KeyCode.S, () => _activeTea.AddSugar());
+                SetIngredientInstructionKeyAndText(4, "s", "for Sugar", KeyCode.S, () => _activeTea.AddSugar());
                 break;
             case 5:
-                SetIngredientInstructionKeyAndText(4, "T", "for Tea", KeyCode.T, () =>
+                SetIngredientInstructionKeyAndText(5, "t", "for Tea", KeyCode.T, () =>
                 {
                     _activeTea.AddRegularTea();
                 });
                 break;
             case 6:
-                SetPopupKeyAndText(5, "", "<color=green>Space</color>\nto submit", KeyCode.Space, () => _activeTea.SubmitTeaForTutorial());
+                SetPopupKeyAndText(5, "space", "to submit", KeyCode.Space, () => _activeTea.SubmitTeaForTutorial());
                 break;
             case 7:
-                SetPopupKeyAndText(5, "<color=red>X</color>", "to trash", KeyCode.X, () => _activeTea.TrashTeaForTutorial());
+                SetPopupKeyAndText(5, "x", "to trash", KeyCode.X, () => _activeTea.TrashTeaForTutorial());
                 break;
             case > 7:
                 CompleteTutorial();
@@ -298,7 +298,7 @@ public class TutorialState : MonoBehaviour, IState
                 break;
         }
 
-        instruction.transform.Find("Key").gameObject.GetComponent<TMP_Text>().text = key;
+        instruction.transform.Find("Key").transform.GetChild(1).GetComponent<TMP_Text>().text = key;
         instruction.transform.Find("Text").gameObject.GetComponent<TMP_Text>().text = text;
 
         instruction.GetComponent<IngredientInstruction>().FadeIn(); //TODO: just serialize ingredient instruction instead of gameobject and then looking itn up

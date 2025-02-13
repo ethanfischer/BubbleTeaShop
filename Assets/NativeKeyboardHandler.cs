@@ -46,6 +46,16 @@ public class NativeKeyboardHandler : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.P)) KeyCode = KeyCode.P;
         else if (Input.GetKeyDown(KeyCode.L)) KeyCode = KeyCode.L;
         else if (Input.GetKeyDown(KeyCode.R)) KeyCode = KeyCode.R;
+        else if (Input.GetKeyDown(KeyCode.Alpha1)) KeyCode = KeyCode.Alpha1;
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) KeyCode = KeyCode.Alpha2;
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) KeyCode = KeyCode.Alpha3;
+        else if (Input.GetKeyDown(KeyCode.Alpha4)) KeyCode = KeyCode.Alpha4;
+        else if (Input.GetKeyDown(KeyCode.Alpha5)) KeyCode = KeyCode.Alpha5;
+        else if (Input.GetKeyDown(KeyCode.Alpha6)) KeyCode = KeyCode.Alpha6;
+        else if (Input.GetKeyDown(KeyCode.Alpha7)) KeyCode = KeyCode.Alpha7;
+        else if (Input.GetKeyDown(KeyCode.Alpha8)) KeyCode = KeyCode.Alpha8;
+        else if (Input.GetKeyDown(KeyCode.Alpha9)) KeyCode = KeyCode.Alpha9;
+        else if (Input.GetKeyDown(KeyCode.Alpha0)) KeyCode = KeyCode.Alpha0;
         else if (Input.GetKeyDown(KeyCode.Space)) KeyCode = KeyCode.Space;
         else KeyCode = KeyCode.None; // No relevant key detected
     }
@@ -90,6 +100,16 @@ public class NativeKeyboardHandler : MonoBehaviour
                     'P' or 'p' => KeyCode.P,
                     'L' or 'l' => KeyCode.L,
                     'R' or 'r' => KeyCode.R,
+                    '1' => KeyCode.Alpha1,
+                    '2' => KeyCode.Alpha2,
+                    '3' => KeyCode.Alpha3,
+                    '4' => KeyCode.Alpha4,
+                    '5' => KeyCode.Alpha5,
+                    '6' => KeyCode.Alpha6,
+                    '7' => KeyCode.Alpha7,
+                    '8' => KeyCode.Alpha8,
+                    '9' => KeyCode.Alpha9,
+                    '0' => KeyCode.Alpha0,
                     ' ' => KeyCode.Space,
                     _ => KeyCode.None
                 };

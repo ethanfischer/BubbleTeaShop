@@ -1,4 +1,5 @@
 using UnityEngine;
+using Input = NativeKeyboardHandler;
 
 public class Level : MonoBehaviour
 {
@@ -42,5 +43,52 @@ public class Level : MonoBehaviour
             _matchaTeaBowl.SetActive(true);
             _taroTeaBowl.SetActive(true);
         }
+    }
+
+    void Update()
+    {
+        switch (Input.KeyCode)
+        {
+            case KeyCode.Alpha1:
+                GoToLevel(1);
+                break;
+            case KeyCode.Alpha2:
+                GoToLevel(2);
+                break;
+            case KeyCode.Alpha3:
+                GoToLevel(3);
+                break;
+            case KeyCode.Alpha4:
+                GoToLevel(4);
+                break;
+            case KeyCode.Alpha5:
+                GoToLevel(5);
+                break;
+            case KeyCode.Alpha6:
+                GoToLevel(6);
+                break;
+            case KeyCode.Alpha7:
+                GoToLevel(7);
+                break;
+            case KeyCode.Alpha8:
+                GoToLevel(8);
+                break;
+            case KeyCode.Alpha9:
+                GoToLevel(9);
+                break;
+            case KeyCode.Alpha0:
+                GoToLevel(0);
+                break;
+            default:
+                break;
+        }
+    }
+    
+    void GoToLevel(int levelIndex)
+    {
+        OrderSystem.Instance.Reset();
+        StateMachineService.Instance.SetDefaultState();
+        LevelIndex = levelIndex-1;
+        NextLevel();
     }
 }

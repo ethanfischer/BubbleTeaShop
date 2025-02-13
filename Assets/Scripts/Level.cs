@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using Input = NativeKeyboardHandler;
 
@@ -26,9 +27,13 @@ public class Level : MonoBehaviour
         return _instance;
     } }
 
+    [SerializeField]
+    TMP_Text _levelText;
+
     public void NextLevel()
     {
         LevelIndex++;
+        _levelText.text = "Level " + LevelIndex;
         PopupText.Instance.ShowPopup("Level " + LevelIndex);
         Debug.Log("Next level");
 

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,12 +17,19 @@ public class DifficultyMenuState : MonoBehaviour, IState
     CanvasGroup _textGroup;
     [SerializeField]
     Color _fadeColor = Color.black;
+    [SerializeField]
+    TMP_Text _highScoreText;
 
     public void Enter()
     {
         _canvasGroup.alpha = 1f; //Show
+        var highScore = HighScore.Instance.GetHighScore();
+        if (highScore > 0)
+        {
+            _highScoreText.text = $"High Score: ${highScore:N2}";
+        }
     }
-    
+
     void IState.Tick()
     {
         _canvasGroup.alpha = 1f;
@@ -43,7 +52,7 @@ public class DifficultyMenuState : MonoBehaviour, IState
             Level.Instance.NextLevel();
         }
     }
-    
+
     public void Exit()
     {
         _image.color = _fadeColor;
@@ -61,6 +70,6 @@ public class DifficultyMenuState : MonoBehaviour, IState
     {
         _animator.enabled = false;
     }
-    
+
     bool DidPressKey(KeyCode keyCode) => NativeKeyboardHandler.KeyCode == keyCode;
 }

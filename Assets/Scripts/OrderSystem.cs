@@ -184,6 +184,7 @@ public class OrderSystem : MonoBehaviour
 
     public void GameOver(string text = "GAME OVER")
     {
+        HighScore.Instance.SetHighScore(Cash);
         Debug.Log("Order failed");
         PopupText.Instance.GameOver(text);
         OrderSystem.Instance.ClearOrders();

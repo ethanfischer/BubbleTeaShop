@@ -58,6 +58,7 @@ public class DifficultyMenuState : MonoBehaviour, IState
         _image.color = _fadeColor;
         _image.sprite = null;
         _textGroup.alpha = 0f;
+        _highScoreText.text = string.Empty;
         FadeOut();
     }
 

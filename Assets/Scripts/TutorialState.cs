@@ -110,6 +110,7 @@ public class TutorialState : MonoBehaviour, IState
                 break;
             default:
                 PopupText.Instance.ShowPopup("You won", float.MaxValue);
+                HighScore.Instance.SetHighScore(OrderSystem.Instance.Cash);
                 throw new ArgumentOutOfRangeException(nameof(i), i, null);
         }
     }

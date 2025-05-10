@@ -15,6 +15,7 @@ namespace DefaultNamespace
             }
             
             return new Order(
+                _ingredients.CupOptions.ElementAt(Random.Range(0, _ingredients.CupOptions.Count)).Key,
                 _ingredients.BobaOptions.ElementAt(Random.Range(0, _ingredients.BobaOptions.Count)).Key,
                 _ingredients.IceOptions.ElementAt(Random.Range(0, _ingredients.IceOptions.Count)).Key,
                 _ingredients.SugarOptions.ElementAt(Random.Range(0, _ingredients.SugarOptions.Count)).Key,
@@ -48,8 +49,10 @@ namespace DefaultNamespace
                     return new Level4Ingredients();
                 case 5:
                     return new Level5Ingredients();
+                case 6:
+                    return new Level6Ingredients();
                 default:
-                    return new Level5Ingredients();
+                    return new Level6Ingredients();
             }
         }
 
@@ -58,17 +61,19 @@ namespace DefaultNamespace
             switch (Level.Instance.LevelIndex)
             {
                 case 1:
-                    return new Order(1, 1, 1, 0, 0);
+                    return new Order(0, 1, 1, 1, 0, 0);
                 case 2:
-                    return new Order(1, 2, 2, 0, 0);
+                    return new Order(0, 1, 2, 2, 0, 0);
                 case 3:
-                    return new Order(2, 2, 2, 0, 1);
+                    return new Order(0, 2, 2, 2, 0, 1);
                 case 4:
-                    return new Order(3, 2, 2, 0, 1);
+                    return new Order(1, 2, 2, 2, 0, 1);
                 case 5:
-                    return new Order(3, 2, 2, 0, 1);
+                    return new Order(1, 3, 2, 2, 0, 1);
+                case 6:
+                    return new Order(1, 3, 2, 2, 0, 1);
                 default:
-                    return new Order(1, 1, 1, 0, 0);
+                    return new Order(1, 1, 1, 1, 0, 0);
             }
         }
 

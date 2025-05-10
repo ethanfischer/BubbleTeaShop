@@ -28,4 +28,14 @@ public class Music : MonoBehaviour
         _audioSource.loop = false;
         _audioSource.Play();
     }
+    
+    public void PauseMusic()
+    {
+        _audioSource.Pause();
+    }
+    
+    public void PlayMusic()
+    {
+        _audioSource.Play();
+    }
 }

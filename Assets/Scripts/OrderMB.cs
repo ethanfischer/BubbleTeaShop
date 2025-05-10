@@ -1,5 +1,6 @@
 using System.Collections;
 using DefaultNamespace;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -7,6 +8,8 @@ using Color = UnityEngine.Color;
 
 public class OrderMB : MonoBehaviour
 {
+    [SerializeField]
+    TMP_Text _sizeText;
     [FormerlySerializedAs("BobaText")]
     public Image BobaImage;
     [FormerlySerializedAs("IceText")]
@@ -26,7 +29,7 @@ public class OrderMB : MonoBehaviour
     public GameObject Instruction4;
     public GameObject Instruction5;
     public GameObject Instruction6;
-    
+
     [SerializeField]
     private OrderAnimations _orderAnimations;
 
@@ -39,10 +42,10 @@ public class OrderMB : MonoBehaviour
 
     float TimeToCompleteOrder => GameDifficulty.Difficulty switch
     {
-        (int)GameDifficultyEnum.Easy => 45f,
-        (int)GameDifficultyEnum.Medium => 30f,
-        (int)GameDifficultyEnum.Hard => 15f,
-        (int)GameDifficultyEnum.Testing => 5f,
+        (int)GameDifficultyEnum.Easy => 60f,
+        (int)GameDifficultyEnum.Medium => 45f,
+        (int)GameDifficultyEnum.Hard => 30f,
+        (int)GameDifficultyEnum.Testing => 9999f,
         _ => 0f
     };
 
@@ -59,7 +62,7 @@ public class OrderMB : MonoBehaviour
     static readonly int _orderArrivedAnimation = Animator.StringToHash("OrderArrived");
     static readonly int _orderExpiringAnimation = Animator.StringToHash("OrderExpiringAnimation");
     bool _didStartExpiringAnimation;
-    
+
     [SerializeField]
     int _expirationAnimationTime;
     bool _isComplete;
@@ -93,6 +96,17 @@ public class OrderMB : MonoBehaviour
         IceImage.GetComponent<Image>().enabled = true;
         SugarImage.GetComponent<Image>().enabled = true;
         ExtraToppingImage.GetComponent<Image>().enabled = true;
+
+        //Cup
+
+        if (Order.Cup == 0)
+        {
+            _sizeText.text = "";
+        }
+        else if (Order.Cup == 1)
+        {
+            _sizeText.text = "Large";
+        }
 
         //Boba
         if (bobaSpriteName == "Strawberry Boba")
@@ -186,7 +200,7 @@ public class OrderMB : MonoBehaviour
     public void Tick()
     {
         if (_isComplete) return;
-        
+
         TimeRemaining -= Time.deltaTime;
         if (TimeRemaining <= _expirationAnimationTime && !_didStartExpiringAnimation)
         {
@@ -231,15 +245,17 @@ public class OrderMB : MonoBehaviour
 
     public bool DoOrdersMatch(Order input)
     {
+        var cup = input.Cup == Order.Cup;
         var boba = input.Boba == Order.Boba;
         var ice = input.Ice == Order.Ice;
         var sugar = input.Sugar == Order.Sugar;
         var tea = input.Tea == Order.Tea;
         var extraTopping = input.ExtraTopping == Order.ExtraTopping;
 
-        Debug.Log($"Boba: {boba}, Ice: {ice}, Sugar: {sugar}, Tea: {tea}, ExtraTopping: {extraTopping}");
+        Debug.Log($"Cup: {cup}, Boba: {boba}, Ice: {ice}, Sugar: {sugar}, Tea: {tea}, ExtraTopping: {extraTopping}");
 
-        return boba
+        return cup
+            && boba
             && ice
             && sugar
             && tea
@@ -272,7 +288,7 @@ public class OrderMB : MonoBehaviour
     void OnOrderArrivedAnimationComplete()
     {
         StopAnimation();
-        
+
         if (!TutorialState.CompletedTutorials[Level.Instance.LevelIndex])
         {
             StateMachineService.Instance.SetTutorialState();

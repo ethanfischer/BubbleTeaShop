@@ -11,13 +11,13 @@ public class StateMachine
 
     public void Update()
     {
-        CurrentState?.Update();
+        CurrentState?.Tick();
     }
 }
 
 public interface IState
 {
     void Enter();
-    void Update();
+    void Tick();
     void Exit();
 }

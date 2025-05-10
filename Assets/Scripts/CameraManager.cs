@@ -6,7 +6,13 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     Pose _bobaPose;
     [SerializeField]
+    Pose _bobaPose2;
+    [SerializeField]
     Pose _teaPose;
+    [SerializeField]
+    Pose _cupPose;
+    [SerializeField]
+    GameObject _ingredientsUI;
     
     //singleton unity pattern
     static CameraManager _instance;
@@ -34,19 +40,36 @@ public class CameraManager : MonoBehaviour
     
     public void ActivateBobaPose()
     {
+        _ingredientsUI.GetComponent<CanvasGroup>().alpha = 0f;
         transform.position = _bobaPose.position;
         transform.rotation = _bobaPose.rotation;
     }
     
+    public void ActivateBobaPose2()
+    {
+        _ingredientsUI.GetComponent<CanvasGroup>().alpha = 0f;
+        transform.position = _bobaPose2.position;
+        transform.rotation = _bobaPose2.rotation;
+    }
+    
     public void ActivateTeaPose()
     {
+        _ingredientsUI.GetComponent<CanvasGroup>().alpha = 0f;
         transform.position = _teaPose.position;
         transform.rotation = _teaPose.rotation;
     }
     
     public void ActivateDefaultPose()
     {
+        _ingredientsUI.GetComponent<CanvasGroup>().alpha = 1f;
         transform.position = _defaultPose.position;
         transform.rotation = _defaultPose.rotation;
+    }
+    
+    public void ActivateCupPose()
+    {
+        _ingredientsUI.GetComponent<CanvasGroup>().alpha = 0f;
+        transform.position = _cupPose.position;
+        transform.rotation = _cupPose.rotation;
     }
 }
